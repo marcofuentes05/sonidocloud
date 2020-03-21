@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(72,35,60);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>40</y>
+      <width>900</width>
+      <height>550</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>900</width>
+      <height>550</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>900</width>
+      <height>550</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+image: url(:/newPrefix/WhatsApp Image 2020-03-16 at 9.47.22 PM.jpeg);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>50</y>
+       <width>205</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>205</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>205</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 24pt &quot;Times&quot;;
+color: rgb(10, 54, 157);
+</string>
+     </property>
+     <property name="text">
+      <string>Sonido Cloud </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>100</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>logo.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::NoTextInteraction</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_2">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>150</y>
+       <width>230</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>230</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>230</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(150, 172, 183);
+font: 13pt &quot;Times&quot;;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Autorización</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Registros</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Inactivación</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Modificación</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Inactivación</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>130</y>
+       <width>230</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>230</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>230</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 18pt &quot;Times&quot;;
+color: rgb(10, 54, 157);
+</string>
+     </property>
+     <property name="text">
+      <string>Módulo de autorización</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>230</y>
+       <width>841</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 13pt &quot;Times&quot;;
+color: rgb(64, 55, 110);
+background-color: rgb(212, 228, 188);</string>
+     </property>
+     <row>
+      <property name="text">
+       <string>aqui</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>van</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>New Row</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>las</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>filas</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>proyecto</string>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>aqui</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>van</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>las</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>columnas</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>proyecto</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Login">
+     <property name="geometry">
+      <rect>
+       <x>756</x>
+       <y>50</y>
+       <width>114</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>114</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>114</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(10, 54, 157);
+font: 14pt &quot;Times&quot;;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Log out</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_UserBuscar">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>200</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(150, 172, 183);
+font: 13pt &quot;Times&quot;;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Times'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>609</x>
+       <y>199</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>finder.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>210</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>210</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>210</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 18pt &quot;Times&quot;;
+color: rgb(10, 54, 157);
+</string>
+     </property>
+     <property name="text">
+      <string>Módulo de búsquedas</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_4">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>150</y>
+       <width>220</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>220</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>220</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(150, 172, 183);
+font: 13pt &quot;Times&quot;;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Búsquedas</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Canción</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Artista</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Álbum</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Género</string>
+      </property>
+     </item>
+    </widget>
+    <zorder>label_8</zorder>
+    <zorder>label_7</zorder>
+    <zorder>label</zorder>
+    <zorder>label_2</zorder>
+    <zorder>comboBox_2</zorder>
+    <zorder>tableWidget</zorder>
+    <zorder>pushButton_Login</zorder>
+    <zorder>textEdit_UserBuscar</zorder>
+    <zorder>label_4</zorder>
+    <zorder>comboBox_4</zorder>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
