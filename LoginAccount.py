@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
+import psycopg2 as bd
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
@@ -93,7 +93,7 @@ class Ui_LoginAccount(object):
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(440, 320, 60, 16))
         self.label_5.setMinimumSize(QtCore.QSize(60, 16))
-        self.pushButton_Login.clicked.connect(self.openHomeAdmin)
+        self.pushButton_Login.clicked.connect(self.getLogin( self, "marco" , "127.0.0.1" , "5432" ,"proyectoNew" , "luisg95" , "contrasena" ))
         self.label_5.setMaximumSize(QtCore.QSize(60, 16))
         self.label_5.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"
@@ -155,7 +155,7 @@ class Ui_LoginAccount(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-
+    
 
 
 if __name__ == "__main__":
@@ -165,6 +165,3 @@ if __name__ == "__main__":
     ui.setupUi(LoginAccount)
     LoginAccount.show()
     sys.exit(app.exec_())
-
-
-

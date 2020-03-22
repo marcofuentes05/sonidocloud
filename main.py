@@ -14,7 +14,7 @@ try:
                         password = '12345678',
                         host= '127.0.0.1' ,
                         port= '5432',
-                        database= 'proyecto' )
+                        database= 'proyectoNew' )
     cursor = conn.cursor()
     print ( conn.get_dsn_parameters(),"\n")
 
@@ -22,9 +22,9 @@ try:
     # cursor.execute("INSERT INTO tst(id,nombre, apellido) VALUES (57, \'Jose\', \'Lima\')")
     # conn.commit()
 
-    cursor.execute("SELECT COUNT(*) FROM ARTIST")
+    cursor.execute("SELECT * FROM ARTIST WHERE id = %1")
     record = cursor.fetchall()
-
+    print(record[0])
     #print("HAY "+ str(record)+ " ARTISTAS EN LA BASE DE DATOS")
 
     # 2. Create an instance of QApplication
