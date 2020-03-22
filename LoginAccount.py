@@ -14,7 +14,6 @@ from HomeAdmin import Ui_HomeAdmin
 from CreateAccount import Ui_CreateAccount
 from HomeUserAuto import Ui_HomeUserAuto
 from HomeUser import Ui_HomeUser
-from dbfunctions import getLogin
 import psycopg2 as bd
 
 class Ui_LoginAccount(object):
@@ -92,24 +91,10 @@ class Ui_LoginAccount(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Login.setObjectName("pushButton_Login")
-        self.pushButton_Login.clicked.connect(self.openHomeUserAuto)
+        self.pushButton_Login.clicked.connect(self.getLogin)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(440, 320, 60, 16))
         self.label_5.setMinimumSize(QtCore.QSize(60, 16))
-        self.textEdit_Username.textChanged.connect(print('hla'))
-        if (self.textEdit_Username.toPlainText() != '' and self.textEdit_Password.toPlainText()!=''):
-                print('Llegamos')
-                self.pushButton_Login.clicked.connect(getLogin(
-                        self, 
-                        bd,
-                        "marco" ,
-                        '12345678',
-                        "127.0.0.1" ,
-                        "5432" ,
-                        "proyectoNew" , 
-                        self.textEdit_Username.toPlainText(),
-                        self.textEdit_Password.toPlainText()))
-
         self.label_5.setMaximumSize(QtCore.QSize(60, 16))
         self.label_5.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"
@@ -176,6 +161,28 @@ class Ui_LoginAccount(object):
         self.ui = Ui_HomeUser()
         self.ui.setupUi(self.window)
         self.window.show()
+
+    def getLogin(self):
+        try:
+                conn = bd.connect(user= 'postgres', password = '59809690', host ="127.0.0.1",port = "5432", database = "NuevaPrueba")
+                cursor = conn.cursor()
+                print(self.textEdit_Username.toPlainText())
+                print(self.textEdit_Password.toPlainText())
+                print("SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'")
+                query = "SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                print(record)
+                if(len(record) != 0):
+                        self.openHomeAdmin()
+                else:
+                        print("error in loging")
+        except (Exception) as error:
+                print("Error", error)
+        finally:
+                if(conn):
+                        cursor.close()
+                        conn.close()
 
     
 
