@@ -15,6 +15,8 @@ $ pip install pyqt5
 $ pip install psycopg2
 ```
 
+Además, montar el archivo ```Proyecto1.sql```
+
 ## Integrantes
 
 Marco Fuentes
