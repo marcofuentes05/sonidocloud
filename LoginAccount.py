@@ -13,6 +13,7 @@ from PyQt5.uic import loadUi
 from HomeAdmin import Ui_HomeAdmin
 from CreateAccount import Ui_CreateAccount
 from HomeUserAuto import Ui_HomeUserAuto
+from HomeUser import Ui_HomeUser
 from dbfunctions import getLogin
 import psycopg2 as bd
 
@@ -91,6 +92,7 @@ class Ui_LoginAccount(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Login.setObjectName("pushButton_Login")
+        self.pushButton_Login.clicked.connect(self.openHomeUserAuto)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(440, 320, 60, 16))
         self.label_5.setMinimumSize(QtCore.QSize(60, 16))
@@ -165,7 +167,13 @@ class Ui_LoginAccount(object):
 
     def openHomeUserAuto(self):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeAdmin()
+        self.ui = Ui_HomeUserAuto()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def openHomeUser(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_HomeUser()
         self.ui.setupUi(self.window)
         self.window.show()
 
