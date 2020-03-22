@@ -154,12 +154,14 @@ class Ui_LoginAccount(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_HomeUserAuto()
         self.ui.setupUi(self.window)
+        LoginAccount.hide()
         self.window.show()
 
     def openHomeUser(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_HomeUser()
         self.ui.setupUi(self.window)
+        LoginAccount.hide()
         self.window.show()
 
     def getLogin(self):
