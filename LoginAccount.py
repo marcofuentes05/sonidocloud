@@ -13,7 +13,8 @@ from PyQt5.uic import loadUi
 from HomeAdmin import Ui_HomeAdmin
 from CreateAccount import Ui_CreateAccount
 from HomeUserAuto import Ui_HomeUserAuto
-
+from dbfunctions import getLogin
+import psycopg2 as bd
 
 class Ui_LoginAccount(object):
     def setupUi(self, MainWindow):
@@ -93,7 +94,20 @@ class Ui_LoginAccount(object):
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(440, 320, 60, 16))
         self.label_5.setMinimumSize(QtCore.QSize(60, 16))
-        self.pushButton_Login.clicked.connect(self.getLogin( self, "marco" , "127.0.0.1" , "5432" ,"proyectoNew" , "luisg95" , "contrasena" ))
+        self.textEdit_Username.textChanged.connect(print('hla'))
+        if (self.textEdit_Username.toPlainText() != '' and self.textEdit_Password.toPlainText()!=''):
+                print('Llegamos')
+                self.pushButton_Login.clicked.connect(getLogin(
+                        self, 
+                        bd,
+                        "marco" ,
+                        '12345678',
+                        "127.0.0.1" ,
+                        "5432" ,
+                        "proyectoNew" , 
+                        self.textEdit_Username.toPlainText(),
+                        self.textEdit_Password.toPlainText()))
+
         self.label_5.setMaximumSize(QtCore.QSize(60, 16))
         self.label_5.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"

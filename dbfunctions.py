@@ -1,4 +1,5 @@
-def getLogin(self, userdb, passworddb, host, port, database,username, password):
+
+def getLogin(self,bd,  userdb, passworddb, host, port, database,username, password):
       try:
           conn = bd.connect(user = 'marco',
                               password = '12345678',
@@ -6,14 +7,18 @@ def getLogin(self, userdb, passworddb, host, port, database,username, password):
                               port= port,
                               database= database )
           cursor = conn.cursor()
-          query = "SELECT * FROM user_client WHERE username = \'luisg95\'"
+          query = "SELECT * FROM user_client WHERE username = \'"+username+"\' AND password = \' " + password + "\'"
           cursor.execute(query)
           record = cursor.fetchall()
           print(record)
-          return self.openHomeAdmin
+          if (record.length() != 0):
+            return self.openHomeAdmin
+          else:
+            return 'ERR '
+
       except (Exception) as error :
           print ("ERROR", error)
-          return print('Error')
+          return print('Algo salio mal...')
       finally:
           #closing database connection.
               if(conn):
