@@ -241,6 +241,28 @@ class Ui_HomeAdmin(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Op8.setObjectName("pushButton_Op8")
+        self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
+        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 230, 181, 31))
+        self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(181, 31))
+        self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
+        self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+"font: 13pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.comboBox_OpcionesBuscar.setObjectName("comboBox_OpcionesBuscar")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.pushButton_Buscar = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Buscar.setGeometry(QtCore.QRect(796, 230, 75, 31))
+        self.pushButton_Buscar.setMinimumSize(QtCore.QSize(75, 31))
+        self.pushButton_Buscar.setMaximumSize(QtCore.QSize(75, 31))
+        self.pushButton_Buscar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
         self.label_2.raise_()
@@ -324,6 +346,13 @@ class Ui_HomeAdmin(object):
         self.pushButton_Op6.setText(_translate("MainWindow", "Opción 6"))
         self.pushButton_Op7.setText(_translate("MainWindow", "Opción 7"))
         self.pushButton_Op8.setText(_translate("MainWindow", "Opción 8"))
+        self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
+        self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))
+        self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "Género"))
+        self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "Álbum"))
+        self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
+        self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
+
 
     def openHomeUserInactivarEliminar(self):
         self.window = QtWidgets.QMainWindow()
@@ -342,5 +371,10 @@ class Ui_HomeAdmin(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_HomeUserRegistrar()
         self.ui.setupUi(self.window)
+        self.window.show()
+
+    def openVentanaOpciones(self):
+        self.window = QtWidgets.QMainWindow()
+        self.window.resize(1000,500)
         self.window.show()
 
