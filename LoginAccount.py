@@ -166,7 +166,7 @@ class Ui_LoginAccount(object):
 
     def getLogin(self):
         try:
-                conn = bd.connect(user= 'postgres', password = '59809690', host ="127.0.0.1",port = "5432", database = "NuevaPrueba")
+                conn = bd.connect(user= 'marco', password = '12345678', host ="127.0.0.1",port = "5432", database = "proyectoNew")
                 cursor = conn.cursor()
                 print(self.textEdit_Username.toPlainText())
                 print(self.textEdit_Password.toPlainText())
