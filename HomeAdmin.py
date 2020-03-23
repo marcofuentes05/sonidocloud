@@ -121,13 +121,13 @@ class Ui_HomeAdmin(object):
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.pushButton_Exit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(640, 230, 231, 31))
+        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 230, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.textEdit_UserBuscar.setObjectName("textEdit_UserBuscar")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(609, 229, 31, 31))
+        self.label_4.setGeometry(QtCore.QRect(534, 229, 31, 31))
         self.label_4.setStyleSheet("")
         self.label_4.setText("")
         self.label_4.setPixmap(QtGui.QPixmap("finder.png"))
@@ -285,6 +285,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Op6.raise_()
         self.pushButton_Op7.raise_()
         self.pushButton_Op8.raise_()
+        self.pushButton_Buscar.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

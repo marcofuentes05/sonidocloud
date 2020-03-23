@@ -96,13 +96,13 @@ class Ui_HomeUserAuto(object):
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.pushButton_Exit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(640, 230, 231, 31))
+        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 230, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.textEdit_UserBuscar.setObjectName("textEdit_UserBuscar")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(609, 229, 31, 31))
+        self.label_4.setGeometry(QtCore.QRect(534, 229, 31, 31))
         self.label_4.setStyleSheet("")
         self.label_4.setText("")
         self.label_4.setPixmap(QtGui.QPixmap("finder.png"))
@@ -144,6 +144,28 @@ class Ui_HomeUserAuto(object):
 "color: rgb(255, 255, 255);")
         self.pushButton_Eliminar.setObjectName("pushButton_Eliminar")
         self.pushButton_Eliminar.clicked.connect(self.openHomeUserInactivarEliminar)
+        self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
+        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 230, 181, 31))
+        self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(181, 31))
+        self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
+        self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+"font: 13pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.comboBox_OpcionesBuscar.setObjectName("comboBox_OpcionesBuscar")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.pushButton_Buscar = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Buscar.setGeometry(QtCore.QRect(796, 230, 75, 31))
+        self.pushButton_Buscar.setMinimumSize(QtCore.QSize(75, 31))
+        self.pushButton_Buscar.setMaximumSize(QtCore.QSize(75, 31))
+        self.pushButton_Buscar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
         self.label_2.raise_()
@@ -155,6 +177,7 @@ class Ui_HomeUserAuto(object):
         self.pushButton_Inactivar.raise_()
         self.pushButton_Modficiar.raise_()
         self.pushButton_Eliminar.raise_()
+        self.pushButton_Buscar.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -197,6 +220,13 @@ class Ui_HomeUserAuto(object):
         self.pushButton_Inactivar.setText(_translate("MainWindow", "Inactivación"))
         self.pushButton_Modficiar.setText(_translate("MainWindow", "Modificación"))
         self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
+        self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
+        self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))
+        self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "Género"))
+        self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "Álbum"))
+        self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
+        self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
+
 
 
     def openHomeUserInactivarEliminar(self):
@@ -217,5 +247,14 @@ class Ui_HomeUserAuto(object):
         self.ui = Ui_HomeUserRegistrar()
         self.ui.setupUi(self.window)
         self.window.show()
+
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    HomeUserAuto = QtWidgets.QMainWindow()
+    ui = Ui_HomeUserAuto()
+    ui.setupUi(HomeUserAuto)
+    HomeUserAuto.show()
+    sys.exit(app.exec_())
 
 
