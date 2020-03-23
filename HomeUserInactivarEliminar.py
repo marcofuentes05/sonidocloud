@@ -23,7 +23,8 @@ class Ui_HomeUserInactivarEliminar(object):
         self.frame.setGeometry(QtCore.QRect(60, 40, 900, 550))
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
-        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"image: url(:/newPrefix/WhatsApp Image 2020-03-16 at 9.47.22 PM.jpeg);")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -54,7 +55,9 @@ class Ui_HomeUserInactivarEliminar(object):
 "")
         self.label_7.setObjectName("label_7")
         self.tableWidget = QtWidgets.QTableWidget(self.frame)
-        self.tableWidget.setGeometry(QtCore.QRect(609, 230, 262, 231))
+        self.tableWidget.setGeometry(QtCore.QRect(534, 230, 337, 231))
+        self.tableWidget.setMinimumSize(QtCore.QSize(337, 231))
+        self.tableWidget.setMaximumSize(QtCore.QSize(337, 231))
         self.tableWidget.setStyleSheet("font: 13pt \"Times\";\n"
 "color: rgb(64, 55, 110);\n"
 "background-color: rgb(212, 228, 188);")
@@ -84,20 +87,20 @@ class Ui_HomeUserInactivarEliminar(object):
 "color: rgb(255, 255, 255);")
         self.pushButton_Login.setObjectName("pushButton_Login")
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(640, 200, 231, 31))
+        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 200, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.textEdit_UserBuscar.setObjectName("textEdit_UserBuscar")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(609, 199, 31, 31))
+        self.label_4.setGeometry(QtCore.QRect(534, 199, 31, 31))
         self.label_4.setStyleSheet("")
         self.label_4.setText("")
         self.label_4.setPixmap(QtGui.QPixmap("finder.png"))
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.label_8 = QtWidgets.QLabel(self.frame)
-        self.label_8.setGeometry(QtCore.QRect(30, 130, 220, 50))
+        self.label_8.setGeometry(QtCore.QRect(88, 130, 220, 50))
         self.label_8.setMinimumSize(QtCore.QSize(220, 50))
         self.label_8.setMaximumSize(QtCore.QSize(210, 25))
         self.label_8.setStyleSheet("font: 19pt \"Times\";\n"
@@ -118,7 +121,9 @@ class Ui_HomeUserInactivarEliminar(object):
 "color: rgb(255, 255, 255);")
         self.textEdit_UserBuscar_2.setObjectName("textEdit_UserBuscar_2")
         self.tableWidget_2 = QtWidgets.QTableWidget(self.frame)
-        self.tableWidget_2.setGeometry(QtCore.QRect(30, 230, 262, 231))
+        self.tableWidget_2.setGeometry(QtCore.QRect(30, 230, 337, 231))
+        self.tableWidget_2.setMinimumSize(QtCore.QSize(337, 231))
+        self.tableWidget_2.setMaximumSize(QtCore.QSize(337, 231))
         self.tableWidget_2.setStyleSheet("font: 13pt \"Times\";\n"
 "color: rgb(64, 55, 110);\n"
 "background-color: rgb(212, 228, 188);")
@@ -140,7 +145,7 @@ class Ui_HomeUserInactivarEliminar(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_2.setHorizontalHeaderItem(0, item)
         self.pushButton_Login_2 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Login_2.setGeometry(QtCore.QRect(104, 480, 114, 32))
+        self.pushButton_Login_2.setGeometry(QtCore.QRect(141, 480, 114, 32))
         self.pushButton_Login_2.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_Login_2.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_Login_2.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -148,13 +153,29 @@ class Ui_HomeUserInactivarEliminar(object):
 "color: rgb(255, 255, 255);")
         self.pushButton_Login_2.setObjectName("pushButton_Login_2")
         self.pushButton_Login_3 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Login_3.setGeometry(QtCore.QRect(683, 490, 114, 32))
+        self.pushButton_Login_3.setGeometry(QtCore.QRect(646, 490, 114, 32))
         self.pushButton_Login_3.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_Login_3.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_Login_3.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Login_3.setObjectName("pushButton_Login_3")
+        self.pushButton_BuscarEliminar = QtWidgets.QPushButton(self.frame)
+        self.pushButton_BuscarEliminar.setGeometry(QtCore.QRect(292, 200, 75, 31))
+        self.pushButton_BuscarEliminar.setMinimumSize(QtCore.QSize(75, 31))
+        self.pushButton_BuscarEliminar.setMaximumSize(QtCore.QSize(75, 31))
+        self.pushButton_BuscarEliminar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_BuscarEliminar.setObjectName("pushButton_BuscarEliminar")
+        self.pushButton_BuscarInactivar = QtWidgets.QPushButton(self.frame)
+        self.pushButton_BuscarInactivar.setGeometry(QtCore.QRect(796, 200, 75, 31))
+        self.pushButton_BuscarInactivar.setMinimumSize(QtCore.QSize(75, 31))
+        self.pushButton_BuscarInactivar.setMaximumSize(QtCore.QSize(75, 31))
+        self.pushButton_BuscarInactivar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_BuscarInactivar.setObjectName("pushButton_BuscarInactivar")
         self.label_8.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -168,6 +189,8 @@ class Ui_HomeUserInactivarEliminar(object):
         self.tableWidget_2.raise_()
         self.pushButton_Login_2.raise_()
         self.pushButton_Login_3.raise_()
+        self.pushButton_BuscarEliminar.raise_()
+        self.pushButton_BuscarInactivar.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -220,3 +243,5 @@ class Ui_HomeUserInactivarEliminar(object):
         item.setText(_translate("MainWindow", "canciones"))
         self.pushButton_Login_2.setText(_translate("MainWindow", "Eliminar"))
         self.pushButton_Login_3.setText(_translate("MainWindow", "Inactivar"))
+        self.pushButton_BuscarEliminar.setText(_translate("MainWindow", "Buscar"))
+        self.pushButton_BuscarInactivar.setText(_translate("MainWindow", "Buscar"))
