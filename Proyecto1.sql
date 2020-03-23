@@ -7,6 +7,10 @@ DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Genre;
 
+
+
+
+
 CREATE TABLE Artist
 (
     ArtistId INT NOT NULL,
@@ -146,7 +150,6 @@ CREATE TABLE PlaylistTrack
     FOREIGN KEY (PlaylistId) REFERENCES Playlist (PlaylistId) ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (TrackId) REFERENCES Track (TrackId) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
-
 DROP TABLE IF EXISTS user_client;
 CREATE TABLE user_client
 (  
@@ -157,6 +160,8 @@ CREATE TABLE user_client
     CONSTRAINT PK_user_client PRIMARY KEY(clientid),
     FOREIGN KEY (clientid) REFERENCES Customer (CustomerId)  ON DELETE NO ACTION ON UPDATE NO ACTION
 );
+
+
 
 /*******************************************************************************
    Create Primary Key Unique Indexes
@@ -494,6 +499,8 @@ INSERT INTO Artist (ArtistId, Name) VALUES (272,'Emerson String Quartet');
 INSERT INTO Artist (ArtistId, Name) VALUES (273,'C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu');
 INSERT INTO Artist (ArtistId, Name) VALUES (274,'Nash Ensemble');
 INSERT INTO Artist (ArtistId, Name) VALUES (275,'Philip Glass Ensemble');
+INSERT INTO Artist (ArtistId, Name, customerId) VALUES (276, 'luisg95', 1);
+INSERT INTO Artist (ArtistId, Name, customerId) VALUES (277, 'tst0',2);
 
 INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (1,'For Those About To Rock We Salute You', 1);
 INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (2,'Balls to the Wall', 2);
@@ -842,6 +849,8 @@ INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (344,'Schubert: The Late Str
 INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (345,'Monteverdi: L''Orfeo', 273);
 INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (346,'Mozart: Chamber Music', 274);
 INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (347,'Koyaanisqatsi (Soundtrack from the Motion Picture)', 275);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (348,'AlbumLuis', 276);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (349,'AlbumTst0', 277);
 
 INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (1,'For Those About To Rock (We Salute You)', 1, 1, 1,'Angus Young, Malcolm Young, Brian Johnson', 343719, 11170334, 0.99);
 INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Milliseconds, Bytes, UnitPrice) VALUES (2,'Balls to the Wall', 2, 2, 1, 342562, 5510424, 0.99);
@@ -4346,6 +4355,9 @@ INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milli
 INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (3501,'L''orfeo, Act 3, Sinfonia (Orchestra)', 345, 2, 24,'Claudio Monteverdi', 66639, 1189062, 0.99);
 INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (3502,'Quintet for Horn, Violin, 2 Violas, and Cello in E Flat Major, K. 407/386c: III. Allegro', 346, 2, 24,'Wolfgang Amadeus Mozart', 221331, 3665114, 0.99);
 INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (3503,'Koyaanisqatsi', 347, 2, 10,'Philip Glass', 206005, 3305164, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (3504,'cancionLuis', 348, 2, 10,'Luisg', 324069, 3285762, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (3505,'LuiSong', 348, 2, 10,'Luisg', 456505, 3335764, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (3506,'cancionTsT0', 349, 2, 10,'tst0', 206479, 2365664, 0.99);
 
 INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email, Username, Password, Usertype) VALUES (1,'Adams','Andrew','General Manager', '1962/2/18', '2002/8/14','11120 Jasper Ave NW','Edmonton','AB','Canada','T5K 2N1','+1 (780) 428-9482','+1 (780) 428-3457','andrew@chinookcorp.com', 'user0', 'test0',1);
 INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email, Username, Password, Usertype) VALUES (2,'Edwards','Nancy','Sales Manager', 1, '1958/12/8', '2002/5/1','825 8 Ave SW','Calgary','AB','Canada','T2P 2T3','+1 (403) 262-3443','+1 (403) 262-3322','nancy@chinookcorp.com', 'user1', 'test0',0);
