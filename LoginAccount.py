@@ -170,13 +170,27 @@ class Ui_LoginAccount(object):
                 cursor = conn.cursor()
                 print(self.textEdit_Username.toPlainText())
                 print(self.textEdit_Password.toPlainText())
-                print("SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'")
-                query = "SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'"
+                query = """
+                        SELECT usr, pw, type FROM
+                                (SELECT username as usr, password as pw, usertype as type FROM user_client  
+                                        UNION 
+                                SELECT username as usr, password as pw, usertype as type FROM employee )Q 
+                                
+                        WHERE usr = \'""" + self.textEdit_Username.toPlainText() + """\' 
+                                AND pw = \'""" + self.textEdit_Password.toPlainText() + """\'
+"""
+                # print("SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'")
+                # query = "SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'"
                 cursor.execute(query)
                 record = cursor.fetchall()
                 print(record)
                 if(len(record) != 0):
-                        self.openHomeAdmin()
+                        if (record[0][2] == 0):
+                                self.openHomeAdmin()
+                        elif (record[0][2] == 1 ):
+                                self.openHomeUserAuto()
+                        else:
+                                self.openHomeUser()
                 else:
                         print("error in loging")
         except (Exception) as error:

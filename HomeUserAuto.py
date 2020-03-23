@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
 from HomeUserRegistrar import Ui_HomeUserRegistrar
-
+import sys
 
 class Ui_HomeUserAuto(object):
     def setupUi(self, MainWindow):

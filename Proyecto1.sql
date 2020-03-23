@@ -43,7 +43,7 @@ CREATE TABLE Employee
     Email VARCHAR(60),
     username VARCHAR(40),
     Password VARCHAR(40),
-    Usertype INT DEFAULT 0,
+    Usertype INT DEFAULT 2,
     CONSTRAINT PK_Employee PRIMARY KEY (EmployeeId),
     FOREIGN KEY (ReportsTo) REFERENCES Employee (EmployeeId) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
@@ -153,7 +153,7 @@ CREATE TABLE user_client
     clientid INT NOT NULL ,
     username VARCHAR(40) NOT NULL UNIQUE,
     password VARCHAR(40) NOT NULL ,
-    usertype INT DEFAULT 0,
+    usertype INT DEFAULT 2,
     CONSTRAINT PK_user_client PRIMARY KEY(clientid),
     FOREIGN KEY (clientid) REFERENCES Customer (CustomerId)  ON DELETE NO ACTION ON UPDATE NO ACTION
 );

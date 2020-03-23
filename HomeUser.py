@@ -135,7 +135,7 @@ class Ui_HomeUser(object):
         self.pushButton_Exit.raise_()
         self.textEdit_UserBuscar.raise_()
         self.label_4.raise_()
-        self.comboBox_4.raise_()
+        # self.comboBox_4.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
