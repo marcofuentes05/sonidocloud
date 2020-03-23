@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 import psycopg2 as bd
+# import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
@@ -385,10 +386,10 @@ class Ui_HomeAdmin(object):
         self.tableWidget.setRowCount(0)
         if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
             print('Bien')
-            conn = bd.connect(user= 'postgres', password = '59809690', host ="127.0.0.1",port = "5432", database = "NuevaPrueba")
+            conn = bd.connect(user= '', password = '', host ="",port = "5432", database = "")
             cursor = conn.cursor()
             if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
-                query = "SELECT name, composer FROM track WHERE composer ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
                 self.tableWidget.setColumnCount(len(record[0]))
