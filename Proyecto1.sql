@@ -11,6 +11,7 @@ CREATE TABLE Artist
 (
     ArtistId INT NOT NULL,
     Name VARCHAR(120),
+    customerId INT DEFAULT 0,
     CONSTRAINT PK_Artist PRIMARY KEY (ArtistId)
 );
 
