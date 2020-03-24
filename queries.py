@@ -9,7 +9,7 @@ def query2():
 	return query
 
 def query3():
-	query = "SELECT playlist.name, SUM(track.milliseconds) FROM playlisttrack JOIN track ON track.trackid = playlisttrack.trackid JOIN playlist ON playlisttrack.playlistid = playlist.playlistid GROUP BY playlist.name ORDER BY COUNT(track.trackid) DESC"
+	query = "SELECT playlist.name, SUM(track.milliseconds) FROM playlisttrack JOIN track ON track.trackid = playlisttrack.trackid JOIN playlist ON playlisttrack.playlistid = playlist.playlistid GROUP BY playlist.name ORDER BY SUM(track.milliseconds) DESC"
 	return query 
 
 def query4():
@@ -17,11 +17,11 @@ def query4():
 	return query
 
 def query5():
-	query ="SELECT user_client.username, COUNT(track.trackid) FROM user_client JOIN customer ON customer.customerid = user_client.clientid JOIN invoice ON invoice.customerid = customer.customerid JOIN invoiceline ON invoiceline.invoiceid = invoice.invoiceid JOIN track ON track.trackid = invoiceline.trackid GROUP BY user_client.username ORDER BY COUNT(track.trackid) DESC LIMIT 5"
+	query ="SELECT user_client.username, COUNT(track.name) FROM user_client JOIN artist ON artist.customerid = user_client.clientid JOIN album ON artist.artistid = album.artistid JOIN track ON album.albumid = track.albumid GROUP BY user_client.username ORDER BY COUNT(track.name) DESC LIMIT 5"
 	return query
 
 def query6():
-	query = "SELECT user_client.username, COUNT(track.name) FROM user_client JOIN artist ON artist.customerid = user_client.clientid JOIN album ON artist.artistid = album.artistid JOIN track ON album.albumid = track.albumid GROUP BY user_client.username ORDER BY COUNT(track.name) DESC LIMIT 5"
+	query = "SELECT genre.name, AVG(track.milliseconds) FROM track JOIN genre ON genre.genreid = track.genreid GROUP BY genre.name ORDER BY AVG(track.milliseconds) DESC"
 	return query
 
 def query7():

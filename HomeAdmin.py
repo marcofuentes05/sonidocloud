@@ -7,11 +7,12 @@
 # WARNING! All changes made in this file will be lost!
 
 import psycopg2 as bd
-# import pgdb as bd
+#import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
 from HomeUserRegistrar import Ui_HomeUserRegistrar
+from queries import *
 
 
 class Ui_HomeAdmin(object):
@@ -341,13 +342,21 @@ class Ui_HomeAdmin(object):
         self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
         self.label_5.setText(_translate("MainWindow", "(Para recibir un reporte, vea la lista y luego presione el botón del reporte que desea obtener)"))
         self.pushButton_Op1.setText(_translate("MainWindow", "Opción 1"))
+        self.pushButton_Op1.clicked.connect(self.populateTableOpcion1)
         self.pushButton_Op2.setText(_translate("MainWindow", "Opción 2"))
+        self.pushButton_Op2.clicked.connect(self.populateTableOpcion2)
         self.pushButton_Op4.setText(_translate("MainWindow", "Opción 4"))
+        self.pushButton_Op4.clicked.connect(self.populateTableOpcion4)
         self.pushButton_Op3.setText(_translate("MainWindow", "Opción 3"))
+        self.pushButton_Op3.clicked.connect(self.populateTableOpcion3)
         self.pushButton_Op5.setText(_translate("MainWindow", "Opción 5"))
+        self.pushButton_Op5.clicked.connect(self.populateTableOpcion5)
         self.pushButton_Op6.setText(_translate("MainWindow", "Opción 6"))
+        self.pushButton_Op6.clicked.connect(self.populateTableOpcion6)
         self.pushButton_Op7.setText(_translate("MainWindow", "Opción 7"))
+        self.pushButton_Op7.clicked.connect(self.populateTableOpcion7)
         self.pushButton_Op8.setText(_translate("MainWindow", "Opción 8"))
+        self.pushButton_Op8.clicked.connect(self.populateTableOpcion8)
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))
         self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "Género"))
@@ -386,17 +395,19 @@ class Ui_HomeAdmin(object):
         self.tableWidget.setRowCount(0)
         if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
             print('Bien')
-            conn = bd.connect(user= '', password = '', host ="",port = "5432", database = "")
+            conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
             cursor = conn.cursor()
             if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
                 query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
                 self.tableWidget.setColumnCount(len(record[0]))
+                print(record)
                 if(len(record)!= 0):
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
+                            print(i,j)
                             self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
 
 
@@ -434,4 +445,156 @@ class Ui_HomeAdmin(object):
                             self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
         else:    
             print('Mal')
+
+    def populateTableOpcion1(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        query = query1()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def populateTableOpcion2(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        query = query2()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def populateTableOpcion3(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        query = query3()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def populateTableOpcion4(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        query = query4()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def populateTableOpcion5(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "",  = "")
+        cursor = conn.cursor()
+        query = query5()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def populateTableOpcion6(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        query = query6()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def populateTableOpcion7(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        query = query7()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def populateTableOpcion8(self):
+        self.tableWidget.setRowCount(0)
+        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        query = query8()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        self.tableWidget.setColumnCount(len(record[0]))
+        print(record)
+        print(len(record[0]))
+        print(len(record))
+        print(record[0][1])
+        if(len(record)!= 0):
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
