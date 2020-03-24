@@ -9,8 +9,13 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
+<<<<<<< HEAD
 from queries import *
 import psycopg2 as bd
+=======
+import psycopg2 as bd
+
+>>>>>>> 8a306a3763afd165420e0d4a3c7777d102f78944
 
 class Ui_HomeUser(object):
     def setupUi(self, MainWindow):
@@ -25,7 +30,8 @@ class Ui_HomeUser(object):
         self.frame.setGeometry(QtCore.QRect(60, 40, 900, 550))
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
-        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -53,44 +59,46 @@ class Ui_HomeUser(object):
 "color: rgb(64, 55, 110);\n"
 "background-color: rgb(212, 228, 188);")
         self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(5)
-        self.tableWidget.setRowCount(6)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(5, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(4, item)
+        #self.tableWidget.setColumnCount(5)
+        #self.tableWidget.setRowCount(6)
+        #item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setVerticalHeaderItem(0, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setVerticalHeaderItem(1, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setVerticalHeaderItem(2, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setVerticalHeaderItem(3, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setVerticalHeaderItem(4, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setVerticalHeaderItem(5, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setHorizontalHeaderItem(0, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setHorizontalHeaderItem(1, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setHorizontalHeaderItem(2, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setHorizontalHeaderItem(3, item)
+        # item = QtWidgets.QTableWidgetItem()
+        # self.tableWidget.setHorizontalHeaderItem(4, item)
         self.pushButton_Exit = QtWidgets.QPushButton(self.frame)
         self.pushButton_Exit.setGeometry(QtCore.QRect(756, 50, 114, 32))
         self.pushButton_Exit.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.pushButton_Exit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
         self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 200, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.textEdit_UserBuscar.setObjectName("textEdit_UserBuscar")
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setGeometry(QtCore.QRect(534, 199, 31, 31))
@@ -113,7 +121,8 @@ class Ui_HomeUser(object):
         self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
         self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.comboBox_OpcionesBuscar.setObjectName("comboBox_OpcionesBuscar")
         self.comboBox_OpcionesBuscar.addItem("")
         self.comboBox_OpcionesBuscar.addItem("")
@@ -126,9 +135,15 @@ class Ui_HomeUser(object):
         self.pushButton_Buscar.setMaximumSize(QtCore.QSize(75, 31))
         self.pushButton_Buscar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
+<<<<<<< HEAD
 "color: rgb(255, 255, 255);")
         self.pushButton_Buscar.clicked.connect(self.search)
+=======
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
+>>>>>>> 8a306a3763afd165420e0d4a3c7777d102f78944
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.label_8.raise_()
         self.label.raise_()
         self.label_2.raise_()
@@ -146,28 +161,28 @@ class Ui_HomeUser(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
-        item = self.tableWidget.verticalHeaderItem(0)
-        item.setText(_translate("MainWindow", "aqui"))
-        item = self.tableWidget.verticalHeaderItem(1)
-        item.setText(_translate("MainWindow", "van"))
-        item = self.tableWidget.verticalHeaderItem(2)
-        item.setText(_translate("MainWindow", "New Row"))
-        item = self.tableWidget.verticalHeaderItem(3)
-        item.setText(_translate("MainWindow", "las"))
-        item = self.tableWidget.verticalHeaderItem(4)
-        item.setText(_translate("MainWindow", "filas"))
-        item = self.tableWidget.verticalHeaderItem(5)
-        item.setText(_translate("MainWindow", "proyecto"))
-        item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "aqui"))
-        item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "van"))
-        item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "las"))
-        item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "columnas"))
-        item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "proyecto"))
+        # item = self.tableWidget.verticalHeaderItem(0)
+        # item.setText(_translate("MainWindow", "aqui"))
+        # item = self.tableWidget.verticalHeaderItem(1)
+        # item.setText(_translate("MainWindow", "van"))
+        # item = self.tableWidget.verticalHeaderItem(2)
+        # item.setText(_translate("MainWindow", "New Row"))
+        # item = self.tableWidget.verticalHeaderItem(3)
+        # item.setText(_translate("MainWindow", "las"))
+        # item = self.tableWidget.verticalHeaderItem(4)
+        # item.setText(_translate("MainWindow", "filas"))
+        # item = self.tableWidget.verticalHeaderItem(5)
+        # item.setText(_translate("MainWindow", "proyecto"))
+        # item = self.tableWidget.horizontalHeaderItem(0)
+        # item.setText(_translate("MainWindow", "aqui"))
+        # item = self.tableWidget.horizontalHeaderItem(1)
+        # item.setText(_translate("MainWindow", "van"))
+        # item = self.tableWidget.horizontalHeaderItem(2)
+        # item.setText(_translate("MainWindow", "las"))
+        # item = self.tableWidget.horizontalHeaderItem(3)
+        # item.setText(_translate("MainWindow", "columnas"))
+        # item = self.tableWidget.horizontalHeaderItem(4)
+        # item.setText(_translate("MainWindow", "proyecto"))
         self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
         self.textEdit_UserBuscar.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -181,67 +196,60 @@ class Ui_HomeUser(object):
         self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "Álbum"))
         self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
-    def search(self):
+
+
+    def populateTable(self):
         #clear the table
         self.tableWidget.setRowCount(0)
-        if(self.textEdit_UserBuscar.toPlainText() != '' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?'):
+        if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
             print('Bien')
-            conn = bd.connect(user='marco', password='12345678',
-                              host="127.0.0.1", port="5432", database="proyectoNew")
+            conn = bd.connect(user= 'postgres', password = '59809690', host ="127.0.0.1",port = "5432", database = "Proyecto1.3")
             cursor = conn.cursor()
             if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
-                query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + \
-                    self.textEdit_UserBuscar.toPlainText() + "'"
+                query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
                 print(record)
-                if(len(record) != 0):
+                if(len(record)!= 0):
                     self.tableWidget.setColumnCount(len(record[0]))
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
-                            print(i, j)
-                            self.tableWidget.setItem(
-                                i, j, QtWidgets.QTableWidgetItem(record[i][j]))
+                            print(i,j)
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+
 
             elif(self.comboBox_OpcionesBuscar.currentText() == 'Género'):
-                query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + \
-                    self.textEdit_UserBuscar.toPlainText() + "'"
+                query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                if(len(record) != 0):
-                    self.tableWidget.setColumnCount(len(record[0])) 
+                self.tableWidget.setColumnCount(len(record[0]))
+                if(len(record)!= 0):
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
-                            self.tableWidget.setItem(
-                                i, j, QtWidgets.QTableWidgetItem(record[i][j]))
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
 
             elif(self.comboBox_OpcionesBuscar.currentText() == 'Álbum'):
-                query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + \
-                    self.textEdit_UserBuscar.toPlainText() + "'"
+                query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                if(len(record) != 0):
-                    self.tableWidget.setColumnCount(len(record[0]))
+                self.tableWidget.setColumnCount(len(record[0]))
+                if(len(record)!= 0):
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
-                            self.tableWidget.setItem(
-                                i, j, QtWidgets.QTableWidgetItem(record[i][j]))
-
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+                
             elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
-                query = "SELECT * FROM track  WHERE name ~* \'" + \
-                    self.textEdit_UserBuscar.toPlainText() + "'"
+                query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                if(len(record) != 0):
-                    self.tableWidget.setColumnCount(len(record[0]))
+                self.tableWidget.setColumnCount(len(record[0]))
+                if(len(record)!= 0):
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
-                            self.tableWidget.setItem(
-                                i, j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-        else:
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+        else:    
             print('Mal')
-

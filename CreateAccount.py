@@ -1,7 +1,12 @@
+
+
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
 from HomeUser import Ui_HomeUser
+#import pgdb as db
+import psycopg2 as bd
+
 
 class Ui_CreateAccount(object):
     def setupUi(self, MainWindow):
@@ -17,7 +22,7 @@ class Ui_CreateAccount(object):
         self.frame.setMinimumSize(QtCore.QSize(600, 450))
         self.frame.setMaximumSize(QtCore.QSize(600, 450))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"")
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -53,7 +58,8 @@ class Ui_CreateAccount(object):
         self.textEdit_Username.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_Username.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.textEdit_Username.setObjectName("textEdit_Username")
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setGeometry(QtCore.QRect(330, 190, 110, 25))
@@ -69,7 +75,8 @@ class Ui_CreateAccount(object):
         self.textEdit_Password.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_Password.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius: 12px;")
         self.textEdit_Password.setObjectName("textEdit_Password")
         self.pushButton_CreateAccount = QtWidgets.QPushButton(self.frame)
         self.pushButton_CreateAccount.setGeometry(QtCore.QRect(360, 350, 165, 32))
@@ -77,9 +84,10 @@ class Ui_CreateAccount(object):
         self.pushButton_CreateAccount.setMaximumSize(QtCore.QSize(165, 32))
         self.pushButton_CreateAccount.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.pushButton_CreateAccount.setObjectName("pushButton_CreateAccount")
-        self.pushButton_CreateAccount.clicked.connect(self.openHomeUser)
+        self.pushButton_CreateAccount.clicked.connect(self.createAccount)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(330, 260, 115, 25))
         self.label_5.setMinimumSize(QtCore.QSize(115, 25))
@@ -135,6 +143,21 @@ class Ui_CreateAccount(object):
         #CreateAccount.hide()
         self.window.show()
 
+    def createAccount(self):
+        if (self.textEdit_Username.toPlainText()!='' and self.textEdit_Password.toPlainText()!=''):
+            conn = db.connect(user= '', password = '', host ="",port = "", database = "")
+            cursor = conn.cursor()
+            cursor.execute("SELECT user_client.clientid FROM user_client ORDER BY user_client.clientid DESC LIMIT 1")
+            record = cursor.fetchall()
+            id=record[0][0] +1
+            sql="INSERT INTO user_client(clientid, username, password, usertype) VALUES (%s,%s,%s,%s)"
+            datos=(id,self.textEdit_Username.toPlainText(),self.textEdit_Password.toPlainText(),2)
+            cursor.execute(sql,datos)
+            conn.commit()
+            self.openHomeUser()
+        else:
+            print("Tiene que ingresar un usuario y contraseña")
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
@@ -143,6 +166,10 @@ if __name__ == "__main__":
     ui.setupUi(CreateAccount)
     CreateAccount.show()
     sys.exit(app.exec_())
+
+
+
+
 
 
 
