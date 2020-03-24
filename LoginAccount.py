@@ -15,6 +15,7 @@ from CreateAccount import Ui_CreateAccount
 from HomeUserAuto import Ui_HomeUserAuto
 from HomeUser import Ui_HomeUser
 import psycopg2 as bd
+from config import config
 
 class Ui_LoginAccount(object):
     def setupUi(self, MainWindow):
@@ -170,8 +171,10 @@ class Ui_LoginAccount(object):
         self.window.show()
 
     def getLogin(self):
+        conn=None
         try:
-                conn = bd.connect(user= 'marco', password = '12345678', host ="127.0.0.1",port = "5432", database = "proyectoNew")
+                params = config()
+                conn = bd.connect(**params)
                 cursor = conn.cursor()
                 print(self.textEdit_Username.toPlainText())
                 print(self.textEdit_Password.toPlainText())

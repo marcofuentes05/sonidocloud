@@ -13,6 +13,7 @@ from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
 from HomeUserRegistrar import Ui_HomeUserRegistrar
 from queries import *
+from config import config
 
 
 class Ui_HomeAdmin(object):
@@ -413,7 +414,9 @@ class Ui_HomeAdmin(object):
         self.tableWidget.setRowCount(0)
         if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
             print('Bien')
-            conn = bd.connect(user= 'postgres', password = '59809690', host ="127.0.0.1",port = "5432", database = "Proyecto1.3")
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
             cursor = conn.cursor()
             if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
                 query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
@@ -466,7 +469,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion1(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query1()
         cursor.execute(query)
@@ -485,7 +490,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion2(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query2()
         cursor.execute(query)
@@ -504,7 +511,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion3(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query3()
         cursor.execute(query)
@@ -523,7 +532,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion4(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query4()
         cursor.execute(query)
@@ -542,7 +553,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion5(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query5()
         cursor.execute(query)
@@ -561,7 +574,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion6(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query6()
         cursor.execute(query)
@@ -580,7 +595,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion7(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query7()
         cursor.execute(query)
@@ -599,7 +616,9 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion8(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
         cursor = conn.cursor()
         query = query8()
         cursor.execute(query)
