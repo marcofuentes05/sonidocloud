@@ -326,7 +326,7 @@ class Ui_HomeUserInactivarEliminar(object):
 
 
     def inactivate(self):
-            print(str(self.tableWidget.item(self.tableWidget.currentRow(), 0).text()))
+            
             query1 = "UPDATE track SET isactive = FALSE WHERE name = \'" + str(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())+"\'"
             try:
                 conn = bd.connect(user='marco', password='12345678',
