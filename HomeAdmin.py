@@ -395,7 +395,7 @@ class Ui_HomeAdmin(object):
         self.tableWidget.setRowCount(0)
         if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
             print('Bien')
-            conn = bd.connect(user= '', password = '', host ="",port = "", database = "")
+            conn = bd.connect(user= 'marco', password = '12345678', host ="127.0.0.1",port = "5432", database = "proyectoNew")
             cursor = conn.cursor()
             if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
                 query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
@@ -432,7 +432,7 @@ class Ui_HomeAdmin(object):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
                             self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
-                
+
             elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
                 query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
@@ -443,7 +443,7 @@ class Ui_HomeAdmin(object):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
                             self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-        else:    
+        else:
             print('Mal')
 
     def populateTableOpcion1(self):
@@ -524,7 +524,7 @@ class Ui_HomeAdmin(object):
 
     def populateTableOpcion5(self):
         self.tableWidget.setRowCount(0)
-        conn = bd.connect(user= '', password = '', host ="",port = "",  = "")
+        conn = bd.connect(user= '', password = '', host ="",port = "",  database= "")
         cursor = conn.cursor()
         query = query5()
         cursor.execute(query)
@@ -597,4 +597,3 @@ class Ui_HomeAdmin(object):
                 for j in range(len(record[0])):
                     print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-

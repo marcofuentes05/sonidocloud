@@ -8,7 +8,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import sys
+import psycopg2 as bd
 
 class Ui_HomeUserInactivarEliminar(object):
     def setupUi(self, MainWindow):
@@ -176,6 +177,7 @@ class Ui_HomeUserInactivarEliminar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_BuscarInactivar.setObjectName("pushButton_BuscarInactivar")
+        self.pushButton_BuscarInactivar.clicked.connect(self.inactivate)
         self.label_8.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -245,3 +247,133 @@ class Ui_HomeUserInactivarEliminar(object):
         self.pushButton_Login_3.setText(_translate("MainWindow", "Inactivar"))
         self.pushButton_BuscarEliminar.setText(_translate("MainWindow", "Buscar"))
         self.pushButton_BuscarInactivar.setText(_translate("MainWindow", "Buscar"))
+        self.pushButton_BuscarInactivar.clicked.connect(self.populateTable)
+        self.pushButton_Login_3.clicked.connect(self.inactivate)
+        self.pushButton_BuscarEliminar.clicked.connect(self.search_delete)
+        self.pushButton_Login_2.clicked.connect(self.deleteItem)
+        self.pushButton_Login.clicked.connect(self.onExit)
+    def populateTable(self):
+        #clear the table
+        self.tableWidget.setRowCount(0)
+        if(self.textEdit_UserBuscar.toPlainText() != '' ):
+            try:
+                print('Bien')
+                conn = bd.connect(user='marco', password='12345678',
+                                  host="127.0.0.1", port="5432", database="proyectoNew")
+                cursor = conn.cursor()
+                texto = self.textEdit_UserBuscar.toPlainText()
+                query = "SELECT track.name, album.title, artist.name FROM track JOIN album ON album.albumid = track.albumid JOIN artist ON album.artistid = artist.artistid WHERE track.name LIKE \'%"+texto+"%\' AND track.isactive = \'t\'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                if(len(record) != 0 and len(record[0]) != 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    self.tableWidget.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem("Cancion"))
+                    self.tableWidget.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem("Album"))
+                    self.tableWidget.setHorizontalHeaderItem(2, QtWidgets.QTableWidgetItem("Artista"))
+                    print(len(record[0]))
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            print(i, j)
+                            self.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(record[i][j]))
+            except(Exception) as error:
+                print("Error", error)
+            finally:
+                if(conn):
+                   cursor.close()
+                   conn.close()
+                
+        else:
+            print('Mal')
+
+
+    def search_delete(self):
+        #clear the table
+        self.tableWidget_2.setRowCount(0)
+        if(self.textEdit_UserBuscar_2.toPlainText() != ''):
+            print('Bien')
+            try:
+                conn = bd.connect(user='marco', password='12345678',
+                                  host="127.0.0.1", port="5432", database="proyectoNew")
+                cursor = conn.cursor()
+                texto = self.textEdit_UserBuscar_2.toPlainText()
+                query = "SELECT track.name, album.title, artist.name FROM track JOIN album ON album.albumid = track.albumid JOIN artist ON album.artistid = artist.artistid WHERE track.name LIKE \'%"+texto+"%\' AND track.isactive = \'t\'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                if(len(record) != 0 and len(record[0]) != 0):
+                    self.tableWidget_2.setColumnCount(len(record[0]))
+                    self.tableWidget_2.setHorizontalHeaderItem(
+                        0, QtWidgets.QTableWidgetItem("Cancion"))
+                    self.tableWidget_2.setHorizontalHeaderItem(
+                        1, QtWidgets.QTableWidgetItem("Album"))
+                    self.tableWidget_2.setHorizontalHeaderItem(
+                        2, QtWidgets.QTableWidgetItem("Artista"))
+                    print(len(record[0]))
+                    for i in range(len(record)):
+                        self.tableWidget_2.insertRow(i)
+                        for j in range(len(record[0])):
+                            print(i, j)
+                            self.tableWidget_2.setItem(
+                                i, j, QtWidgets.QTableWidgetItem(record[i][j]))
+            except (Exception) as error:
+                    print("Error: ", error)
+            finally:
+                if(conn):
+                   cursor.close()
+                   conn.close()
+        else:
+            print('Mal')
+
+
+    def inactivate(self):
+            print(str(self.tableWidget.item(self.tableWidget.currentRow(), 0).text()))
+            query1 = "UPDATE track SET isactive = FALSE WHERE name = \'" + str(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())+"\'"
+            try:
+                conn = bd.connect(user='marco', password='12345678',
+                                  host="127.0.0.1", port="5432", database="proyectoNew")
+                cursor = conn.cursor()
+                cursor.execute(query1)
+                conn.commit()
+            except(Exception) as error:
+                print("Error", error)
+            finally:
+                if(conn):
+                   cursor.close()
+                   conn.close()
+            self.populateTable()
+
+
+    def deleteItem(self):
+        print(str(self.tableWidget_2.item(self.tableWidget_2.currentRow(),0).text()))
+        nombre = self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text()
+        album = self.tableWidget_2.item(self.tableWidget_2.currentRow(),1).text()
+        artista = self.tableWidget_2.item(self.tableWidget_2.currentRow(), 2).text()
+        self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text()
+        query2 = "DELETE FROM track WHERE track.name = \'"+ nombre +"\'"
+        try:
+            conn = bd.connect(user='marco', password='12345678',
+                              host="127.0.0.1", port="5432", database="proyectoNew")
+            cursor = conn.cursor()
+            cursor.execute(query2)
+            print(cursor.statusmessage)
+            if (cursor.statusmessage == 'DELETE 1'):
+                conn.commit() 
+        except(Exception) as error:
+            print("EROOOR", error)
+        finally:
+            if(conn):
+                cursor.close()
+                conn.close()
+        self.search_delete()
+
+
+    def onExit(self):
+            HomeUserActivarEliminar.hide()
+            
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    HomeUserActivarEliminar = QtWidgets.QMainWindow()
+    ui = Ui_HomeUserInactivarEliminar()
+    ui.setupUi(HomeUserActivarEliminar)
+    HomeUserActivarEliminar.show()
+    sys.exit(app.exec_())
