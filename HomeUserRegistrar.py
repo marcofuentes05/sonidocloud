@@ -24,7 +24,7 @@ class Ui_HomeUserRegistrar(object):
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"image: url(:/newPrefix/WhatsApp Image 2020-03-16 at 9.47.22 PM.jpeg);")
+"border-radius:12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -52,7 +52,8 @@ class Ui_HomeUserRegistrar(object):
         self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius:12px;")
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setGeometry(QtCore.QRect(30, 240, 100, 25))
@@ -68,7 +69,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RArtistaNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RArtistaNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RArtistaNombre.setObjectName("textEdit_RArtistaNombre")
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setGeometry(QtCore.QRect(506, 240, 100, 25))
@@ -84,7 +86,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RAlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RAlbumNombre.setObjectName("textEdit_RAlbumNombre")
         self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setGeometry(QtCore.QRect(30, 190, 220, 50))
@@ -124,7 +127,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RCancionesNombre.setObjectName("textEdit_RCancionesNombre")
         self.label_11 = QtWidgets.QLabel(self.frame)
         self.label_11.setGeometry(QtCore.QRect(30, 460, 150, 25))
@@ -140,7 +144,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesMiliseconds.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesMiliseconds.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RCancionesMiliseconds.setObjectName("textEdit_RCancionesMiliseconds")
         self.label_12 = QtWidgets.QLabel(self.frame)
         self.label_12.setGeometry(QtCore.QRect(340, 390, 100, 25))
@@ -156,7 +161,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesUnitPrice.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesUnitPrice.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RCancionesUnitPrice.setObjectName("textEdit_RCancionesUnitPrice")
         self.label_13 = QtWidgets.QLabel(self.frame)
         self.label_13.setGeometry(QtCore.QRect(340, 460, 100, 25))
@@ -172,7 +178,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesAlbum.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesAlbum.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RCancionesAlbum.setObjectName("textEdit_RCancionesAlbum")
         self.label_14 = QtWidgets.QLabel(self.frame)
         self.label_14.setGeometry(QtCore.QRect(650, 390, 100, 25))
@@ -188,7 +195,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesGenero.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesGenero.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RCancionesGenero.setObjectName("textEdit_RCancionesGenero")
         self.pushButton_RAlbum = QtWidgets.QPushButton(self.frame)
         self.pushButton_RAlbum.setGeometry(QtCore.QRect(756, 280, 114, 32))
@@ -196,7 +204,8 @@ class Ui_HomeUserRegistrar(object):
         self.pushButton_RAlbum.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius:12px;")
         self.pushButton_RAlbum.setObjectName("pushButton_RAlbum")
         self.pushButton_RArtista = QtWidgets.QPushButton(self.frame)
         self.pushButton_RArtista.setGeometry(QtCore.QRect(280, 260, 114, 32))
@@ -204,7 +213,8 @@ class Ui_HomeUserRegistrar(object):
         self.pushButton_RArtista.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RArtista.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius:12px;")
         self.pushButton_RArtista.setObjectName("pushButton_RArtista")
         self.pushButton_RCancion = QtWidgets.QPushButton(self.frame)
         self.pushButton_RCancion.setGeometry(QtCore.QRect(705, 480, 114, 32))
@@ -212,7 +222,8 @@ class Ui_HomeUserRegistrar(object):
         self.pushButton_RCancion.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RCancion.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius:12px;")
         self.pushButton_RCancion.setObjectName("pushButton_RCancion")
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(506, 290, 150, 25))
@@ -228,7 +239,8 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RAlbumArtista.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumArtista.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius:12px;")
         self.textEdit_RAlbumArtista.setObjectName("textEdit_RAlbumArtista")
         MainWindow.setCentralWidget(self.centralwidget)
 
