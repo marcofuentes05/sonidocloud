@@ -9,13 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
-<<<<<<< HEAD
-from queries import *
-import psycopg2 as bd
-=======
 import psycopg2 as bd
 
->>>>>>> 8a306a3763afd165420e0d4a3c7777d102f78944
 
 class Ui_HomeUser(object):
     def setupUi(self, MainWindow):
@@ -135,13 +130,8 @@ class Ui_HomeUser(object):
         self.pushButton_Buscar.setMaximumSize(QtCore.QSize(75, 31))
         self.pushButton_Buscar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-<<<<<<< HEAD
-"color: rgb(255, 255, 255);")
-        self.pushButton_Buscar.clicked.connect(self.search)
-=======
 "color: rgb(255, 255, 255);\n"
 "border-radius: 12px;")
->>>>>>> 8a306a3763afd165420e0d4a3c7777d102f78944
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
         self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.label_8.raise_()
