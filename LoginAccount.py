@@ -29,7 +29,8 @@ class Ui_LoginAccount(object):
         self.frame.setGeometry(QtCore.QRect(205, 100, 600, 450))
         self.frame.setMinimumSize(QtCore.QSize(600, 450))
         self.frame.setMaximumSize(QtCore.QSize(600, 450))
-        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")

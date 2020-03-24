@@ -25,7 +25,8 @@ class Ui_HomeUser(object):
         self.frame.setGeometry(QtCore.QRect(60, 40, 900, 550))
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
-        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -83,14 +84,16 @@ class Ui_HomeUser(object):
         self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.pushButton_Exit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
         self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 200, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.textEdit_UserBuscar.setObjectName("textEdit_UserBuscar")
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setGeometry(QtCore.QRect(534, 199, 31, 31))
@@ -113,7 +116,8 @@ class Ui_HomeUser(object):
         self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
         self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.comboBox_OpcionesBuscar.setObjectName("comboBox_OpcionesBuscar")
         self.comboBox_OpcionesBuscar.addItem("")
         self.comboBox_OpcionesBuscar.addItem("")
@@ -126,7 +130,8 @@ class Ui_HomeUser(object):
         self.pushButton_Buscar.setMaximumSize(QtCore.QSize(75, 31))
         self.pushButton_Buscar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
         self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.label_8.raise_()
