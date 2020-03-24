@@ -22,7 +22,7 @@ class Ui_CreateAccount(object):
         self.frame.setMinimumSize(QtCore.QSize(600, 450))
         self.frame.setMaximumSize(QtCore.QSize(600, 450))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"")
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -58,7 +58,8 @@ class Ui_CreateAccount(object):
         self.textEdit_Username.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_Username.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.textEdit_Username.setObjectName("textEdit_Username")
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setGeometry(QtCore.QRect(330, 190, 110, 25))
@@ -74,7 +75,8 @@ class Ui_CreateAccount(object):
         self.textEdit_Password.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_Password.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
+"font: 13pt \"Times\";\n"
+"border-radius: 12px;")
         self.textEdit_Password.setObjectName("textEdit_Password")
         self.pushButton_CreateAccount = QtWidgets.QPushButton(self.frame)
         self.pushButton_CreateAccount.setGeometry(QtCore.QRect(360, 350, 165, 32))
@@ -82,7 +84,8 @@ class Ui_CreateAccount(object):
         self.pushButton_CreateAccount.setMaximumSize(QtCore.QSize(165, 32))
         self.pushButton_CreateAccount.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.pushButton_CreateAccount.setObjectName("pushButton_CreateAccount")
         self.pushButton_CreateAccount.clicked.connect(self.createAccount)
         self.label_5 = QtWidgets.QLabel(self.frame)

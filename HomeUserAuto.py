@@ -27,7 +27,8 @@ class Ui_HomeUserAuto(object):
         self.frame.setGeometry(QtCore.QRect(60, 40, 900, 550))
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
-        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
