@@ -1,7 +1,12 @@
+
+
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
 from HomeUser import Ui_HomeUser
+#import pgdb as db
+import psycopg2 as bd
+
 
 class Ui_CreateAccount(object):
     def setupUi(self, MainWindow):
@@ -79,7 +84,7 @@ class Ui_CreateAccount(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_CreateAccount.setObjectName("pushButton_CreateAccount")
-        self.pushButton_CreateAccount.clicked.connect(self.openHomeUser)
+        self.pushButton_CreateAccount.clicked.connect(self.createAccount)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(330, 260, 115, 25))
         self.label_5.setMinimumSize(QtCore.QSize(115, 25))
@@ -135,6 +140,18 @@ class Ui_CreateAccount(object):
         #CreateAccount.hide()
         self.window.show()
 
+    def createAccount(self):
+        conn = db.connect(user= '', password = '', host ="",port = "", database = "")
+        cursor = conn.cursor()
+        cursor.execute("SELECT user_client.clientid FROM user_client ORDER BY user_client.clientid DESC LIMIT 1")
+        record = cursor.fetchall()
+        id=record[0][0] +1
+        sql="INSERT INTO user_client(clientid, username, password, usertype) VALUES (%s,%s,%s,%s)"
+        datos=(id,self.textEdit_Username.toPlainText(),self.textEdit_Password.toPlainText(),2)
+        cursor.execute(sql,datos)
+        conn.commit()
+        self.openHomeUser()
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
@@ -143,6 +160,10 @@ if __name__ == "__main__":
     ui.setupUi(CreateAccount)
     CreateAccount.show()
     sys.exit(app.exec_())
+
+
+
+
 
 
 
