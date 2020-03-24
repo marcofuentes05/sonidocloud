@@ -283,6 +283,15 @@ class Ui_HomeAdmin(object):
 "color: rgb(255, 255, 255);\n"
 "border-radius: 12px;")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.pushButton_GestionPermisos = QtWidgets.QPushButton(self.frame)
+        self.pushButton_GestionPermisos.setGeometry(QtCore.QRect(30, 230, 200, 30))
+        self.pushButton_GestionPermisos.setMinimumSize(QtCore.QSize(200, 30))
+        self.pushButton_GestionPermisos.setMaximumSize(QtCore.QSize(200, 30))
+        self.pushButton_GestionPermisos.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:12px;")
+        self.pushButton_GestionPermisos.setObjectName("pushButton_Registro_2")
         self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -307,6 +316,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Op7.raise_()
         self.pushButton_Op8.raise_()
         self.pushButton_Buscar.raise_()
+        self.pushButton_GestionPermisos.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -382,6 +392,7 @@ class Ui_HomeAdmin(object):
         self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "Álbum"))
         self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
+        self.pushButton_GestionPermisos.setText(_translate("MainWindow", "Gestión de permisos"))
         self.pushButton_Buscar.clicked.connect(self.populateTable)
 
 
