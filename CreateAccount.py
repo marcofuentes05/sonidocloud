@@ -4,8 +4,8 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
 from HomeUser import Ui_HomeUser
-import pgdb as db
-#import psycopg2 as bd
+#import pgdb as db
+import psycopg2 as bd
 
 
 class Ui_CreateAccount(object):
@@ -145,7 +145,7 @@ class Ui_CreateAccount(object):
 
     def createAccount(self):
         if (self.textEdit_Username.toPlainText()!='' and self.textEdit_Password.toPlainText()!=''):
-            conn = db.connect(user= 'administrador', password = 'gamecube', host ="localhost",port = "5430", database = "postgres")
+            conn = db.connect(user= '', password = '', host ="",port = "", database = "")
             cursor = conn.cursor()
             cursor.execute("SELECT user_client.clientid FROM user_client ORDER BY user_client.clientid DESC LIMIT 1")
             record = cursor.fetchall()
