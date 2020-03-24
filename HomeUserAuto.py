@@ -264,7 +264,9 @@ class Ui_HomeUserAuto(object):
         self.tableWidget.setRowCount(0)
         if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
             print('Bien')
-            conn = bd.connect(user= 'postgres', password = '59809690', host ="127.0.0.1",port = "5432", database = "Proyecto1.3")
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
             cursor = conn.cursor()
             if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
                 query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"

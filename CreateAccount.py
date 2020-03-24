@@ -6,6 +6,7 @@ from PyQt5.uic import loadUi
 from HomeUser import Ui_HomeUser
 #import pgdb as db
 import psycopg2 as bd
+from config import config
 
 
 class Ui_CreateAccount(object):
@@ -145,8 +146,9 @@ class Ui_CreateAccount(object):
 
     def createAccount(self):
         if (self.textEdit_Username.toPlainText()!='' and self.textEdit_Password.toPlainText()!=''):
-            conn = db.connect(user='', password='',
-                                  host="", port="", database="")
+            conn = None
+            params = config()
+            conn = db.connect(**params)
             cursor = conn.cursor()
             cursor.execute("SELECT user_client.username FROM user_client WHERE user_client.username= \'"+self.textEdit_Username.toPlainText()+"\'")
             if(len(cursor.fetchall()) == 0):
