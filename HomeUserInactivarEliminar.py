@@ -10,6 +10,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 import psycopg2 as bd
+#import pgdb as bd
+from config import config
 
 class Ui_HomeUserInactivarEliminar(object):
     def setupUi(self, MainWindow):
@@ -258,8 +260,9 @@ class Ui_HomeUserInactivarEliminar(object):
         if(self.textEdit_UserBuscar.toPlainText() != '' ):
             try:
                 print('Bien')
-                conn = bd.connect(user='marco', password='12345678',
-                                  host="127.0.0.1", port="5432", database="proyectoNew")
+                conn = None
+                params=config()
+                conn = bd.connect(**params)
                 cursor = conn.cursor()
                 texto = self.textEdit_UserBuscar.toPlainText()
                 query = "SELECT track.trackid, track.name, album.title, artist.name FROM track JOIN album ON album.albumid = track.albumid JOIN artist ON album.artistid = artist.artistid WHERE UPPER(track.name) LIKE UPPER(\'%"+texto+"%\') AND track.isactive = \'t\'"
@@ -294,8 +297,9 @@ class Ui_HomeUserInactivarEliminar(object):
         if(self.textEdit_UserBuscar_2.toPlainText() != ''):
             print('Bien')
             try:
-                conn = bd.connect(user='marco', password='12345678',
-                                  host="127.0.0.1", port="5432", database="proyectoNew")
+                conn = None
+                params=config()
+                conn = bd.connect(**params)
                 cursor = conn.cursor()
                 texto = self.textEdit_UserBuscar_2.toPlainText()
                 query = "SELECT track.trackid, track.name, album.title, artist.name FROM track JOIN album ON album.albumid = track.albumid JOIN artist ON album.artistid = artist.artistid WHERE UPPER(track.name) LIKE UPPER(\'%"+texto+"%\') AND track.isactive = \'t\'"
@@ -333,8 +337,9 @@ class Ui_HomeUserInactivarEliminar(object):
                 print(str(self.tableWidget.item(self.tableWidget.currentRow(), 0).text()))
                 query1 = "UPDATE track SET isactive = FALSE WHERE trackid = \'" + str(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())+"\'"
                 try:
-                    conn = bd.connect(user='marco', password='12345678',
-                                      host="127.0.0.1", port="5432", database="proyectoNew")
+                    conn = None
+                    params=config()
+                    conn = bd.connect(**params)
                     cursor = conn.cursor()
                     cursor.execute(query1)
                     conn.commit()
@@ -352,8 +357,9 @@ class Ui_HomeUserInactivarEliminar(object):
         self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text()
         query2 = "DELETE FROM track WHERE track.trackid = \'"+ trackid +"\'"
         try:
-            conn = bd.connect(user='marco', password='12345678',
-                              host="127.0.0.1", port="5432", database="proyectoNew")
+            conn = None
+            params=config()
+            conn = bd.connect(**params)
             cursor = conn.cursor()
             cursor.execute(query2)
             print(cursor.statusmessage)
