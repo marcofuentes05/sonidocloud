@@ -423,8 +423,7 @@ class Ui_HomeUserInactivarEliminar(object):
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
                 cursor.execute(query2)
-                if (cursor.statusmessage == 'DELETE 1'):
-                    conn.commit() 
+                conn.commit() 
             except(Exception) as error:
                 print("EROOOR", error)
             finally:
@@ -541,8 +540,7 @@ class Ui_HomeUserInactivarEliminar(object):
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
                 cursor.execute(query2)
-                if (cursor.statusmessage == 'DELETE 1'):
-                    conn.commit() 
+                conn.commit() 
             except(Exception) as error:
                 print("EROOOR", error)
             finally:
@@ -562,10 +560,7 @@ class Ui_HomeUserInactivarEliminar(object):
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
                 cursor.execute(query2)
-                if (cursor.statusmessage == 'DELETE 1'):
-                    conn.commit() 
-                else:
-                    print(cursor.statusmessage)
+                conn.commit() 
             except(Exception) as error:
                 print("EROOOR", error)
             finally:
