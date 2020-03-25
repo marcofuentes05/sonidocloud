@@ -152,7 +152,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Registro.setObjectName("pushButton_Registro")
         self.pushButton_Registro.clicked.connect(self.openHomeUserRegistrar)
         self.pushButton_Inactivar = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Inactivar.setGeometry(QtCore.QRect(272, 200, 228, 30))
+        self.pushButton_Inactivar.setGeometry(QtCore.QRect(272, 200, 114, 30))
         self.pushButton_Inactivar.setMinimumSize(QtCore.QSize(114, 30))
         self.pushButton_Inactivar.setMaximumSize(QtCore.QSize(114, 30))
         self.pushButton_Inactivar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -162,7 +162,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Inactivar.setObjectName("pushButton_Inactivar")
         self.pushButton_Inactivar.clicked.connect(self.openHomeUserModificar)
         self.pushButton_Modficiar = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Modficiar.setGeometry(QtCore.QRect(514, 200, 114, 30))
+        self.pushButton_Modficiar.setGeometry(QtCore.QRect(514, 200, 228, 30))
         self.pushButton_Modficiar.setMinimumSize(QtCore.QSize(114, 30))
         self.pushButton_Modficiar.setMaximumSize(QtCore.QSize(114, 30))
         self.pushButton_Modficiar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -181,14 +181,6 @@ class Ui_HomeAdmin(object):
 # "border-radius: 12px;")
 #         self.pushButton_Eliminar.setObjectName("pushButton_Eliminar")
 #         self.pushButton_Eliminar.clicked.connect(self.openHomeUserInactivarEliminar)
-        self.label_5 = QtWidgets.QLabel(self.frame)
-        self.label_5.setGeometry(QtCore.QRect(240, 110, 550, 25))
-        self.label_5.setMinimumSize(QtCore.QSize(550, 25))
-        self.label_5.setMaximumSize(QtCore.QSize(550, 25))
-        self.label_5.setStyleSheet("font: 13pt \"Times\";\n"
-"color: rgb(10, 54, 157);\n"
-"")
-        self.label_5.setObjectName("label_5")
         self.pushButton_Op1 = QtWidgets.QPushButton(self.frame)
         self.pushButton_Op1.setGeometry(QtCore.QRect(240, 140, 75, 30))
         self.pushButton_Op1.setMinimumSize(QtCore.QSize(75, 30))
@@ -198,69 +190,6 @@ class Ui_HomeAdmin(object):
 "color: rgb(255, 255, 255);\n"
 "border-radius: 12px;")
         self.pushButton_Op1.setObjectName("pushButton_Op1")
-        self.pushButton_Op2 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op2.setGeometry(QtCore.QRect(319, 140, 75, 30))
-        self.pushButton_Op2.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op2.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op2.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op2.setObjectName("pushButton_Op2")
-        self.pushButton_Op4 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op4.setGeometry(QtCore.QRect(477, 140, 75, 30))
-        self.pushButton_Op4.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op4.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op4.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op4.setObjectName("pushButton_Op4")
-        self.pushButton_Op3 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op3.setGeometry(QtCore.QRect(398, 140, 75, 30))
-        self.pushButton_Op3.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op3.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op3.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op3.setObjectName("pushButton_Op3")
-        self.pushButton_Op5 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op5.setGeometry(QtCore.QRect(559, 140, 75, 30))
-        self.pushButton_Op5.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op5.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op5.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op5.setObjectName("pushButton_Op5")
-        self.pushButton_Op6 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op6.setGeometry(QtCore.QRect(638, 140, 75, 30))
-        self.pushButton_Op6.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op6.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op6.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op6.setObjectName("pushButton_Op6")
-        self.pushButton_Op7 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op7.setGeometry(QtCore.QRect(717, 140, 75, 30))
-        self.pushButton_Op7.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op7.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op7.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op7.setObjectName("pushButton_Op7")
-        self.pushButton_Op8 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op8.setGeometry(QtCore.QRect(796, 140, 75, 30))
-        self.pushButton_Op8.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op8.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op8.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op8.setObjectName("pushButton_Op8")
         self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
         self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 230, 181, 31))
         self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(181, 31))
@@ -308,15 +237,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Inactivar.raise_()
         self.pushButton_Modficiar.raise_()
         # self.pushButton_Eliminar.raise_()
-        self.label_5.raise_()
         self.pushButton_Op1.raise_()
-        self.pushButton_Op2.raise_()
-        self.pushButton_Op4.raise_()
-        self.pushButton_Op3.raise_()
-        self.pushButton_Op5.raise_()
-        self.pushButton_Op6.raise_()
-        self.pushButton_Op7.raise_()
-        self.pushButton_Op8.raise_()
         self.pushButton_Buscar.raise_()
         self.pushButton_GestionPermisos.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
@@ -371,23 +292,8 @@ class Ui_HomeAdmin(object):
         self.pushButton_Inactivar.setText(_translate("MainWindow", "Modificación"))
         self.pushButton_Modficiar.setText(_translate("MainWindow", "Inactivación/Eliminación"))
         # self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
-        self.label_5.setText(_translate("MainWindow", "(Vea la lista y luego presione el botón del reporte que desea obtener)"))
-        self.pushButton_Op1.setText(_translate("MainWindow", "Opción 1"))
+        self.pushButton_Op1.setText(_translate("MainWindow", "Reporte"))
         self.pushButton_Op1.clicked.connect(self.populateTableOpcion1)
-        self.pushButton_Op2.setText(_translate("MainWindow", "Opción 2"))
-        self.pushButton_Op2.clicked.connect(self.populateTableOpcion2)
-        self.pushButton_Op4.setText(_translate("MainWindow", "Opción 4"))
-        self.pushButton_Op4.clicked.connect(self.populateTableOpcion4)
-        self.pushButton_Op3.setText(_translate("MainWindow", "Opción 3"))
-        self.pushButton_Op3.clicked.connect(self.populateTableOpcion3)
-        self.pushButton_Op5.setText(_translate("MainWindow", "Opción 5"))
-        self.pushButton_Op5.clicked.connect(self.populateTableOpcion5)
-        self.pushButton_Op6.setText(_translate("MainWindow", "Opción 6"))
-        self.pushButton_Op6.clicked.connect(self.populateTableOpcion6)
-        self.pushButton_Op7.setText(_translate("MainWindow", "Opción 7"))
-        self.pushButton_Op7.clicked.connect(self.populateTableOpcion7)
-        self.pushButton_Op8.setText(_translate("MainWindow", "Opción 8"))
-        self.pushButton_Op8.clicked.connect(self.populateTableOpcion8)
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))
         self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "Género"))
