@@ -171,16 +171,16 @@ class Ui_LoginAccount(object):
                 params = config()
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
-                print(self.textEdit_Username.toPlainText())
-                print(self.lineEdit_Password.toPlainText())
+                usuario = self.textEdit_Username.toPlainText()
+                contrasena = self.lineEdit_Password.toPlainText()
                 query = """
                         SELECT usr, pw, type, ide FROM
                                 (SELECT username as usr, password as pw, usertype as type , clientid as ide FROM user_client  
                                         UNION 
                                 SELECT username as usr, password as pw, usertype as type , employeeid as ide FROM employee )Q 
                                 
-                        WHERE usr = \'""" + self.textEdit_Username.toPlainText() + """\' 
-                                AND pw = \'""" + self.lineEdit_Password.toPlainText() + """\'
+                        WHERE usr = \'""" + usuario + """\' 
+                                AND pw = \'""" + contrasena + """\'
 """
                 cursor.execute(query)
                 record = cursor.fetchall()

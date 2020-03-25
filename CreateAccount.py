@@ -5,7 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
 from HomeUser import Ui_HomeUser
 #import pgdb as db
-import psycopg2 as bd
+import psycopg2 as db
 from config import config
 
 
@@ -140,7 +140,7 @@ class Ui_CreateAccount(object):
         self.window.show()
 
     def createAccount(self):
-        if (self.textEdit_Username.toPlainText()!='' and self.lineEdit_Password.toPlainText()!='' and self.comboBox_Suscripciones.currentText()!="Escoge una opción"):
+        if (self.textEdit_Username.toPlainText()!='' and self.lineEdit_Password.text()!='' and self.comboBox_Suscripciones.currentText()!="Escoge una opción"):
             sus = self.comboBox_Suscripciones.currentText()
             conn = None
             params = config()
@@ -155,7 +155,7 @@ class Ui_CreateAccount(object):
                 record = cursor.fetchall()
                 id=record[0][0] +1
                 sql="INSERT INTO user_client(clientid, username, password, usertype,suscripcion) VALUES (%s,%s,%s,%s,%s)"
-                datos=(id,self.textEdit_Username.toPlainText(),self.lineEdit_Password.toPlainText(),2,sus)
+                datos=(id,self.textEdit_Username.toPlainText(),self.lineEdit_Password.text(),2,sus)
                 cursor.execute(sql,datos)
                 conn.commit()
                 self.openHomeUser()
