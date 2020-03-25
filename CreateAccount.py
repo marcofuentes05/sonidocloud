@@ -54,7 +54,7 @@ class Ui_CreateAccount(object):
 "")
         self.label_3.setObjectName("label_3")
         self.textEdit_Username = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_Username.setGeometry(QtCore.QRect(330, 140, 220, 30))
+        self.textEdit_Username.setGeometry(QtCore.QRect(330, 150, 220, 30))
         self.textEdit_Username.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_Username.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_Username.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -71,7 +71,7 @@ class Ui_CreateAccount(object):
 "")
         self.label_4.setObjectName("label_4")
         self.lineEdit_Password = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit_Password.setGeometry(QtCore.QRect(330, 210, 220, 30))
+        self.lineEdit_Password.setGeometry(QtCore.QRect(330, 220, 220, 30))
         self.lineEdit_Password.setMinimumSize(QtCore.QSize(220, 30))
         self.lineEdit_Password.setMaximumSize(QtCore.QSize(220, 30))
         self.lineEdit_Password.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -98,7 +98,7 @@ class Ui_CreateAccount(object):
 "")
         self.label_5.setObjectName("label_5")
         self.comboBox_Suscripciones = QtWidgets.QComboBox(self.frame)
-        self.comboBox_Suscripciones.setGeometry(QtCore.QRect(330, 280, 220, 30))
+        self.comboBox_Suscripciones.setGeometry(QtCore.QRect(330, 290, 220, 30))
         self.comboBox_Suscripciones.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
 "font: 13pt \"Times\";")

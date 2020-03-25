@@ -112,7 +112,7 @@ class Ui_HomeUser(object):
 "")
         self.label_8.setObjectName("label_8")
         self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
-        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(30, 150, 220, 31))
+        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(30, 160, 220, 31))
         self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(220, 31))
         self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
         self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
