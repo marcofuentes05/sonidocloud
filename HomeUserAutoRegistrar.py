@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'HomeUserRegistrar.ui'
+# Form implementation generated from reading ui file 'HomeUserAutoRegistrar.ui'
 #
 # Created by: PyQt5 UI code generator 5.12.3
 #
@@ -8,12 +8,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import pgdb as bd
-#import psycopg2 as bd
-from config import config
 
 
-class Ui_HomeUserRegistrar(object):
+class Ui_HomeUserAutoRegistrar(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -74,15 +71,15 @@ class Ui_HomeUserRegistrar(object):
 "font: 13pt \"Times\";")
         self.textEdit_RArtistaNombre.setObjectName("textEdit_RArtistaNombre")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(506, 240, 100, 25))
-        self.label_4.setMinimumSize(QtCore.QSize(100, 25))
-        self.label_4.setMaximumSize(QtCore.QSize(100, 25))
+        self.label_4.setGeometry(QtCore.QRect(340, 240, 150, 25))
+        self.label_4.setMinimumSize(QtCore.QSize(150, 25))
+        self.label_4.setMaximumSize(QtCore.QSize(150, 25))
         self.label_4.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_4.setObjectName("label_4")
         self.textEdit_RAlbumNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RAlbumNombre.setGeometry(QtCore.QRect(506, 260, 220, 30))
+        self.textEdit_RAlbumNombre.setGeometry(QtCore.QRect(340, 260, 220, 30))
         self.textEdit_RAlbumNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -97,14 +94,6 @@ class Ui_HomeUserRegistrar(object):
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_6.setObjectName("label_6")
-        self.label_7 = QtWidgets.QLabel(self.frame)
-        self.label_7.setGeometry(QtCore.QRect(506, 190, 220, 50))
-        self.label_7.setMinimumSize(QtCore.QSize(220, 50))
-        self.label_7.setMaximumSize(QtCore.QSize(220, 50))
-        self.label_7.setStyleSheet("font: 21pt \"Times\";\n"
-"color: rgb(10, 54, 157);\n"
-"")
-        self.label_7.setObjectName("label_7")
         self.label_9 = QtWidgets.QLabel(self.frame)
         self.label_9.setGeometry(QtCore.QRect(30, 340, 220, 50))
         self.label_9.setMinimumSize(QtCore.QSize(220, 50))
@@ -186,21 +175,13 @@ class Ui_HomeUserRegistrar(object):
 "")
         self.label_14.setObjectName("label_14")
         self.pushButton_RAlbum = QtWidgets.QPushButton(self.frame)
-        self.pushButton_RAlbum.setGeometry(QtCore.QRect(756, 280, 114, 32))
+        self.pushButton_RAlbum.setGeometry(QtCore.QRect(650, 260, 114, 32))
         self.pushButton_RAlbum.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_RAlbum.setObjectName("pushButton_RAlbum")
-        self.pushButton_RArtista = QtWidgets.QPushButton(self.frame)
-        self.pushButton_RArtista.setGeometry(QtCore.QRect(280, 260, 114, 32))
-        self.pushButton_RArtista.setMinimumSize(QtCore.QSize(114, 32))
-        self.pushButton_RArtista.setMaximumSize(QtCore.QSize(114, 32))
-        self.pushButton_RArtista.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
-        self.pushButton_RArtista.setObjectName("pushButton_RArtista")
         self.pushButton_RCancion = QtWidgets.QPushButton(self.frame)
         self.pushButton_RCancion.setGeometry(QtCore.QRect(705, 480, 114, 32))
         self.pushButton_RCancion.setMinimumSize(QtCore.QSize(114, 32))
@@ -209,22 +190,6 @@ class Ui_HomeUserRegistrar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_RCancion.setObjectName("pushButton_RCancion")
-        self.label_5 = QtWidgets.QLabel(self.frame)
-        self.label_5.setGeometry(QtCore.QRect(506, 290, 150, 25))
-        self.label_5.setMinimumSize(QtCore.QSize(150, 25))
-        self.label_5.setMaximumSize(QtCore.QSize(150, 25))
-        self.label_5.setStyleSheet("font: 18pt \"Times\";\n"
-"color: rgb(10, 54, 157);\n"
-"")
-        self.label_5.setObjectName("label_5")
-        self.textEdit_RAlbumArtista = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RAlbumArtista.setGeometry(QtCore.QRect(506, 310, 220, 30))
-        self.textEdit_RAlbumArtista.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_RAlbumArtista.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_RAlbumArtista.setStyleSheet("background-color: rgb(150, 172, 183);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
-        self.textEdit_RAlbumArtista.setObjectName("textEdit_RAlbumArtista")
         self.comboBox = QtWidgets.QComboBox(self.frame)
         self.comboBox.setGeometry(QtCore.QRect(650, 410, 220, 30))
         self.comboBox.setMinimumSize(QtCore.QSize(220, 30))
@@ -258,6 +223,27 @@ class Ui_HomeUserRegistrar(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
+        self.label_4.raise_()
+        self.label.raise_()
+        self.label_2.raise_()
+        self.pushButton_Exit.raise_()
+        self.label_3.raise_()
+        self.textEdit_RArtistaNombre.raise_()
+        self.textEdit_RAlbumNombre.raise_()
+        self.label_6.raise_()
+        self.label_9.raise_()
+        self.label_10.raise_()
+        self.textEdit_RCancionesNombre.raise_()
+        self.label_11.raise_()
+        self.textEdit_RCancionesMiliseconds.raise_()
+        self.label_12.raise_()
+        self.textEdit_RCancionesUnitPrice.raise_()
+        self.label_13.raise_()
+        self.textEdit_RCancionesAlbum.raise_()
+        self.label_14.raise_()
+        self.pushButton_RAlbum.raise_()
+        self.pushButton_RCancion.raise_()
+        self.comboBox.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -274,14 +260,13 @@ class Ui_HomeUserRegistrar(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_4.setText(_translate("MainWindow", "Nombre"))
+        self.label_4.setText(_translate("MainWindow", "Nombre Artista"))
         self.textEdit_RAlbumNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_6.setText(_translate("MainWindow", "Registro Artistas"))
-        self.label_7.setText(_translate("MainWindow", "Registro Álbumes"))
+        self.label_6.setText(_translate("MainWindow", "Registro Álbumes"))
         self.label_9.setText(_translate("MainWindow", "Registro Canciones"))
         self.label_10.setText(_translate("MainWindow", "Nombre"))
         self.textEdit_RCancionesNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -309,17 +294,7 @@ class Ui_HomeUserRegistrar(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_14.setText(_translate("MainWindow", "Género"))
         self.pushButton_RAlbum.setText(_translate("MainWindow", "Registrar"))
-        self.pushButton_RAlbum.clicked.connect(self.addAlbum)        
-        self.pushButton_RArtista.setText(_translate("MainWindow", "Registrar"))
-        self.pushButton_RArtista.clicked.connect(self.addArtist)        
         self.pushButton_RCancion.setText(_translate("MainWindow", "Registrar"))
-        self.pushButton_RCancion.clicked.connect(self.addSong)
-        self.label_5.setText(_translate("MainWindow", "Nombre Artista"))
-        self.textEdit_RAlbumArtista.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.comboBox.setItemText(0, _translate("MainWindow", "Escoga un género"))
         self.comboBox.setItemText(1, _translate("MainWindow", "Rock"))
         self.comboBox.setItemText(2, _translate("MainWindow", "Jazz"))
@@ -346,110 +321,3 @@ class Ui_HomeUserRegistrar(object):
         self.comboBox.setItemText(23, _translate("MainWindow", "Alternative"))
         self.comboBox.setItemText(24, _translate("MainWindow", "Classical"))
         self.comboBox.setItemText(25, _translate("MainWindow", "Opera"))
-
-
-    def addArtist(self):
-        nombre = self.textEdit_RArtistaNombre.toPlainText()
-        if(nombre != ''):
-            conn = None
-            params=config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute("SELECT artist.name FROM artist WHERE artist.name= \'"+self.textEdit_RArtistaNombre.toPlainText()+"\'")
-            if(len(cursor.fetchall()) == 0):
-                cursor.execute("SELECT artist.artistid FROM artist ORDER BY artist.artistid DESC LIMIT 1")
-                record = cursor.fetchall()
-                id=record[0][0] +1
-                sql="INSERT INTO artist(artistid, name, customerid) VALUES (%s,%s,%s)"
-                datos=(id,nombre,0)
-                cursor.execute(sql,datos)
-                conn.commit()
-            else:
-                print("Ya existe este artista")
-        else:
-            print('No ha ingresado un nombre de artista')
-
-    def addAlbum(self):
-        album = self.textEdit_RAlbumNombre.toPlainText()
-        artista= self.textEdit_RAlbumArtista.toPlainText()
-        if(album != '' and artista != ''):
-            conn = None
-            params=config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute("SELECT artist.name FROM artist WHERE artist.name= \'"+artista+"\'")
-            recordArtist = cursor.fetchall()
-            cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
-            recordAlbum = cursor.fetchall()
-            if(len(recordArtist) != 0 and len(recordAlbum) == 0):
-                cursor.execute("SELECT album.albumid FROM album ORDER BY album.albumid DESC LIMIT 1")
-                record = cursor.fetchall()
-                id =record[0][0]+1
-                cursor.execute("SELECT artist.artistid FROM artist WHERE artist.name= \'"+artista+"\'")
-                recordArtistId = cursor.fetchall()
-                artistid= recordArtistId[0][0]
-                sql= "INSERT INTO album(albumid, title, artistid) VALUES (%s,%s,%s)"
-                datos=(id,album,artistid)
-                cursor.execute(sql, datos)
-                conn.commit()
-            else:
-                print("Ya existe el album o no exste el artista")
-        else:
-            print("No ha escrito el nombre del album o artista")
-
-    def addSong(self):
-        nombre = self.textEdit_RCancionesNombre.toPlainText().lower()
-        album = self.textEdit_RCancionesAlbum.toPlainText()
-        genero = self.comboBox.currentText()
-        duracion = self.textEdit_RCancionesMiliseconds.toPlainText()
-        precio = self.textEdit_RCancionesUnitPrice.toPlainText()
-        if(nombre != '' and album !='' and genero !='Escoga un género' and duracion!= '' and precio != ''):
-            conn = None
-            params=config()
-            conn= bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
-            recordAlbum= cursor.fetchall()
-            if(len(recordAlbum)!=0):
-                cursor.execute("SELECT track.trackid FROM track ORDER BY track.trackid DESC LIMIT 1")
-                record = cursor.fetchall()
-                id =record[0][0]+1
-                cursor.execute("SELECT album.albumid FROM album WHERE album.title= \'"+album+"\'")
-                recordAlbumId = cursor.fetchall()
-                albumid= recordAlbumId[0][0]
-
-                cursor.execute("SELECT track.albumid as aid FROM track WHERE track.name = \'"+nombre+"\'")
-                exists= False
-                recordExists = cursor.fetchall()
-                for a in recordExists:
-                    print("hola")
-                    print(a.aid," ",albumid)
-                    if(a.aid==albumid):
-                        exists=True
-                if(exists==False):
-                    cursor.execute("SELECT genre.genreid FROM genre WHERE genre.name= \'"+genero+"\'")
-                    recordGeneroId = cursor.fetchall()
-                    generoid=recordGeneroId[0][0]
-                    cursor.execute("SELECT artist.name FROM artist JOIN album ON album.artistid = artist.artistid WHERE album.albumid=\'"+str(albumid)+"\'")
-                    composer = cursor.fetchall()[0][0]
-                    sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                    datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio)
-                    cursor.execute(sql,datos)
-                    conn.commit()
-                else:
-                    print("Ya existe esta cancion en este album")
-            else:
-                print("No existe el album")
-        else:
-            print('Tienen que llenar todos los campos')
-
-
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    HomeUserregistrar = QtWidgets.QMainWindow()
-    ui = Ui_HomeUserInactivarEliminar()
-    ui.setupUi(HomeUserRegistrar)
-    HomeUserRegistrar.show()
-    sys.exit(app.exec_())
-
-
