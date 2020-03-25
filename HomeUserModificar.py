@@ -132,9 +132,9 @@ class Ui_HomeUserModificar(object):
 "font: 13pt \"Times\";")
         self.textEdit_CancionNombre.setObjectName("textEdit_CancionNombre")
         self.label_12 = QtWidgets.QLabel(self.frame)
-        self.label_12.setGeometry(QtCore.QRect(340, 410, 220, 25))
-        self.label_12.setMinimumSize(QtCore.QSize(100, 25))
-        self.label_12.setMaximumSize(QtCore.QSize(100, 25))
+        self.label_12.setGeometry(QtCore.QRect(340, 410, 114, 25))
+        self.label_12.setMinimumSize(QtCore.QSize(114, 25))
+        self.label_12.setMaximumSize(QtCore.QSize(114, 25))
         self.label_12.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"
 "")
