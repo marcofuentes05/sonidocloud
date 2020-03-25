@@ -70,15 +70,15 @@ class Ui_CreateAccount(object):
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_4.setObjectName("label_4")
-        self.textEdit_Password = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_Password.setGeometry(QtCore.QRect(330, 210, 220, 30))
-        self.textEdit_Password.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_Password.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_Password.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+        self.lineEdit_Password = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_Password.setGeometry(QtCore.QRect(330, 210, 220, 30))
+        self.lineEdit_Password.setMinimumSize(QtCore.QSize(220, 30))
+        self.lineEdit_Password.setMaximumSize(QtCore.QSize(220, 30))
+        self.lineEdit_Password.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius: 12px;")
-        self.textEdit_Password.setObjectName("textEdit_Password")
+"font: 13pt \"Times\";")
+        self.lineEdit_Password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.lineEdit_Password.setObjectName("lineEdit")
         self.pushButton_CreateAccount = QtWidgets.QPushButton(self.frame)
         self.pushButton_CreateAccount.setGeometry(QtCore.QRect(360, 350, 165, 32))
         self.pushButton_CreateAccount.setMinimumSize(QtCore.QSize(165, 32))
@@ -123,11 +123,6 @@ class Ui_CreateAccount(object):
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_4.setText(_translate("MainWindow", "Contraseña"))
-        self.textEdit_Password.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta nueva"))
         self.label_5.setText(_translate("MainWindow", "Suscripción"))
         self.comboBox_Suscripciones.setItemText(0, _translate("MainWindow", "Escoge una opción"))
@@ -145,7 +140,7 @@ class Ui_CreateAccount(object):
         self.window.show()
 
     def createAccount(self):
-        if (self.textEdit_Username.toPlainText()!='' and self.textEdit_Password.toPlainText()!='' and self.comboBox_Suscripciones.currentText()!="Escoge una opción"):
+        if (self.textEdit_Username.toPlainText()!='' and self.lineEdit_Password.toPlainText()!='' and self.comboBox_Suscripciones.currentText()!="Escoge una opción"):
             sus = self.comboBox_Suscripciones.currentText()
             conn = None
             params = config()
@@ -160,7 +155,7 @@ class Ui_CreateAccount(object):
                 record = cursor.fetchall()
                 id=record[0][0] +1
                 sql="INSERT INTO user_client(clientid, username, password, usertype,suscripcion) VALUES (%s,%s,%s,%s,%s)"
-                datos=(id,self.textEdit_Username.toPlainText(),self.textEdit_Password.toPlainText(),2,sus)
+                datos=(id,self.textEdit_Username.toPlainText(),self.lineEdit_Password.toPlainText(),2,sus)
                 cursor.execute(sql,datos)
                 conn.commit()
                 self.openHomeUser()

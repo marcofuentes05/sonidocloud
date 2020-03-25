@@ -78,15 +78,15 @@ class Ui_LoginAccount(object):
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_4.setObjectName("label_4")
-        self.textEdit_Password = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_Password.setGeometry(QtCore.QRect(330, 230, 220, 30))
-        self.textEdit_Password.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_Password.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_Password.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+        self.lineEdit_Password = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_Password.setGeometry(QtCore.QRect(330, 230, 220, 30))
+        self.lineEdit_Password.setMinimumSize(QtCore.QSize(220, 0))
+        self.lineEdit_Password.setMaximumSize(QtCore.QSize(220, 16777215))
+        self.lineEdit_Password.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius: 12px;")
-        self.textEdit_Password.setObjectName("textEdit_Password")
+"font: 13pt \"Times\";")
+        self.lineEdit_Password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.lineEdit_Password.setObjectName("lineEdit")
         self.pushButton_Login = QtWidgets.QPushButton(self.frame)
         self.pushButton_Login.setGeometry(QtCore.QRect(385, 283, 114, 32))
         self.pushButton_Login.setMinimumSize(QtCore.QSize(114, 32))
@@ -131,11 +131,6 @@ class Ui_LoginAccount(object):
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_4.setText(_translate("MainWindow", "Contraseña"))
-        self.textEdit_Password.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.pushButton_Login.setText(_translate("MainWindow", "Login"))
         self.label_5.setText(_translate("MainWindow", "o"))
         self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta nueva"))
@@ -177,7 +172,7 @@ class Ui_LoginAccount(object):
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
                 print(self.textEdit_Username.toPlainText())
-                print(self.textEdit_Password.toPlainText())
+                print(self.lineEdit_Password.toPlainText())
                 query = """
                         SELECT usr, pw, type, ide FROM
                                 (SELECT username as usr, password as pw, usertype as type , clientid as ide FROM user_client  
@@ -185,7 +180,7 @@ class Ui_LoginAccount(object):
                                 SELECT username as usr, password as pw, usertype as type , employeeid as ide FROM employee )Q 
                                 
                         WHERE usr = \'""" + self.textEdit_Username.toPlainText() + """\' 
-                                AND pw = \'""" + self.textEdit_Password.toPlainText() + """\'
+                                AND pw = \'""" + self.lineEdit_Password.toPlainText() + """\'
 """
                 cursor.execute(query)
                 record = cursor.fetchall()
