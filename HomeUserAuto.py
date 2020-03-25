@@ -6,11 +6,10 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-import psycopg2 as bd
+#import psycopg2 as bd
+import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
-from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
-from HomeUserModificar import Ui_HomeUserModificar
-from HomeUserRegistrar import Ui_HomeUserRegistrar
+from HomeUserAutoRegistrar import Ui_HomeUserAutoRegistrar
 import sys
 
 class Ui_HomeUserAuto(object):
@@ -173,3 +172,80 @@ class Ui_HomeUserAuto(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.pushButton_Registro.setText(_translate("MainWindow", "Registro"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
+
+
+
+    def openHomeUserRegistrar(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_HomeUserAutoRegistrar()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        
+    def populateTable(self):
+        #clear the table
+        self.tableWidget.setRowCount(0)
+        if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
+            print('Bien')
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
+                query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                print(record)
+                if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            print(i,j)
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+
+
+            elif(self.comboBox_OpcionesBuscar.currentText() == 'Género'):
+                query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                self.tableWidget.setColumnCount(len(record[0]))
+                if(len(record)!= 0):
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+
+            elif(self.comboBox_OpcionesBuscar.currentText() == 'Álbum'):
+                query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                self.tableWidget.setColumnCount(len(record[0]))
+                if(len(record)!= 0):
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+                
+            elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
+                query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                self.tableWidget.setColumnCount(len(record[0]))
+                if(len(record)!= 0):
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+        else:    
+            print('Mal')
+
+
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    HomeUserAuto = QtWidgets.QMainWindow()
+    ui = Ui_HomeUserAuto()
+    ui.setupUi(HomeUserAuto)
+    HomeUserAuto.show()
+    sys.exit(app.exec_())
+
