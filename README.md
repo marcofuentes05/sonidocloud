@@ -14,6 +14,9 @@ $ pip install pyqt5
 ```bash
 $ pip install psycopg2
 ```
+```bash
+$ pip install pgdb
+```
 
 Además, montar el archivo ```Proyecto1.sql```
 
