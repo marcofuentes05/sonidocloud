@@ -98,6 +98,19 @@ class Ui_HomeUserAuto(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Exit.setObjectName("pushButton_Exit")
+        self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
+        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 230, 181, 31))
+        self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(181, 31))
+        self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
+        self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+"font: 13pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.comboBox_OpcionesBuscar.setObjectName("comboBox_OpcionesBuscar")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
+        self.comboBox_OpcionesBuscar.addItem("")
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
         self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 230, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -112,7 +125,7 @@ class Ui_HomeUserAuto(object):
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.pushButton_Registro = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Registro.setGeometry(QtCore.QRect(30, 150, 114, 30))
+        self.pushButton_Registro.setGeometry(QtCore.QRect(30, 160, 114, 30))
         self.pushButton_Registro.setMinimumSize(QtCore.QSize(114, 30))
         self.pushButton_Registro.setMaximumSize(QtCore.QSize(114, 30))
         self.pushButton_Registro.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -128,6 +141,7 @@ class Ui_HomeUserAuto(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
         self.label_2.raise_()
@@ -175,6 +189,11 @@ class Ui_HomeUserAuto(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
+        self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))
+        self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "Género"))
+        self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "Álbum"))
+        self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
         self.pushButton_Registro.setText(_translate("MainWindow", "Registro"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
 
