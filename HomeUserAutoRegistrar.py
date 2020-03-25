@@ -75,22 +75,14 @@ class Ui_HomeUserAutoRegistrar(object):
 "color: rgb(255, 255, 255);\n"
 "font: 13pt \"Times\";")
         self.textEdit_RArtistaNombre.setObjectName("textEdit_RArtistaNombre")
-        self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(340, 240, 150, 25))
-        self.label_4.setMinimumSize(QtCore.QSize(150, 25))
-        self.label_4.setMaximumSize(QtCore.QSize(150, 25))
-        self.label_4.setStyleSheet("font: 18pt \"Times\";\n"
-"color: rgb(10, 54, 157);\n"
-"")
-        self.label_4.setObjectName("label_4")
-        self.textEdit_RAlbumNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RAlbumNombre.setGeometry(QtCore.QRect(340, 270, 220, 30))
-        self.textEdit_RAlbumNombre.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_RAlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_RAlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
-        self.textEdit_RAlbumNombre.setObjectName("textEdit_RAlbumNombre")
+#         self.textEdit_RAlbumNombre = QtWidgets.QTextEdit(self.frame)
+#         self.textEdit_RAlbumNombre.setGeometry(QtCore.QRect(340, 270, 220, 30))
+#         self.textEdit_RAlbumNombre.setMinimumSize(QtCore.QSize(220, 30))
+#         self.textEdit_RAlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
+#         self.textEdit_RAlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+# "color: rgb(255, 255, 255);\n"
+# "font: 13pt \"Times\";")
+#         self.textEdit_RAlbumNombre.setObjectName("textEdit_RAlbumNombre")
         self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setGeometry(QtCore.QRect(30, 190, 220, 50))
         self.label_6.setMinimumSize(QtCore.QSize(220, 50))
@@ -180,7 +172,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_14.setObjectName("label_14")
         self.pushButton_RAlbum = QtWidgets.QPushButton(self.frame)
-        self.pushButton_RAlbum.setGeometry(QtCore.QRect(650, 270, 114, 32))
+        self.pushButton_RAlbum.setGeometry(QtCore.QRect(340, 270, 220, 30))
         self.pushButton_RAlbum.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -229,13 +221,13 @@ class Ui_HomeUserAutoRegistrar(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
-        self.label_4.raise_()
+        # self.label_4.raise_()
         self.label.raise_()
         self.label_2.raise_()
         # self.pushButton_Exit.raise_()
         self.label_3.raise_()
         self.textEdit_RArtistaNombre.raise_()
-        self.textEdit_RAlbumNombre.raise_()
+        # self.textEdit_RAlbumNombre.raise_()
         self.label_6.raise_()
         self.label_9.raise_()
         self.label_10.raise_()
@@ -267,12 +259,11 @@ class Ui_HomeUserAutoRegistrar(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_4.setText(_translate("MainWindow", "Nombre Artista"))
-        self.textEdit_RAlbumNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
+#         self.textEdit_RAlbumNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+# "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+# "p, li { white-space: pre-wrap; }\n"
+# "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+# "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_6.setText(_translate("MainWindow", "Registro Álbumes"))
         self.label_9.setText(_translate("MainWindow", "Registro Canciones"))
         self.label_10.setText(_translate("MainWindow", "Nombre"))
