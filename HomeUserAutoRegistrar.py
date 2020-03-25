@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_HomeUserAutoRegistrar(object):
+    def __init__(self, id):
+        super(Ui_HomeUserAuto, self).__init__()
+        self.id = id
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)

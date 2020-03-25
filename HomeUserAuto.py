@@ -13,7 +13,7 @@ from HomeUserAutoRegistrar import Ui_HomeUserAutoRegistrar
 import sys
 
 class Ui_HomeUserAuto(object):
-    def __init__(self, id):
+    def __init__(self, id=0):
         super(Ui_HomeUserAuto, self).__init__()
         self.id = id
         
@@ -179,9 +179,9 @@ class Ui_HomeUserAuto(object):
 
 
 
-    def openHomeUserRegistrar(self):
+    def openHomeUserRegistrar(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeUserAutoRegistrar()
+        self.ui = Ui_HomeUserAutoRegistrar(id)
         self.ui.setupUi(self.window)
         self.window.show()
         
