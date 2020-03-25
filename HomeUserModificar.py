@@ -353,7 +353,7 @@ class Ui_HomeUserModificar(object):
             print(record)
 
     def modifySong(self):
-        if(self.textEdit_CancionNombre.toPlainText()!="" or self.textEdit_CancionNombre.toPlainText()!=" "):
+        if(self.textEdit_CancionNombre.toPlainText()!="" or self.textEdit_CambioNuevo.toPlainText()!=""):
             if(self.comboBox_OpcionesCambioCanciones.currentIndex()==0):
                 print('no voy a hacer nada')
             elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==1):
@@ -467,7 +467,8 @@ class Ui_HomeUserModificar(object):
                 conn.commit()
                 record= cursor.fetchall()
                 print(record)
-
+        else:
+            print("Debe llenar los campos")
 
 # if __name__ == "__main__":
 #     app = QtWidgets.QApplication(sys.argv)
