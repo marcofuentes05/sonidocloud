@@ -192,6 +192,18 @@ class Ui_HomeAdminGestionPermisos(object):
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
         self.pushButton_Cambiar.setText(_translate("MainWindow", "Cambiar"))
 
+    def openPopUpError(self):
+        msgError = QMessageBox()
+        msgError.setText("Aqui va una variable")
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openPopUpCheck(self):
+        msgGood = QMessageBox()
+        msgGood.setText("Aqui va una variable")
+        msgGood.setIcon(QMessageBox.information)
+        y = msgGood.exec_()
+
 
     def populateTable(self):
         self.tableWidget.setRowCount(0)

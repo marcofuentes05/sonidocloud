@@ -135,6 +135,18 @@ class Ui_LoginAccount(object):
         self.label_5.setText(_translate("MainWindow", "o"))
         self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta nueva"))
 
+    def openPopUpError(self):
+        msgError = QMessageBox()
+        msgError.setText("Aqui va una variable")
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openPopUpCheck(self):
+        msgGood = QMessageBox()
+        msgGood.setText("Aqui va una variable")
+        msgGood.setIcon(QMessageBox.information)
+        y = msgGood.exec_()
+
 
     def openHomeAdmin(self):
         self.window = QtWidgets.QMainWindow()

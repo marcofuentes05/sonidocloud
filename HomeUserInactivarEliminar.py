@@ -432,6 +432,19 @@ class Ui_HomeUserInactivarEliminar(object):
                     conn.close()
                     self.llenarTablaCanciones()
 
+    def openPopUpError(self):
+        msgError = QMessageBox()
+        msgError.setText("Aqui va una variable")
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openPopUpCheck(self):
+        msgGood = QMessageBox()
+        msgGood.setText("Aqui va una variable")
+        msgGood.setIcon(QMessageBox.information)
+        y = msgGood.exec_()
+
+
     def inactivarCancion(self):
         if (self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0)):
             print(str(self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text()))

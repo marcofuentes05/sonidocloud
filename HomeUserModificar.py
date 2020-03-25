@@ -352,6 +352,19 @@ class Ui_HomeUserModificar(object):
             record= cursor.fetchall()
             print(record)
 
+    def openPopUpError(self):
+        msgError = QMessageBox()
+        msgError.setText("Aqui va una variable")
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openPopUpCheck(self):
+        msgGood = QMessageBox()
+        msgGood.setText("Aqui va una variable")
+        msgGood.setIcon(QMessageBox.information)
+        y = msgGood.exec_()
+
+
     def modifySong(self):
         if(self.textEdit_CancionNombre.toPlainText()=="" or self.textEdit_CambioNuevo.toPlainText()==" "):
             if(self.comboBox_OpcionesCambioCanciones.currentIndex()==0):

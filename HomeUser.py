@@ -188,6 +188,18 @@ class Ui_HomeUser(object):
         self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
 
+    def openPopUpError(self):
+        msgError = QMessageBox()
+        msgError.setText("Aqui va una variable")
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openPopUpCheck(self):
+        msgGood = QMessageBox()
+        msgGood.setText("Aqui va una variable")
+        msgGood.setIcon(QMessageBox.information)
+        y = msgGood.exec_()
+
 
     def populateTable(self):
         #clear the table

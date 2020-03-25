@@ -130,6 +130,17 @@ class Ui_CreateAccount(object):
         self.comboBox_Suscripciones.setItemText(2, _translate("MainWindow", "Semestral"))
         self.comboBox_Suscripciones.setItemText(3, _translate("MainWindow", "Anual"))
 
+    def openPopUpError(self):
+        msgError = QMessageBox()
+        msgError.setText("Aqui va una variable")
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openPopUpCheck(self):
+        msgGood = QMessageBox()
+        msgGood.setText("Aqui va una variable")
+        msgGood.setIcon(QMessageBox.information)
+        y = msgGood.exec_()
 
 
     def openHomeUser(self):

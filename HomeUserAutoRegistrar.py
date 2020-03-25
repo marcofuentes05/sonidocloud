@@ -346,6 +346,19 @@ class Ui_HomeUserAutoRegistrar(object):
         else:
             print("No ha escrito el nombre del album o artista")
 
+    def openPopUpError(self):
+        msgError = QMessageBox()
+        msgError.setText("Aqui va una variable")
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openPopUpCheck(self):
+        msgGood = QMessageBox()
+        msgGood.setText("Aqui va una variable")
+        msgGood.setIcon(QMessageBox.information)
+        y = msgGood.exec_()
+
+
     def addSong(self):
         nombre = self.textEdit_RCancionesNombre.toPlainText().lower()
         album = self.textEdit_RCancionesAlbum.toPlainText()
