@@ -68,7 +68,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_3.setObjectName("label_3")
         self.textEdit_ArtistaNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_ArtistaNombre.setGeometry(QtCore.QRect(30, 210, 220, 30))
+        self.textEdit_ArtistaNombre.setGeometry(QtCore.QRect(30, 220, 220, 30))
         self.textEdit_ArtistaNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -84,7 +84,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_4.setObjectName("label_4")
         self.textEdit_AlbumNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_AlbumNombre.setGeometry(QtCore.QRect(506, 210, 220, 30))
+        self.textEdit_AlbumNombre.setGeometry(QtCore.QRect(506, 220, 220, 30))
         self.textEdit_AlbumNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -124,7 +124,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_10.setObjectName("label_10")
         self.textEdit_CancionNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CancionNombre.setGeometry(QtCore.QRect(30, 430, 220, 30))
+        self.textEdit_CancionNombre.setGeometry(QtCore.QRect(30, 440, 220, 30))
         self.textEdit_CancionNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_CancionNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_CancionNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -148,7 +148,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_14.setObjectName("label_14")
         self.textEdit_CambioNuevo = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CambioNuevo.setGeometry(QtCore.QRect(650, 430, 220, 30))
+        self.textEdit_CambioNuevo.setGeometry(QtCore.QRect(650, 440, 220, 30))
         self.textEdit_CambioNuevo.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_CambioNuevo.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_CambioNuevo.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -156,7 +156,7 @@ class Ui_HomeUserModificar(object):
 "font: 13pt \"Times\";")
         self.textEdit_CambioNuevo.setObjectName("textEdit_CambioNuevo")
         self.pushButton_MAlbum = QtWidgets.QPushButton(self.frame)
-        self.pushButton_MAlbum.setGeometry(QtCore.QRect(756, 248, 114, 32))
+        self.pushButton_MAlbum.setGeometry(QtCore.QRect(756, 258, 114, 32))
         self.pushButton_MAlbum.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_MAlbum.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_MAlbum.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -165,7 +165,7 @@ class Ui_HomeUserModificar(object):
         self.pushButton_MAlbum.setObjectName("pushButton_MAlbum")
         self.pushButton_MAlbum.clicked.connect(self.modifyAlbum)
         self.pushButton_MArtista = QtWidgets.QPushButton(self.frame)
-        self.pushButton_MArtista.setGeometry(QtCore.QRect(280, 248, 114, 32))
+        self.pushButton_MArtista.setGeometry(QtCore.QRect(280, 258, 114, 32))
         self.pushButton_MArtista.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_MArtista.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_MArtista.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -174,7 +174,7 @@ class Ui_HomeUserModificar(object):
         self.pushButton_MArtista.setObjectName("pushButton_MArtista")
         self.pushButton_MArtista.clicked.connect(self.modifyArtist)
         self.pushButton_MCancion = QtWidgets.QPushButton(self.frame)
-        self.pushButton_MCancion.setGeometry(QtCore.QRect(390, 470, 114, 32))
+        self.pushButton_MCancion.setGeometry(QtCore.QRect(390, 480, 114, 32))
         self.pushButton_MCancion.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_MCancion.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_MCancion.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -191,7 +191,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_5.setObjectName("label_5")
         self.textEdit_ArtistaNuevoNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_ArtistaNuevoNombre.setGeometry(QtCore.QRect(30, 280, 220, 30))
+        self.textEdit_ArtistaNuevoNombre.setGeometry(QtCore.QRect(30, 290, 220, 30))
         self.textEdit_ArtistaNuevoNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNuevoNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNuevoNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -207,7 +207,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_15.setObjectName("label_15")
         self.textEdit_AlbumNuevoNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_AlbumNuevoNombre.setGeometry(QtCore.QRect(506, 280, 220, 30))
+        self.textEdit_AlbumNuevoNombre.setGeometry(QtCore.QRect(506, 290, 220, 30))
         self.textEdit_AlbumNuevoNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNuevoNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNuevoNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -215,7 +215,7 @@ class Ui_HomeUserModificar(object):
 "font: 13pt \"Times\";")
         self.textEdit_AlbumNuevoNombre.setObjectName("textEdit_AlbumNuevoNombre")
         self.comboBox_OpcionesCambioCanciones = QtWidgets.QComboBox(self.frame)
-        self.comboBox_OpcionesCambioCanciones.setGeometry(QtCore.QRect(340, 430, 220, 30))
+        self.comboBox_OpcionesCambioCanciones.setGeometry(QtCore.QRect(340, 440, 220, 30))
         self.comboBox_OpcionesCambioCanciones.setMinimumSize(QtCore.QSize(220, 30))
         self.comboBox_OpcionesCambioCanciones.setMaximumSize(QtCore.QSize(220, 30))
         self.comboBox_OpcionesCambioCanciones.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -469,5 +469,12 @@ class Ui_HomeUserModificar(object):
                 print(record)
 
 
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     HomeUserModificar = QtWidgets.QMainWindow()
+#     ui = Ui_HomeUserModificar()
+#     ui.setupUi(HomeUserModificar)
+#     HomeUserModificar.show()
+#     sys.exit(app.exec_())
 
                 

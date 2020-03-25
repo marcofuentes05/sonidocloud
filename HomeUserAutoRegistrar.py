@@ -68,7 +68,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_3.setObjectName("label_3")
         self.textEdit_RArtistaNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RArtistaNombre.setGeometry(QtCore.QRect(30, 260, 220, 30))
+        self.textEdit_RArtistaNombre.setGeometry(QtCore.QRect(30, 270, 220, 30))
         self.textEdit_RArtistaNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_RArtistaNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RArtistaNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -84,7 +84,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_4.setObjectName("label_4")
         self.textEdit_RAlbumNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RAlbumNombre.setGeometry(QtCore.QRect(340, 260, 220, 30))
+        self.textEdit_RAlbumNombre.setGeometry(QtCore.QRect(340, 270, 220, 30))
         self.textEdit_RAlbumNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -116,7 +116,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_10.setObjectName("label_10")
         self.textEdit_RCancionesNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RCancionesNombre.setGeometry(QtCore.QRect(30, 410, 220, 30))
+        self.textEdit_RCancionesNombre.setGeometry(QtCore.QRect(30, 420, 220, 30))
         self.textEdit_RCancionesNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -132,7 +132,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_11.setObjectName("label_11")
         self.textEdit_RCancionesMiliseconds = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RCancionesMiliseconds.setGeometry(QtCore.QRect(30, 480, 220, 30))
+        self.textEdit_RCancionesMiliseconds.setGeometry(QtCore.QRect(30, 490, 220, 30))
         self.textEdit_RCancionesMiliseconds.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesMiliseconds.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesMiliseconds.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -148,7 +148,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_12.setObjectName("label_12")
         self.textEdit_RCancionesUnitPrice = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RCancionesUnitPrice.setGeometry(QtCore.QRect(340, 410, 220, 30))
+        self.textEdit_RCancionesUnitPrice.setGeometry(QtCore.QRect(340, 420, 220, 30))
         self.textEdit_RCancionesUnitPrice.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesUnitPrice.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesUnitPrice.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -164,7 +164,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_13.setObjectName("label_13")
         self.textEdit_RCancionesAlbum = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RCancionesAlbum.setGeometry(QtCore.QRect(340, 480, 220, 30))
+        self.textEdit_RCancionesAlbum.setGeometry(QtCore.QRect(340, 490, 220, 30))
         self.textEdit_RCancionesAlbum.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesAlbum.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesAlbum.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -180,7 +180,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "")
         self.label_14.setObjectName("label_14")
         self.pushButton_RAlbum = QtWidgets.QPushButton(self.frame)
-        self.pushButton_RAlbum.setGeometry(QtCore.QRect(650, 260, 114, 32))
+        self.pushButton_RAlbum.setGeometry(QtCore.QRect(650, 270, 114, 32))
         self.pushButton_RAlbum.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -189,7 +189,7 @@ class Ui_HomeUserAutoRegistrar(object):
         self.pushButton_RAlbum.setObjectName("pushButton_RAlbum")
         self.pushButton_RAlbum.clicked.connect(self.addAlbum)
         self.pushButton_RCancion = QtWidgets.QPushButton(self.frame)
-        self.pushButton_RCancion.setGeometry(QtCore.QRect(705, 480, 114, 32))
+        self.pushButton_RCancion.setGeometry(QtCore.QRect(705, 490, 114, 32))
         self.pushButton_RCancion.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_RCancion.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RCancion.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -197,7 +197,7 @@ class Ui_HomeUserAutoRegistrar(object):
 "color: rgb(255, 255, 255);")
         self.pushButton_RCancion.setObjectName("pushButton_RCancion")
         self.comboBox = QtWidgets.QComboBox(self.frame)
-        self.comboBox.setGeometry(QtCore.QRect(650, 410, 220, 30))
+        self.comboBox.setGeometry(QtCore.QRect(650, 420, 220, 30))
         self.comboBox.setMinimumSize(QtCore.QSize(220, 30))
         self.comboBox.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
@@ -406,3 +406,10 @@ class Ui_HomeUserAutoRegistrar(object):
 
 
 
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     HomeUserAutoRegistrar = QtWidgets.QMainWindow()
+#     ui = Ui_HomeUserAutoRegistrar()
+#     ui.setupUi(HomeUserAutoRegistrar)
+#     HomeUserAutoRegistrar.show()
+#     sys.exit(app.exec_())

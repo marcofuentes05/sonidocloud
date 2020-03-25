@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 #import pgdb as bd
 import psycopg2 as bd
@@ -107,7 +108,7 @@ class Ui_HomeAdminGestionPermisos(object):
 "")
         self.label_8.setObjectName("label_8")
         self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
-        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(30, 150, 280, 31))
+        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(30, 160, 280, 31))
         self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(280, 31))
         self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
         self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -128,7 +129,7 @@ class Ui_HomeAdminGestionPermisos(object):
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
         self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.pushButton_Cambiar = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Cambiar.setGeometry(QtCore.QRect(310, 150, 80, 31))
+        self.pushButton_Cambiar.setGeometry(QtCore.QRect(310, 160, 80, 31))
         self.pushButton_Cambiar.setMinimumSize(QtCore.QSize(80, 31))
         self.pushButton_Cambiar.setMaximumSize(QtCore.QSize(80, 31))
         self.pushButton_Cambiar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -244,4 +245,13 @@ class Ui_HomeAdminGestionPermisos(object):
                 print("Error",error)
         else:
             print("Seleccione el permiso nuevo")
+
+
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     HomeAdminGestionPermisos = QtWidgets.QMainWindow()
+#     ui = Ui_HomeAdminGestionPermisos()
+#     ui.setupUi(HomeAdminGestionPermisos)
+#     HomeAdminGestionPermisos.show()
+#     sys.exit(app.exec_())
 

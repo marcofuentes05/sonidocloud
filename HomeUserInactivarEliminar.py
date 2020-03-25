@@ -574,10 +574,10 @@ class Ui_HomeUserInactivarEliminar(object):
                     conn.close()
                     self.buscarAlbum()
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    HomeUserActivarEliminar = QtWidgets.QMainWindow()
-    ui = Ui_HomeUserInactivarEliminar()
-    ui.setupUi(HomeUserActivarEliminar)
-    HomeUserActivarEliminar.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     HomeUserActivarEliminar = QtWidgets.QMainWindow()
+#     ui = Ui_HomeUserInactivarEliminar()
+#     ui.setupUi(HomeUserActivarEliminar)
+#     HomeUserActivarEliminar.show()
+#     sys.exit(app.exec_())
