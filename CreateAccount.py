@@ -123,7 +123,7 @@ class Ui_CreateAccount(object):
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_4.setText(_translate("MainWindow", "Contraseña"))
-        self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta nueva"))
+        self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta"))
         self.label_5.setText(_translate("MainWindow", "Suscripción"))
         self.comboBox_Suscripciones.setItemText(0, _translate("MainWindow", "Escoge una opción"))
         self.comboBox_Suscripciones.setItemText(1, _translate("MainWindow", "Mensual"))
