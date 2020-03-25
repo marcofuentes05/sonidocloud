@@ -8,6 +8,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import psycopg2 as bd
+from config import config
 
 
 class Ui_HomeUserModificar(object):
@@ -198,6 +200,7 @@ class Ui_HomeUserModificar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MAlbum.setObjectName("pushButton_MAlbum")
+        #AGREGAR EL ONCLICK AQUI
         self.pushButton_MArtista = QtWidgets.QPushButton(self.frame)
         self.pushButton_MArtista.setGeometry(QtCore.QRect(280, 230, 114, 32))
         self.pushButton_MArtista.setMinimumSize(QtCore.QSize(114, 32))
@@ -206,6 +209,7 @@ class Ui_HomeUserModificar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MArtista.setObjectName("pushButton_MArtista")
+        self.pushButton_MArtista.clicked.connect(self.modifyArtist)
         self.pushButton_MCancion = QtWidgets.QPushButton(self.frame)
         self.pushButton_MCancion.setGeometry(QtCore.QRect(390, 470, 114, 32))
         self.pushButton_MCancion.setMinimumSize(QtCore.QSize(114, 32))
@@ -214,6 +218,7 @@ class Ui_HomeUserModificar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MCancion.setObjectName("pushButton_MCancion")
+        #AGREGAR EL ONCLICK AQUI
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(30, 230, 150, 25))
         self.label_5.setMinimumSize(QtCore.QSize(150, 25))
@@ -367,3 +372,84 @@ class Ui_HomeUserModificar(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
+    
+    def modifyArtist (self):
+        if(self.textEdit_ArtistaNombre.toPlainText()=="" or self.textEdit_ArtistaNombre.toPlainText()==" " or self.textEdit_ArtistaNuevoNombre.toPlainText() =="" or self.textEdit_ArtistaNuevoNombre.toPlainText() ==" " ):
+            print('no voy a hacer nada')
+        else:
+            params = config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            query = """
+                UPDATE artist
+                SET name = %s
+                WHERE name = %s
+                RETURNING artistid, name
+            """
+            cursor.execute(query,(self.textEdit_ArtistaNuevoNombre.toPlainText(),self.textEdit_ArtistaNombre.toPlainText()))
+            conn.commit()
+            record= cursor.fetchall()
+            print(record)
+
+    # def modifySong (self):
+    #     if(self.textEdit_CancionNombre.toPlainText()="" or self.textEdit_CancionNombre.toPlainText()=" " or self.textEdit_CancionNuevoNombre.toPlainText()="" or self.textEdit_CancionNuevoNombre.toPlainText()=" "):
+    #         print('no voy a hacer nada')
+    #     else:
+    #         params = config()
+    #         conn = bd.connect(**params)
+    #         cursor = conn.cursor()
+    #         query = """
+    #             UPDATE track
+    #             SET name = %s
+    #             WHERE name = %s
+    #             RETURNING artistid, name
+    #         """
+    #         cursor.execute(query,(self.textEdit_CancionNuevoNombre.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
+    #         conn.commit()
+    #         record= cursor.fetchall()
+
+    #         if(self.textEdit_CancionComposer!= "" or self.textEdit_CancionComposer != " " ):
+    #             params = config()
+    #             conn = bd.connect(**params)
+    #             cursor = conn.cursor()
+    #             query = """
+    #                 UPDATE track
+    #                 SET composer = %s
+    #                 WHERE name = %s
+    #                 RETURNING artistid, name
+    #             """
+    #             cursor.execute(query,(self.textEdit_CancionComposer.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
+    #             conn.commit()
+    #             record= cursor.fetchall()
+                
+    #         if(self.textEdit_CancionUnitPrice!= "" or self.textEdit_CancionUnitPrice != " " ):
+    #             params = config()
+    #             conn = bd.connect(**params)
+    #             cursor = conn.cursor()
+    #             query = """
+    #                 UPDATE track
+    #                 SET unitprice = %s
+    #                 WHERE name = %s
+    #                 RETURNING artistid, name
+    #             """
+    #             cursor.execute(query,(self.textEdit_CancionUnitPrice.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
+    #             conn.commit()
+    #             record= cursor.fetchall()
+
+    def modifyAlbum(self):
+        if(self.textEdit_AlbumNombre.toPlainText()=="" or self.textEdit_AlbumNombre.toPlainText()==" " or self.textEdit_AlbumNuevoNombre.toPlainText() =="" or self.textEdit_AlbumNuevoNombre.toPlainText() ==" " ):
+            print('no voy a hacer nada')
+        else:
+            params = config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            query = """
+                UPDATE album
+                SET title = %s
+                WHERE title = %s
+                RETURNING albumid, title
+            """
+            cursor.execute(query,(self.textEdit_AlbumNuevoNombre.toPlainText(),self.textEdit_AlbumNombre.toPlainText()))
+            conn.commit()
+            record= cursor.fetchall()
+            print(record)
