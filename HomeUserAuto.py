@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 import psycopg2 as bd
-# import pgdb as bd
+#import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from HomeUserAutoRegistrar import Ui_HomeUserAutoRegistrar
 import sys
@@ -119,6 +119,7 @@ class Ui_HomeUserAuto(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Registro.setObjectName("pushButton_Registro")
+        self.pushButton_Registro.clicked.connect(self.openHomeUserRegistrar)
         self.pushButton_Buscar = QtWidgets.QPushButton(self.frame)
         self.pushButton_Buscar.setGeometry(QtCore.QRect(796, 230, 75, 31))
         self.pushButton_Buscar.setMinimumSize(QtCore.QSize(75, 31))
@@ -180,6 +181,9 @@ class Ui_HomeUserAuto(object):
 
 
     def openHomeUserRegistrar(self, id):
+        self.open(self.id)
+
+    def open(self,id):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_HomeUserAutoRegistrar(id)
         self.ui.setupUi(self.window)

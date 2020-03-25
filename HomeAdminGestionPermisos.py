@@ -8,7 +8,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+#import pgdb as bd
+import psycopg2 as bd
+from config import config
 
 class Ui_HomeAdminGestionPermisos(object):
     def setupUi(self, MainWindow):
@@ -125,6 +127,7 @@ class Ui_HomeAdminGestionPermisos(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.pushButton_Cambiar = QtWidgets.QPushButton(self.frame)
         self.pushButton_Cambiar.setGeometry(QtCore.QRect(310, 150, 80, 31))
         self.pushButton_Cambiar.setMinimumSize(QtCore.QSize(80, 31))
@@ -133,6 +136,7 @@ class Ui_HomeAdminGestionPermisos(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Cambiar.setObjectName("pushButton_Cambiar")
+        self.pushButton_Cambiar.clicked.connect(self.changePermision)
         self.label_8.raise_()
         self.label.raise_()
         self.label_2.raise_()
@@ -153,9 +157,9 @@ class Ui_HomeAdminGestionPermisos(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
         item = self.tableWidget.verticalHeaderItem(0)
-        item.setText(_translate("MainWindow", "aqui"))
+        item.setText(_translate("MainWindow", "Usuario"))
         item = self.tableWidget.verticalHeaderItem(1)
-        item.setText(_translate("MainWindow", "van"))
+        item.setText(_translate("MainWindow", "Nivel de permiso"))
         item = self.tableWidget.verticalHeaderItem(2)
         item.setText(_translate("MainWindow", "New Row"))
         item = self.tableWidget.verticalHeaderItem(3)
@@ -187,3 +191,58 @@ class Ui_HomeAdminGestionPermisos(object):
         self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "2"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
         self.pushButton_Cambiar.setText(_translate("MainWindow", "Cambiar"))
+
+
+    def populateTable(self):
+        self.tableWidget.setRowCount(0)
+        if(self.textEdit_UserBuscar.toPlainText()!=''):
+            print('Bien')
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            query = "SELECT user_client.username, user_client.usertype FROM user_client WHERE user_client.username ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+            cursor.execute(query)
+            record = cursor.fetchall()
+            print(record)
+            if(len(record)!= 0):
+                self.tableWidget.setColumnCount(len(record[0]))
+                for i in range(len(record)):
+                    self.tableWidget.insertRow(i)
+                    for j in range(len(record[0])):
+                        print(i,j)
+                        self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+    def changePermision(self):
+        permiso = self.comboBox_OpcionesBuscar.currentText()
+        if(permiso != "¿Qué número de permiso deseas autorizar?"):
+            try:
+                usuario = self.tableWidget.item(self.tableWidget.currentRow(),0).text()
+                print(usuario)
+                params = config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                query = "UPDATE user_client SET usertype = \'"+permiso+"\' WHERE username = \'"+usuario+"\'"
+                cursor.execute(query)
+                conn.commit()
+                if(permiso=="1"):
+                    cursor.execute("SELECT artist.name FROM artist WHERE artist.name= \'"+usuario+"\'")
+                    if(len(cursor.fetchall()) == 0):
+                        cursor.execute("SELECT artist.artistid FROM artist ORDER BY artist.artistid DESC LIMIT 1")
+                        record = cursor.fetchall()
+                        id=record[0][0] +1
+                        cursor.execute("SELECT user_client.clientid FROM user_client WHERE user_client.username = \'"+usuario+"\'")
+                        recordCustomerid = cursor.fetchall()
+                        customerid = recordCustomerid[0][0]
+                        sql="INSERT INTO artist(artistid, name, customerid) VALUES (%s,%s,%s)"
+                        datos=(id,usuario,customerid)
+                        cursor.execute(sql,datos)
+                        conn.commit()
+                    else:
+                        print("Ya existe este artista")
+
+            except(Exception) as error:
+                print("Error",error)
+        else:
+            print("Seleccione el permiso nuevo")
+

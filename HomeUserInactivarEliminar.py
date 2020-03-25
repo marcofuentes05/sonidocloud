@@ -9,8 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-import psycopg2 as bd
-#import pgdb as bd
+#import psycopg2 as bd
+import pgdb as bd
 from config import config
 
 class Ui_HomeUserInactivarEliminar(object):

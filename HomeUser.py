@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
 import psycopg2 as bd
 from config import config
-
+#import pgdb as bd
 
 class Ui_HomeUser(object):
     def setupUi(self, MainWindow):
