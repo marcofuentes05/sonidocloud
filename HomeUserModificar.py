@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 import psycopg2 as bd
 from config import config
@@ -51,14 +51,14 @@ class Ui_HomeUserModificar(object):
         self.label_2.setScaledContents(True)
         self.label_2.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.label_2.setObjectName("label_2")
-        self.pushButton_Exit = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Exit.setGeometry(QtCore.QRect(756, 50, 114, 32))
-        self.pushButton_Exit.setMinimumSize(QtCore.QSize(114, 32))
-        self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
-        self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
-        self.pushButton_Exit.setObjectName("pushButton_Exit")
+#         self.pushButton_Exit = QtWidgets.QPushButton(self.frame)
+#         self.pushButton_Exit.setGeometry(QtCore.QRect(756, 50, 114, 32))
+#         self.pushButton_Exit.setMinimumSize(QtCore.QSize(114, 32))
+#         self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
+#         self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+# "font: 14pt \"Times\";\n"
+# "color: rgb(255, 255, 255);")
+#         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setGeometry(QtCore.QRect(30, 190, 100, 25))
         self.label_3.setMinimumSize(QtCore.QSize(100, 25))
@@ -132,7 +132,7 @@ class Ui_HomeUserModificar(object):
 "font: 13pt \"Times\";")
         self.textEdit_CancionNombre.setObjectName("textEdit_CancionNombre")
         self.label_12 = QtWidgets.QLabel(self.frame)
-        self.label_12.setGeometry(QtCore.QRect(340, 410, 100, 25))
+        self.label_12.setGeometry(QtCore.QRect(340, 410, 220, 25))
         self.label_12.setMinimumSize(QtCore.QSize(100, 25))
         self.label_12.setMaximumSize(QtCore.QSize(100, 25))
         self.label_12.setStyleSheet("font: 18pt \"Times\";\n"
@@ -232,7 +232,7 @@ class Ui_HomeUserModificar(object):
         self.comboBox_OpcionesCambioCanciones.addItem("")
         self.label.raise_()
         self.label_2.raise_()
-        self.pushButton_Exit.raise_()
+        # self.pushButton_Exit.raise_()
         self.label_6.raise_()
         self.label_7.raise_()
         self.label_9.raise_()
@@ -262,7 +262,7 @@ class Ui_HomeUserModificar(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
-        self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
+        # self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
         self.label_3.setText(_translate("MainWindow", "Nombre"))
         self.textEdit_ArtistaNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -284,8 +284,8 @@ class Ui_HomeUserModificar(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_12.setText(_translate("MainWindow", "UnitPrice"))
-        self.label_14.setText(_translate("MainWindow", "Nombre del Cambio"))
+        self.label_12.setText(_translate("MainWindow", "Campo a Cambiar"))
+        self.label_14.setText(_translate("MainWindow", "Nuevo Nombre"))
         self.textEdit_CambioNuevo.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -467,5 +467,7 @@ class Ui_HomeUserModificar(object):
                 conn.commit()
                 record= cursor.fetchall()
                 print(record)
+
+
 
                 

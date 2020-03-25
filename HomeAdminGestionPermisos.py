@@ -6,7 +6,6 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 #import pgdb as bd
 import psycopg2 as bd
@@ -78,14 +77,14 @@ class Ui_HomeAdminGestionPermisos(object):
         self.tableWidget.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(4, item)
-        self.pushButton_Exit = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Exit.setGeometry(QtCore.QRect(756, 50, 114, 32))
-        self.pushButton_Exit.setMinimumSize(QtCore.QSize(114, 32))
-        self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
-        self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
-        self.pushButton_Exit.setObjectName("pushButton_Exit")
+#         self.pushButton_Exit = QtWidgets.QPushButton(self.frame)
+#         self.pushButton_Exit.setGeometry(QtCore.QRect(756, 50, 114, 32))
+#         self.pushButton_Exit.setMinimumSize(QtCore.QSize(114, 32))
+#         self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
+#         self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+# "font: 14pt \"Times\";\n"
+# "color: rgb(255, 255, 255);")
+#         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
         self.textEdit_UserBuscar.setGeometry(QtCore.QRect(560, 200, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -141,7 +140,7 @@ class Ui_HomeAdminGestionPermisos(object):
         self.label.raise_()
         self.label_2.raise_()
         self.tableWidget.raise_()
-        self.pushButton_Exit.raise_()
+        #self.pushButton_Exit.raise_()
         self.textEdit_UserBuscar.raise_()
         self.label_4.raise_()
         self.comboBox_OpcionesBuscar.raise_()
@@ -161,24 +160,24 @@ class Ui_HomeAdminGestionPermisos(object):
         item = self.tableWidget.verticalHeaderItem(1)
         item.setText(_translate("MainWindow", "Nivel de permiso"))
         item = self.tableWidget.verticalHeaderItem(2)
-        item.setText(_translate("MainWindow", "New Row"))
-        item = self.tableWidget.verticalHeaderItem(3)
-        item.setText(_translate("MainWindow", "las"))
-        item = self.tableWidget.verticalHeaderItem(4)
-        item.setText(_translate("MainWindow", "filas"))
-        item = self.tableWidget.verticalHeaderItem(5)
-        item.setText(_translate("MainWindow", "proyecto"))
-        item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "aqui"))
-        item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "van"))
-        item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "las"))
-        item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "columnas"))
-        item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "proyecto"))
-        self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
+        # item.setText(_translate("MainWindow", "New Row"))
+        # item = self.tableWidget.verticalHeaderItem(3)
+        # item.setText(_translate("MainWindow", "las"))
+        # item = self.tableWidget.verticalHeaderItem(4)
+        # item.setText(_translate("MainWindow", "filas"))
+        # item = self.tableWidget.verticalHeaderItem(5)
+        # item.setText(_translate("MainWindow", "proyecto"))
+        # item = self.tableWidget.horizontalHeaderItem(0)
+        # item.setText(_translate("MainWindow", "aqui"))
+        # item = self.tableWidget.horizontalHeaderItem(1)
+        # item.setText(_translate("MainWindow", "van"))
+        # item = self.tableWidget.horizontalHeaderItem(2)
+        # item.setText(_translate("MainWindow", "las"))
+        # item = self.tableWidget.horizontalHeaderItem(3)
+        # item.setText(_translate("MainWindow", "columnas"))
+        # item = self.tableWidget.horizontalHeaderItem(4)
+        # item.setText(_translate("MainWindow", "proyecto"))
+        # #self.pushButton_Exit.setText(_translate("MainWindow", "Salir"))
         self.textEdit_UserBuscar.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

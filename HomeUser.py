@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
 import psycopg2 as bd
@@ -142,7 +142,7 @@ class Ui_HomeUser(object):
         self.pushButton_Exit.raise_()
         self.textEdit_UserBuscar.raise_()
         self.label_4.raise_()
-        # self.comboBox_4.raise_()
+        self.comboBox_OpcionesBuscar.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -174,7 +174,7 @@ class Ui_HomeUser(object):
         # item.setText(_translate("MainWindow", "columnas"))
         # item = self.tableWidget.horizontalHeaderItem(4)
         # item.setText(_translate("MainWindow", "proyecto"))
-        self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
+        self.pushButton_Exit.setText(_translate("MainWindow", "Salir"))
         self.textEdit_UserBuscar.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -246,3 +246,14 @@ class Ui_HomeUser(object):
                             self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
         else:    
             print('Mal')
+
+
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    HomeUser = QtWidgets.QMainWindow()
+    ui = Ui_HomeUser()
+    ui.setupUi(HomeUser)
+    HomeUser.show()
+    sys.exit(app.exec_())
+

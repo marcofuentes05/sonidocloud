@@ -5,7 +5,7 @@
 # Created by: PyQt5 UI code generator 5.12.3
 #
 # WARNING! All changes made in this file will be lost!
-
+#import sys
 import psycopg2 as bd
 #import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -330,14 +330,14 @@ class Ui_HomeAdmin(object):
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
         self.label_3.setText(_translate("MainWindow", "Módulo de reportería"))
         self.comboBox.setItemText(0, _translate("MainWindow", "Reportería"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "1. Los 5 artistas con más álbumes publicados"))
-        self.comboBox.setItemText(2, _translate("MainWindow", "2. Los 5 géneros con más canciones"))
+        self.comboBox.setItemText(1, _translate("MainWindow", "1. Los artistas con más álbumes publicados"))
+        self.comboBox.setItemText(2, _translate("MainWindow", "2. Géneros con más canciones"))
         self.comboBox.setItemText(3, _translate("MainWindow", "3. Total de duración de cada playlist"))
-        self.comboBox.setItemText(4, _translate("MainWindow", "4. Las 5 canciones de mayor duración con la información de sus artistas"))
-        self.comboBox.setItemText(5, _translate("MainWindow", "5. Los 5 usuarios que han registrado más canciones"))
+        self.comboBox.setItemText(4, _translate("MainWindow", "4. Canciones de mayor duración con información del artista"))
+        self.comboBox.setItemText(5, _translate("MainWindow", "5. Usuarios que han registrado más canciones"))
         self.comboBox.setItemText(6, _translate("MainWindow", "6. Promedio de duración de canciones por género"))
         self.comboBox.setItemText(7, _translate("MainWindow", "7. Cantidad de artistas diferentes por playlist"))
-        self.comboBox.setItemText(8, _translate("MainWindow", "8. Los 5 artistas con más diversidad de género musicales"))
+        self.comboBox.setItemText(8, _translate("MainWindow", "8. Los artistas con más diversidad de géneros"))
         self.label_7.setText(_translate("MainWindow", "Módulo de autorización"))
         # item = self.tableWidget.verticalHeaderItem(0)
         # item.setText(_translate("MainWindow", "aqui"))
@@ -361,7 +361,7 @@ class Ui_HomeAdmin(object):
         # item.setText(_translate("MainWindow", "columnas"))
         # item = self.tableWidget.horizontalHeaderItem(4)
         # item.setText(_translate("MainWindow", "proyecto"))
-        self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
+        self.pushButton_Exit.setText(_translate("MainWindow", "Salir"))
         self.textEdit_UserBuscar.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -648,3 +648,6 @@ class Ui_HomeAdmin(object):
                 for j in range(len(record[0])):
                     print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+
+
+

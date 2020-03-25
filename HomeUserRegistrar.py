@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 #import pgdb as bd
 import psycopg2 as bd
@@ -49,14 +49,14 @@ class Ui_HomeUserRegistrar(object):
         self.label_2.setScaledContents(True)
         self.label_2.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.label_2.setObjectName("label_2")
-        self.pushButton_Exit = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Exit.setGeometry(QtCore.QRect(756, 50, 114, 32))
-        self.pushButton_Exit.setMinimumSize(QtCore.QSize(114, 32))
-        self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
-        self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);")
-        self.pushButton_Exit.setObjectName("pushButton_Exit")
+#         self.pushButton_Exit = QtWidgets.QPushButton(self.frame)
+#         self.pushButton_Exit.setGeometry(QtCore.QRect(756, 50, 114, 32))
+#         self.pushButton_Exit.setMinimumSize(QtCore.QSize(114, 32))
+#         self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
+#         self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+# "font: 14pt \"Times\";\n"
+# "color: rgb(255, 255, 255);")
+#         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setGeometry(QtCore.QRect(30, 240, 100, 25))
         self.label_3.setMinimumSize(QtCore.QSize(100, 25))
@@ -267,7 +267,7 @@ class Ui_HomeUserRegistrar(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
-        self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
+        # self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
         self.label_3.setText(_translate("MainWindow", "Nombre"))
         self.textEdit_RArtistaNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -444,12 +444,12 @@ class Ui_HomeUserRegistrar(object):
             print('Tienen que llenar todos los campos')
 
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    HomeUserregistrar = QtWidgets.QMainWindow()
-    ui = Ui_HomeUserInactivarEliminar()
-    ui.setupUi(HomeUserRegistrar)
-    HomeUserRegistrar.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     HomeUserRegistrar = QtWidgets.QMainWindow()
+#     ui = Ui_HomeUserRegistrar()
+#     ui.setupUi(HomeUserRegistrar)
+#     HomeUserRegistrar.show()
+#     sys.exit(app.exec_())
 
 
