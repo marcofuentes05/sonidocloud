@@ -9,6 +9,7 @@
 import psycopg2 as bd
 #import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 from HomeUserAutoRegistrar import Ui_HomeUserAutoRegistrar
 import sys
 from config import config
@@ -208,7 +209,7 @@ class Ui_HomeUserAuto(object):
     def openPopUpCheck(self):
         msgGood = QMessageBox()
         msgGood.setText("Aqui va una variable")
-        msgGood.setIcon(QMessageBox.information)
+        msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
 

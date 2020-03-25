@@ -8,6 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 import sys
 #import psycopg2 as bd
 import pgdb as bd
@@ -441,7 +442,7 @@ class Ui_HomeUserInactivarEliminar(object):
     def openPopUpCheck(self):
         msgGood = QMessageBox()
         msgGood.setText("Aqui va una variable")
-        msgGood.setIcon(QMessageBox.information)
+        msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
 

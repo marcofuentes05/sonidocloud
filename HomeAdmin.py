@@ -313,7 +313,7 @@ class Ui_HomeAdmin(object):
     def openPopUpCheck(self):
         msgGood = QMessageBox()
         msgGood.setText("Aqui va una variable")
-        msgGood.setIcon(QMessageBox.information)
+        msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
 
