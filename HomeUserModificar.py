@@ -10,7 +10,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import psycopg2 as bd
 from config import config
-
+#import pgdb as bd
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 

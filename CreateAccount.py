@@ -145,23 +145,27 @@ class Ui_CreateAccount(object):
         self.window.show()
 
     def createAccount(self):
-        if (self.textEdit_Username.toPlainText()!='' and self.textEdit_Password.toPlainText()!=''):
+        if (self.textEdit_Username.toPlainText()!='' and self.textEdit_Password.toPlainText()!='' and self.comboBox_Suscripciones.currentText()!="Escoge una opción"):
+            sus = self.comboBox_Suscripciones.currentText()
             conn = None
             params = config()
             conn = db.connect(**params)
             cursor = conn.cursor()
             cursor.execute("SELECT user_client.username FROM user_client WHERE user_client.username= \'"+self.textEdit_Username.toPlainText()+"\'")
-            if(len(cursor.fetchall()) == 0):
+            recordUsers= cursor.fetchall()
+            cursor.execute("SELECT artist.name FROM artist WHERE artist.name= \'"+self.textEdit_Username.toPlainText()+"\'")
+            recordArtistas= cursor.fetchall()            
+            if(len(recordUsers) == 0 and len(recordArtistas)==0):
                 cursor.execute("SELECT user_client.clientid FROM user_client ORDER BY user_client.clientid DESC LIMIT 1")
                 record = cursor.fetchall()
                 id=record[0][0] +1
-                sql="INSERT INTO user_client(clientid, username, password, usertype) VALUES (%s,%s,%s,%s)"
-                datos=(id,self.textEdit_Username.toPlainText(),self.textEdit_Password.toPlainText(),2)
+                sql="INSERT INTO user_client(clientid, username, password, usertype,suscripcion) VALUES (%s,%s,%s,%s,%s)"
+                datos=(id,self.textEdit_Username.toPlainText(),self.textEdit_Password.toPlainText(),2,sus)
                 cursor.execute(sql,datos)
                 conn.commit()
                 self.openHomeUser()
             else:
-                print("El usuario ya existe")
+                print("El usuario ya existe o es igual al nombre de un cantante")
         else:
             print("Tiene que ingresar un usuario y contraseña")
 
