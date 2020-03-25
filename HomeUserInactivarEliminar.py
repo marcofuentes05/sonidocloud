@@ -414,26 +414,27 @@ class Ui_HomeUserInactivarEliminar(object):
             print('Mal')
 
     def eliminarCancion(self):
-        trackid = self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text()
-        query2 = "DELETE FROM track WHERE track.trackid = \'"+ trackid +"\'"
-        try:
-            conn = None
-            params=config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute(query2)
-            if (cursor.statusmessage == 'DELETE 1'):
-                conn.commit() 
-        except(Exception) as error:
-            print("EROOOR", error)
-        finally:
-            if(conn):
-                cursor.close()
-                conn.close()
-                self.llenarTablaCanciones()
+        if (self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0)):
+            trackid = self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text()
+            query2 = "DELETE FROM track WHERE track.trackid = \'"+ trackid +"\'"
+            try:
+                conn = None
+                params=config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                cursor.execute(query2)
+                if (cursor.statusmessage == 'DELETE 1'):
+                    conn.commit() 
+            except(Exception) as error:
+                print("EROOOR", error)
+            finally:
+                if(conn):
+                    cursor.close()
+                    conn.close()
+                    self.llenarTablaCanciones()
 
     def inactivarCancion(self):
-        if (type(self.tableWidget_2.item(self.tableWidget.currentRow(), 0)) != 'NoneType'):
+        if (self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0)):
             print(str(self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text()))
             query1 = "UPDATE track SET isactive = FALSE WHERE trackid = \'" +str(self.tableWidget_2.item(self.tableWidget_2.currentRow(), 0).text())+"\'"
             try:
@@ -530,46 +531,48 @@ class Ui_HomeUserInactivarEliminar(object):
             print('Mal')
 
     def eliminarArtista(self):
-        artistId = self.tableWidget_3.item(self.tableWidget_3.currentRow(), 0).text()
-        query2 = "DELETE FROM artist WHERE artist.artistid = \'"+ artistId +"\'"
-        print(artistId)
-        try:
-            conn = None
-            params=config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute(query2)
-            if (cursor.statusmessage == 'DELETE 1'):
-                conn.commit() 
-        except(Exception) as error:
-            print("EROOOR", error)
-        finally:
-            if(conn):
-                cursor.close()
-                conn.close()
-                self.buscarArtista()
+        if (self.tableWidget_3.item(self.tableWidget_3.currentRow(), 0)):
+            artistId = self.tableWidget_3.item(self.tableWidget_3.currentRow(), 0).text()
+            query2 = "DELETE FROM artist WHERE artist.artistid = \'"+ artistId +"\'"
+            print(artistId)
+            try:
+                conn = None
+                params=config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                cursor.execute(query2)
+                if (cursor.statusmessage == 'DELETE 1'):
+                    conn.commit() 
+            except(Exception) as error:
+                print("EROOOR", error)
+            finally:
+                if(conn):
+                    cursor.close()
+                    conn.close()
+                    self.buscarArtista()
 
     def eliminarAlbum(self):
-        albumid = self.tableWidget.item(self.tableWidget.currentRow(), 0).text()
-        query2 = "DELETE FROM album WHERE album.albumid = \'"+ albumid +"\'"
-        print(albumid)
-        try:
-            conn = None
-            params=config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute(query2)
-            if (cursor.statusmessage == 'DELETE 1'):
-                conn.commit() 
-            else:
-                print(cursor.statusmessage)
-        except(Exception) as error:
-            print("EROOOR", error)
-        finally:
-            if(conn):
-                cursor.close()
-                conn.close()
-                self.buscarAlbum()
+        if (self.tableWidget.item(self.tableWidget.currentRow(), 0)):
+            albumid = self.tableWidget.item(self.tableWidget.currentRow(), 0).text()
+            query2 = "DELETE FROM album WHERE album.albumid = \'"+ albumid +"\'"
+            print(albumid)
+            try:
+                conn = None
+                params=config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                cursor.execute(query2)
+                if (cursor.statusmessage == 'DELETE 1'):
+                    conn.commit() 
+                else:
+                    print(cursor.statusmessage)
+            except(Exception) as error:
+                print("EROOOR", error)
+            finally:
+                if(conn):
+                    cursor.close()
+                    conn.close()
+                    self.buscarAlbum()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
