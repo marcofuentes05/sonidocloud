@@ -125,6 +125,14 @@ class Ui_HomeAdminGestionPermisos(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.pushButton_Cambiar = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Cambiar.setGeometry(QtCore.QRect(310, 150, 80, 31))
+        self.pushButton_Cambiar.setMinimumSize(QtCore.QSize(80, 31))
+        self.pushButton_Cambiar.setMaximumSize(QtCore.QSize(80, 31))
+        self.pushButton_Cambiar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_Cambiar.setObjectName("pushButton_Cambiar")
         self.label_8.raise_()
         self.label.raise_()
         self.label_2.raise_()
@@ -134,6 +142,7 @@ class Ui_HomeAdminGestionPermisos(object):
         self.label_4.raise_()
         self.comboBox_OpcionesBuscar.raise_()
         self.pushButton_Buscar.raise_()
+        self.pushButton_Cambiar.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -176,4 +185,5 @@ class Ui_HomeAdminGestionPermisos(object):
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "0"))
         self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "1"))
         self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "2"))
-        self.pushButton_Buscar.setText(_translate("MainWindow", "Cambiar"))
+        self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
+        self.pushButton_Cambiar.setText(_translate("MainWindow", "Cambiar"))
