@@ -24,7 +24,7 @@ class Ui_HomeUserRegistrar(object):
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius:12px;")
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -52,8 +52,7 @@ class Ui_HomeUserRegistrar(object):
         self.pushButton_Exit.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_Exit.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius:12px;")
+"color: rgb(255, 255, 255);")
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setGeometry(QtCore.QRect(30, 240, 100, 25))
@@ -69,8 +68,7 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RArtistaNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RArtistaNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
+"font: 13pt \"Times\";")
         self.textEdit_RArtistaNombre.setObjectName("textEdit_RArtistaNombre")
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setGeometry(QtCore.QRect(506, 240, 100, 25))
@@ -86,8 +84,7 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RAlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
+"font: 13pt \"Times\";")
         self.textEdit_RAlbumNombre.setObjectName("textEdit_RAlbumNombre")
         self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setGeometry(QtCore.QRect(30, 190, 220, 50))
@@ -127,8 +124,7 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
+"font: 13pt \"Times\";")
         self.textEdit_RCancionesNombre.setObjectName("textEdit_RCancionesNombre")
         self.label_11 = QtWidgets.QLabel(self.frame)
         self.label_11.setGeometry(QtCore.QRect(30, 460, 150, 25))
@@ -144,8 +140,7 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesMiliseconds.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesMiliseconds.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
+"font: 13pt \"Times\";")
         self.textEdit_RCancionesMiliseconds.setObjectName("textEdit_RCancionesMiliseconds")
         self.label_12 = QtWidgets.QLabel(self.frame)
         self.label_12.setGeometry(QtCore.QRect(340, 390, 100, 25))
@@ -161,8 +156,7 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesUnitPrice.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesUnitPrice.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
+"font: 13pt \"Times\";")
         self.textEdit_RCancionesUnitPrice.setObjectName("textEdit_RCancionesUnitPrice")
         self.label_13 = QtWidgets.QLabel(self.frame)
         self.label_13.setGeometry(QtCore.QRect(340, 460, 100, 25))
@@ -178,8 +172,7 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RCancionesAlbum.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RCancionesAlbum.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
+"font: 13pt \"Times\";")
         self.textEdit_RCancionesAlbum.setObjectName("textEdit_RCancionesAlbum")
         self.label_14 = QtWidgets.QLabel(self.frame)
         self.label_14.setGeometry(QtCore.QRect(650, 390, 100, 25))
@@ -189,23 +182,13 @@ class Ui_HomeUserRegistrar(object):
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_14.setObjectName("label_14")
-        self.textEdit_RCancionesGenero = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_RCancionesGenero.setGeometry(QtCore.QRect(650, 410, 220, 30))
-        self.textEdit_RCancionesGenero.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_RCancionesGenero.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_RCancionesGenero.setStyleSheet("background-color: rgb(150, 172, 183);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
-        self.textEdit_RCancionesGenero.setObjectName("textEdit_RCancionesGenero")
         self.pushButton_RAlbum = QtWidgets.QPushButton(self.frame)
         self.pushButton_RAlbum.setGeometry(QtCore.QRect(756, 280, 114, 32))
         self.pushButton_RAlbum.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RAlbum.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius:12px;")
+"color: rgb(255, 255, 255);")
         self.pushButton_RAlbum.setObjectName("pushButton_RAlbum")
         self.pushButton_RArtista = QtWidgets.QPushButton(self.frame)
         self.pushButton_RArtista.setGeometry(QtCore.QRect(280, 260, 114, 32))
@@ -213,8 +196,7 @@ class Ui_HomeUserRegistrar(object):
         self.pushButton_RArtista.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RArtista.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius:12px;")
+"color: rgb(255, 255, 255);")
         self.pushButton_RArtista.setObjectName("pushButton_RArtista")
         self.pushButton_RCancion = QtWidgets.QPushButton(self.frame)
         self.pushButton_RCancion.setGeometry(QtCore.QRect(705, 480, 114, 32))
@@ -222,8 +204,7 @@ class Ui_HomeUserRegistrar(object):
         self.pushButton_RCancion.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_RCancion.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius:12px;")
+"color: rgb(255, 255, 255);")
         self.pushButton_RCancion.setObjectName("pushButton_RCancion")
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(506, 290, 150, 25))
@@ -239,9 +220,41 @@ class Ui_HomeUserRegistrar(object):
         self.textEdit_RAlbumArtista.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_RAlbumArtista.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";\n"
-"border-radius:12px;")
+"font: 13pt \"Times\";")
         self.textEdit_RAlbumArtista.setObjectName("textEdit_RAlbumArtista")
+        self.comboBox = QtWidgets.QComboBox(self.frame)
+        self.comboBox.setGeometry(QtCore.QRect(650, 410, 220, 30))
+        self.comboBox.setMinimumSize(QtCore.QSize(220, 30))
+        self.comboBox.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+"color: rgb(255, 255, 255);\n"
+"font: 13pt \"Times\";")
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -292,11 +305,6 @@ class Ui_HomeUserRegistrar(object):
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_14.setText(_translate("MainWindow", "Género"))
-        self.textEdit_RCancionesGenero.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.pushButton_RAlbum.setText(_translate("MainWindow", "Registrar"))
         self.pushButton_RArtista.setText(_translate("MainWindow", "Registrar"))
         self.pushButton_RCancion.setText(_translate("MainWindow", "Registrar"))
@@ -306,3 +314,29 @@ class Ui_HomeUserRegistrar(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
+        self.comboBox.setItemText(0, _translate("MainWindow", "Escoga un género"))
+        self.comboBox.setItemText(1, _translate("MainWindow", "Rock"))
+        self.comboBox.setItemText(2, _translate("MainWindow", "Jazz"))
+        self.comboBox.setItemText(3, _translate("MainWindow", "Metal"))
+        self.comboBox.setItemText(4, _translate("MainWindow", "Alternative & Punk"))
+        self.comboBox.setItemText(5, _translate("MainWindow", "Rock And Roll"))
+        self.comboBox.setItemText(6, _translate("MainWindow", "Blues"))
+        self.comboBox.setItemText(7, _translate("MainWindow", "Latin"))
+        self.comboBox.setItemText(8, _translate("MainWindow", "Reggae"))
+        self.comboBox.setItemText(9, _translate("MainWindow", "Pop"))
+        self.comboBox.setItemText(10, _translate("MainWindow", "Soundtrack"))
+        self.comboBox.setItemText(11, _translate("MainWindow", "Bossa Nova"))
+        self.comboBox.setItemText(12, _translate("MainWindow", "Easy Listening"))
+        self.comboBox.setItemText(13, _translate("MainWindow", "Heavy Metal"))
+        self.comboBox.setItemText(14, _translate("MainWindow", "R&B/Soul"))
+        self.comboBox.setItemText(15, _translate("MainWindow", "Electronica/Dance"))
+        self.comboBox.setItemText(16, _translate("MainWindow", "World"))
+        self.comboBox.setItemText(17, _translate("MainWindow", "Hip Hop/Rap"))
+        self.comboBox.setItemText(18, _translate("MainWindow", "Science Fiction"))
+        self.comboBox.setItemText(19, _translate("MainWindow", "TV Shows"))
+        self.comboBox.setItemText(20, _translate("MainWindow", "Sci Fi & Fantasy"))
+        self.comboBox.setItemText(21, _translate("MainWindow", "Drama"))
+        self.comboBox.setItemText(22, _translate("MainWindow", "Comedy"))
+        self.comboBox.setItemText(23, _translate("MainWindow", "Alternative"))
+        self.comboBox.setItemText(24, _translate("MainWindow", "Classical"))
+        self.comboBox.setItemText(25, _translate("MainWindow", "Opera"))
