@@ -503,6 +503,7 @@ INSERT INTO Artist (ArtistId, Name) VALUES (274,'Nash Ensemble');
 INSERT INTO Artist (ArtistId, Name) VALUES (275,'Philip Glass Ensemble');
 INSERT INTO Artist (ArtistId, Name, customerId) VALUES (276, 'luisg95', 1);
 INSERT INTO Artist (ArtistId, Name, customerId) VALUES (277, 'tst0',2);
+INSERT INTO Artist (ArtistId, Name, customerId) VALUES (278, 'tst2',4);
 
 INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (1,'For Those About To Rock We Salute You', 1);
 INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (2,'Balls to the Wall', 2);
@@ -15824,8 +15825,8 @@ INSERT INTO user_client (clientid, username, password, usertype) VALUES (2, 'tst
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (3, 'tst1', 'contrasena', 0);
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (4, 'tst2', 'contrasena', 1);
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (5, 'tst3', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (6, 'tst4', 'contrasena', 1);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (7, 'tst5', 'contrasena', 1);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (6, 'tst4', 'contrasena', 0);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (7, 'tst5', 'contrasena', 2);
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (8, 'tst6', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (9, 'tst7', 'contrasena', 1);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (9, 'tst7', 'contrasena', 2);
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (10, 'tst8', 'contrasena', 0);
