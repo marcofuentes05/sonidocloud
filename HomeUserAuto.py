@@ -6,13 +6,17 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-#import psycopg2 as bd
-import pgdb as bd
+import psycopg2 as bd
+# import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from HomeUserAutoRegistrar import Ui_HomeUserAutoRegistrar
 import sys
 
 class Ui_HomeUserAuto(object):
+    def __init__(self, id):
+        super(Ui_HomeUserAuto, self).__init__()
+        self.id = id
+        
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)

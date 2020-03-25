@@ -156,9 +156,9 @@ class Ui_LoginAccount(object):
         LoginAccount.hide()
         self.window.show()
 
-    def openHomeUserAuto(self):
+    def openHomeUserAuto(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeUserAuto()
+        self.ui = Ui_HomeUserAuto(id)
         self.ui.setupUi(self.window)
         LoginAccount.hide()
         self.window.show()
@@ -179,16 +179,14 @@ class Ui_LoginAccount(object):
                 print(self.textEdit_Username.toPlainText())
                 print(self.textEdit_Password.toPlainText())
                 query = """
-                        SELECT usr, pw, type FROM
-                                (SELECT username as usr, password as pw, usertype as type FROM user_client  
+                        SELECT usr, pw, type, ide FROM
+                                (SELECT username as usr, password as pw, usertype as type , clientid as ide FROM user_client  
                                         UNION 
-                                SELECT username as usr, password as pw, usertype as type FROM employee )Q 
+                                SELECT username as usr, password as pw, usertype as type , employeeid as ide FROM employee )Q 
                                 
                         WHERE usr = \'""" + self.textEdit_Username.toPlainText() + """\' 
                                 AND pw = \'""" + self.textEdit_Password.toPlainText() + """\'
 """
-                # print("SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'")
-                # query = "SELECT * FROM user_client WHERE username = \'" + self.textEdit_Username.toPlainText() + "\' AND password = \'" +  self.textEdit_Password.toPlainText() + "\'"
                 cursor.execute(query)
                 record = cursor.fetchall()
                 print(record)
@@ -196,7 +194,7 @@ class Ui_LoginAccount(object):
                         if (record[0][2] == 0):
                                 self.openHomeAdmin()
                         elif (record[0][2] == 1 ):
-                                self.openHomeUserAuto()
+                                self.openHomeUserAuto(record[0][3])
                         else:
                                 self.openHomeUser()
                 else:

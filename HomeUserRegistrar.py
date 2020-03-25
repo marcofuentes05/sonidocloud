@@ -8,8 +8,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import pgdb as bd
-#import psycopg2 as bd
+# import pgdb as bd
+import psycopg2 as bd
 from config import config
 
 
