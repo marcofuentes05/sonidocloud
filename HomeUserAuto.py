@@ -11,7 +11,7 @@ import psycopg2 as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from HomeUserAutoRegistrar import Ui_HomeUserAutoRegistrar
 import sys
-
+from config import config
 class Ui_HomeUserAuto(object):
     def __init__(self, id=0):
         super(Ui_HomeUserAuto, self).__init__()
@@ -152,6 +152,7 @@ class Ui_HomeUserAuto(object):
         self.label_4.raise_()
         self.pushButton_Registro.raise_()
         self.pushButton_Buscar.raise_()
+        self.pushButton_Buscar.clicked.connect(self.populateTable)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -211,61 +212,82 @@ class Ui_HomeUserAuto(object):
         
     def populateTable(self):
         #clear the table
-        self.tableWidget.setRowCount(0)
-        if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
-            print('Bien')
-            conn = None
-            params =config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
-                query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                print(record)
-                if(len(record)!= 0):
+        if (self.textEdit_UserBuscar.toPlainText() != ''):
+            self.tableWidget.setRowCount(0)
+            if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
+                print('Bien')
+                conn = None
+                params =config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
+                    query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                    cursor.execute(query)
+                    record = cursor.fetchall()
+                    print(record)
+                    if(len(record)!= 0):
+                        self.tableWidget.setHorizontalHeaderItem(0, 
+                            QtWidgets.QTableWidgetItem("Cancion"))
+                        self.tableWidget.setHorizontalHeaderItem(1, 
+                            QtWidgets.QTableWidgetItem("Artista"))
+                        self.tableWidget.setColumnCount(len(record[0]))
+                        for i in range(len(record)):
+                            self.tableWidget.insertRow(i)
+                            for j in range(len(record[0])):
+                                print(i,j)
+                                self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+    
+    
+                elif(self.comboBox_OpcionesBuscar.currentText() == 'Género'):
+                    query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                    cursor.execute(query)
+                    record = cursor.fetchall()
                     self.tableWidget.setColumnCount(len(record[0]))
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            print(i,j)
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
-
-
-            elif(self.comboBox_OpcionesBuscar.currentText() == 'Género'):
-                query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
-                if(len(record)!= 0):
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
-
-            elif(self.comboBox_OpcionesBuscar.currentText() == 'Álbum'):
-                query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
-                if(len(record)!= 0):
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
-                
-            elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
-                query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
-                if(len(record)!= 0):
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-        else:    
-            print('Mal')
+                    if(len(record)!= 0):
+                        self.tableWidget.setHorizontalHeaderItem(
+                            0, QtWidgets.QTableWidgetItem("Cancion"))
+                        self.tableWidget.setHorizontalHeaderItem(
+                            1, QtWidgets.QTableWidgetItem("Genero"))
+                        for i in range(len(record)):
+                            self.tableWidget.insertRow(i)
+                            for j in range(len(record[0])):
+                                self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+    
+                elif(self.comboBox_OpcionesBuscar.currentText() == 'Álbum'):
+                    query = "SELECT track.name, album.title FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                    cursor.execute(query)
+                    record = cursor.fetchall()
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    if(len(record)!= 0):
+                        self.tableWidget.setHorizontalHeaderItem(
+                            0, QtWidgets.QTableWidgetItem("Cancion"))
+                        self.tableWidget.setHorizontalHeaderItem(
+                            1, QtWidgets.QTableWidgetItem("Album"))
+                        for i in range(len(record)):
+                            self.tableWidget.insertRow(i)
+                            for j in range(len(record[0])):
+                                self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+                    
+                elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
+                    query = "SELECT track.name,  album.title, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON artist.artistid=album.artistid WHERE track.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                    cursor.execute(query)
+                    record = cursor.fetchall()
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    if(len(record)!= 0):
+                        self.tableWidget.setHorizontalHeaderItem(
+                            0, QtWidgets.QTableWidgetItem("Cancion"))
+                        self.tableWidget.setHorizontalHeaderItem(
+                            1, QtWidgets.QTableWidgetItem("Album"))
+                        self.tableWidget.setHorizontalHeaderItem(
+                            2, QtWidgets.QTableWidgetItem("Artista"))
+                        for i in range(len(record)):
+                            self.tableWidget.insertRow(i)
+                            for j in range(len(record[0])):
+                                self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            else:    
+                print('Mal')
+        else:
+            print("No pusiste nada para buscar")
 
 
 
