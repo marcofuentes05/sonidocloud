@@ -12,6 +12,9 @@ import psycopg2 as bd
 from config import config
 
 
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
 class Ui_HomeUserModificar(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -26,7 +29,7 @@ class Ui_HomeUserModificar(object):
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"")
+"border-radius: 12px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -57,7 +60,7 @@ class Ui_HomeUserModificar(object):
 "color: rgb(255, 255, 255);")
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.label_3 = QtWidgets.QLabel(self.frame)
-        self.label_3.setGeometry(QtCore.QRect(30, 180, 100, 25))
+        self.label_3.setGeometry(QtCore.QRect(30, 190, 100, 25))
         self.label_3.setMinimumSize(QtCore.QSize(100, 25))
         self.label_3.setMaximumSize(QtCore.QSize(100, 25))
         self.label_3.setStyleSheet("font: 18pt \"Times\";\n"
@@ -65,7 +68,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_3.setObjectName("label_3")
         self.textEdit_ArtistaNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_ArtistaNombre.setGeometry(QtCore.QRect(30, 200, 220, 30))
+        self.textEdit_ArtistaNombre.setGeometry(QtCore.QRect(30, 210, 220, 30))
         self.textEdit_ArtistaNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -73,7 +76,7 @@ class Ui_HomeUserModificar(object):
 "font: 13pt \"Times\";")
         self.textEdit_ArtistaNombre.setObjectName("textEdit_ArtistaNombre")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(506, 180, 100, 25))
+        self.label_4.setGeometry(QtCore.QRect(506, 190, 100, 25))
         self.label_4.setMinimumSize(QtCore.QSize(100, 25))
         self.label_4.setMaximumSize(QtCore.QSize(100, 25))
         self.label_4.setStyleSheet("font: 18pt \"Times\";\n"
@@ -81,7 +84,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_4.setObjectName("label_4")
         self.textEdit_AlbumNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_AlbumNombre.setGeometry(QtCore.QRect(506, 200, 220, 30))
+        self.textEdit_AlbumNombre.setGeometry(QtCore.QRect(506, 210, 220, 30))
         self.textEdit_AlbumNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -105,7 +108,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_7.setObjectName("label_7")
         self.label_9 = QtWidgets.QLabel(self.frame)
-        self.label_9.setGeometry(QtCore.QRect(30, 300, 220, 50))
+        self.label_9.setGeometry(QtCore.QRect(30, 350, 220, 50))
         self.label_9.setMinimumSize(QtCore.QSize(220, 50))
         self.label_9.setMaximumSize(QtCore.QSize(220, 50))
         self.label_9.setStyleSheet("font: 21pt \"Times\";\n"
@@ -113,7 +116,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_9.setObjectName("label_9")
         self.label_10 = QtWidgets.QLabel(self.frame)
-        self.label_10.setGeometry(QtCore.QRect(30, 340, 100, 25))
+        self.label_10.setGeometry(QtCore.QRect(30, 410, 100, 25))
         self.label_10.setMinimumSize(QtCore.QSize(100, 25))
         self.label_10.setMaximumSize(QtCore.QSize(100, 25))
         self.label_10.setStyleSheet("font: 18pt \"Times\";\n"
@@ -121,95 +124,53 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_10.setObjectName("label_10")
         self.textEdit_CancionNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CancionNombre.setGeometry(QtCore.QRect(30, 360, 220, 30))
+        self.textEdit_CancionNombre.setGeometry(QtCore.QRect(30, 430, 220, 30))
         self.textEdit_CancionNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_CancionNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_CancionNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
 "font: 13pt \"Times\";")
         self.textEdit_CancionNombre.setObjectName("textEdit_CancionNombre")
-        self.label_11 = QtWidgets.QLabel(self.frame)
-        self.label_11.setGeometry(QtCore.QRect(30, 400, 150, 25))
-        self.label_11.setMinimumSize(QtCore.QSize(150, 25))
-        self.label_11.setMaximumSize(QtCore.QSize(150, 25))
-        self.label_11.setStyleSheet("font: 18pt \"Times\";\n"
-"color: rgb(10, 54, 157);\n"
-"")
-        self.label_11.setObjectName("label_11")
-        self.textEdit_CancionNuevoNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CancionNuevoNombre.setGeometry(QtCore.QRect(30, 420, 220, 30))
-        self.textEdit_CancionNuevoNombre.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionNuevoNombre.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionNuevoNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
-        self.textEdit_CancionNuevoNombre.setObjectName("textEdit_CancionNuevoNombre")
         self.label_12 = QtWidgets.QLabel(self.frame)
-        self.label_12.setGeometry(QtCore.QRect(340, 340, 100, 25))
+        self.label_12.setGeometry(QtCore.QRect(340, 410, 100, 25))
         self.label_12.setMinimumSize(QtCore.QSize(100, 25))
         self.label_12.setMaximumSize(QtCore.QSize(100, 25))
         self.label_12.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_12.setObjectName("label_12")
-        self.textEdit_CancionUnitPrice = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CancionUnitPrice.setGeometry(QtCore.QRect(340, 360, 220, 30))
-        self.textEdit_CancionUnitPrice.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionUnitPrice.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionUnitPrice.setStyleSheet("background-color: rgb(150, 172, 183);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
-        self.textEdit_CancionUnitPrice.setObjectName("textEdit_CancionUnitPrice")
-        self.label_13 = QtWidgets.QLabel(self.frame)
-        self.label_13.setGeometry(QtCore.QRect(340, 400, 100, 25))
-        self.label_13.setMinimumSize(QtCore.QSize(100, 25))
-        self.label_13.setMaximumSize(QtCore.QSize(100, 25))
-        self.label_13.setStyleSheet("font: 18pt \"Times\";\n"
-"color: rgb(10, 54, 157);\n"
-"")
-        self.label_13.setObjectName("label_13")
-        self.textEdit_CancionComposer = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CancionComposer.setGeometry(QtCore.QRect(340, 420, 220, 30))
-        self.textEdit_CancionComposer.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionComposer.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionComposer.setStyleSheet("background-color: rgb(150, 172, 183);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 13pt \"Times\";")
-        self.textEdit_CancionComposer.setObjectName("textEdit_CancionComposer")
         self.label_14 = QtWidgets.QLabel(self.frame)
-        self.label_14.setGeometry(QtCore.QRect(650, 330, 100, 25))
-        self.label_14.setMinimumSize(QtCore.QSize(100, 25))
-        self.label_14.setMaximumSize(QtCore.QSize(100, 25))
+        self.label_14.setGeometry(QtCore.QRect(650, 410, 350, 25))
+        self.label_14.setMinimumSize(QtCore.QSize(350, 25))
+        self.label_14.setMaximumSize(QtCore.QSize(350, 25))
         self.label_14.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_14.setObjectName("label_14")
-        self.textEdit_CancionBytes = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CancionBytes.setGeometry(QtCore.QRect(650, 350, 220, 30))
-        self.textEdit_CancionBytes.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionBytes.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionBytes.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+        self.textEdit_CambioNuevo = QtWidgets.QTextEdit(self.frame)
+        self.textEdit_CambioNuevo.setGeometry(QtCore.QRect(650, 430, 220, 30))
+        self.textEdit_CambioNuevo.setMinimumSize(QtCore.QSize(220, 30))
+        self.textEdit_CambioNuevo.setMaximumSize(QtCore.QSize(220, 30))
+        self.textEdit_CambioNuevo.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
 "font: 13pt \"Times\";")
-        self.textEdit_CancionBytes.setObjectName("textEdit_CancionBytes")
+        self.textEdit_CambioNuevo.setObjectName("textEdit_CambioNuevo")
         self.pushButton_MAlbum = QtWidgets.QPushButton(self.frame)
-        self.pushButton_MAlbum.setGeometry(QtCore.QRect(756, 220, 114, 32))
+        self.pushButton_MAlbum.setGeometry(QtCore.QRect(756, 248, 114, 32))
         self.pushButton_MAlbum.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_MAlbum.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_MAlbum.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MAlbum.setObjectName("pushButton_MAlbum")
-        #AGREGAR EL ONCLICK AQUI
         self.pushButton_MArtista = QtWidgets.QPushButton(self.frame)
-        self.pushButton_MArtista.setGeometry(QtCore.QRect(280, 230, 114, 32))
+        self.pushButton_MArtista.setGeometry(QtCore.QRect(280, 248, 114, 32))
         self.pushButton_MArtista.setMinimumSize(QtCore.QSize(114, 32))
         self.pushButton_MArtista.setMaximumSize(QtCore.QSize(114, 32))
         self.pushButton_MArtista.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MArtista.setObjectName("pushButton_MArtista")
-        self.pushButton_MArtista.clicked.connect(self.modifyArtist)
         self.pushButton_MCancion = QtWidgets.QPushButton(self.frame)
         self.pushButton_MCancion.setGeometry(QtCore.QRect(390, 470, 114, 32))
         self.pushButton_MCancion.setMinimumSize(QtCore.QSize(114, 32))
@@ -218,9 +179,8 @@ class Ui_HomeUserModificar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MCancion.setObjectName("pushButton_MCancion")
-        #AGREGAR EL ONCLICK AQUI
         self.label_5 = QtWidgets.QLabel(self.frame)
-        self.label_5.setGeometry(QtCore.QRect(30, 230, 150, 25))
+        self.label_5.setGeometry(QtCore.QRect(30, 260, 150, 25))
         self.label_5.setMinimumSize(QtCore.QSize(150, 25))
         self.label_5.setMaximumSize(QtCore.QSize(150, 25))
         self.label_5.setStyleSheet("font: 18pt \"Times\";\n"
@@ -228,7 +188,7 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_5.setObjectName("label_5")
         self.textEdit_ArtistaNuevoNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_ArtistaNuevoNombre.setGeometry(QtCore.QRect(30, 250, 220, 30))
+        self.textEdit_ArtistaNuevoNombre.setGeometry(QtCore.QRect(30, 280, 220, 30))
         self.textEdit_ArtistaNuevoNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNuevoNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_ArtistaNuevoNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -236,7 +196,7 @@ class Ui_HomeUserModificar(object):
 "font: 13pt \"Times\";")
         self.textEdit_ArtistaNuevoNombre.setObjectName("textEdit_ArtistaNuevoNombre")
         self.label_15 = QtWidgets.QLabel(self.frame)
-        self.label_15.setGeometry(QtCore.QRect(506, 230, 150, 25))
+        self.label_15.setGeometry(QtCore.QRect(506, 260, 150, 25))
         self.label_15.setMinimumSize(QtCore.QSize(150, 25))
         self.label_15.setMaximumSize(QtCore.QSize(150, 25))
         self.label_15.setStyleSheet("font: 18pt \"Times\";\n"
@@ -244,29 +204,29 @@ class Ui_HomeUserModificar(object):
 "")
         self.label_15.setObjectName("label_15")
         self.textEdit_AlbumNuevoNombre = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_AlbumNuevoNombre.setGeometry(QtCore.QRect(506, 250, 220, 30))
+        self.textEdit_AlbumNuevoNombre.setGeometry(QtCore.QRect(506, 280, 220, 30))
         self.textEdit_AlbumNuevoNombre.setMinimumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNuevoNombre.setMaximumSize(QtCore.QSize(220, 30))
         self.textEdit_AlbumNuevoNombre.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
 "font: 13pt \"Times\";")
         self.textEdit_AlbumNuevoNombre.setObjectName("textEdit_AlbumNuevoNombre")
-        self.label_16 = QtWidgets.QLabel(self.frame)
-        self.label_16.setGeometry(QtCore.QRect(650, 400, 100, 25))
-        self.label_16.setMinimumSize(QtCore.QSize(100, 25))
-        self.label_16.setMaximumSize(QtCore.QSize(100, 25))
-        self.label_16.setStyleSheet("font: 18pt \"Times\";\n"
-"color: rgb(10, 54, 157);\n"
-"")
-        self.label_16.setObjectName("label_16")
-        self.textEdit_CancionMiliseconds = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_CancionMiliseconds.setGeometry(QtCore.QRect(650, 420, 220, 30))
-        self.textEdit_CancionMiliseconds.setMinimumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionMiliseconds.setMaximumSize(QtCore.QSize(220, 30))
-        self.textEdit_CancionMiliseconds.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+        self.comboBox_OpcionesCambioCanciones = QtWidgets.QComboBox(self.frame)
+        self.comboBox_OpcionesCambioCanciones.setGeometry(QtCore.QRect(340, 430, 220, 30))
+        self.comboBox_OpcionesCambioCanciones.setMinimumSize(QtCore.QSize(220, 30))
+        self.comboBox_OpcionesCambioCanciones.setMaximumSize(QtCore.QSize(220, 30))
+        self.comboBox_OpcionesCambioCanciones.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "color: rgb(255, 255, 255);\n"
 "font: 13pt \"Times\";")
-        self.textEdit_CancionMiliseconds.setObjectName("textEdit_CancionMiliseconds")
+        self.comboBox_OpcionesCambioCanciones.setObjectName("comboBox_OpcionesCambioCanciones")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
+        self.comboBox_OpcionesCambioCanciones.addItem("")
         self.label.raise_()
         self.label_2.raise_()
         self.pushButton_Exit.raise_()
@@ -275,14 +235,9 @@ class Ui_HomeUserModificar(object):
         self.label_9.raise_()
         self.label_10.raise_()
         self.textEdit_CancionNombre.raise_()
-        self.label_11.raise_()
-        self.textEdit_CancionNuevoNombre.raise_()
         self.label_12.raise_()
-        self.textEdit_CancionUnitPrice.raise_()
-        self.label_13.raise_()
-        self.textEdit_CancionComposer.raise_()
         self.label_14.raise_()
-        self.textEdit_CancionBytes.raise_()
+        self.textEdit_CambioNuevo.raise_()
         self.pushButton_MAlbum.raise_()
         self.pushButton_MArtista.raise_()
         self.pushButton_MCancion.raise_()
@@ -294,8 +249,7 @@ class Ui_HomeUserModificar(object):
         self.textEdit_AlbumNombre.raise_()
         self.label_15.raise_()
         self.textEdit_AlbumNuevoNombre.raise_()
-        self.label_16.raise_()
-        self.textEdit_CancionMiliseconds.raise_()
+        self.comboBox_OpcionesCambioCanciones.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -318,35 +272,18 @@ class Ui_HomeUserModificar(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_6.setText(_translate("MainWindow", "Registro Artistas"))
-        self.label_7.setText(_translate("MainWindow", "Registro Álbumes"))
-        self.label_9.setText(_translate("MainWindow", "Registro Canciones"))
+        self.label_6.setText(_translate("MainWindow", "Modificar Artistas"))
+        self.label_7.setText(_translate("MainWindow", "Modificar Álbumes"))
+        self.label_9.setText(_translate("MainWindow", "Modificar Canciones"))
         self.label_10.setText(_translate("MainWindow", "Nombre"))
         self.textEdit_CancionNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_11.setText(_translate("MainWindow", "Nuevo Nombre"))
-        self.textEdit_CancionNuevoNombre.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_12.setText(_translate("MainWindow", "UnitPrice"))
-        self.textEdit_CancionUnitPrice.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_13.setText(_translate("MainWindow", "Composer"))
-        self.textEdit_CancionComposer.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_14.setText(_translate("MainWindow", "Bytes"))
-        self.textEdit_CancionBytes.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.label_14.setText(_translate("MainWindow", "Nombre del Cambio"))
+        self.textEdit_CambioNuevo.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
@@ -366,90 +303,11 @@ class Ui_HomeUserModificar(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-        self.label_16.setText(_translate("MainWindow", "Miliseconds"))
-        self.textEdit_CancionMiliseconds.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
-    
-    def modifyArtist (self):
-        if(self.textEdit_ArtistaNombre.toPlainText()=="" or self.textEdit_ArtistaNombre.toPlainText()==" " or self.textEdit_ArtistaNuevoNombre.toPlainText() =="" or self.textEdit_ArtistaNuevoNombre.toPlainText() ==" " ):
-            print('no voy a hacer nada')
-        else:
-            params = config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            query = """
-                UPDATE artist
-                SET name = %s
-                WHERE name = %s
-                RETURNING artistid, name
-            """
-            cursor.execute(query,(self.textEdit_ArtistaNuevoNombre.toPlainText(),self.textEdit_ArtistaNombre.toPlainText()))
-            conn.commit()
-            record= cursor.fetchall()
-            print(record)
-
-    # def modifySong (self):
-    #     if(self.textEdit_CancionNombre.toPlainText()="" or self.textEdit_CancionNombre.toPlainText()=" " or self.textEdit_CancionNuevoNombre.toPlainText()="" or self.textEdit_CancionNuevoNombre.toPlainText()=" "):
-    #         print('no voy a hacer nada')
-    #     else:
-    #         params = config()
-    #         conn = bd.connect(**params)
-    #         cursor = conn.cursor()
-    #         query = """
-    #             UPDATE track
-    #             SET name = %s
-    #             WHERE name = %s
-    #             RETURNING artistid, name
-    #         """
-    #         cursor.execute(query,(self.textEdit_CancionNuevoNombre.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
-    #         conn.commit()
-    #         record= cursor.fetchall()
-
-    #         if(self.textEdit_CancionComposer!= "" or self.textEdit_CancionComposer != " " ):
-    #             params = config()
-    #             conn = bd.connect(**params)
-    #             cursor = conn.cursor()
-    #             query = """
-    #                 UPDATE track
-    #                 SET composer = %s
-    #                 WHERE name = %s
-    #                 RETURNING artistid, name
-    #             """
-    #             cursor.execute(query,(self.textEdit_CancionComposer.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
-    #             conn.commit()
-    #             record= cursor.fetchall()
-                
-    #         if(self.textEdit_CancionUnitPrice!= "" or self.textEdit_CancionUnitPrice != " " ):
-    #             params = config()
-    #             conn = bd.connect(**params)
-    #             cursor = conn.cursor()
-    #             query = """
-    #                 UPDATE track
-    #                 SET unitprice = %s
-    #                 WHERE name = %s
-    #                 RETURNING artistid, name
-    #             """
-    #             cursor.execute(query,(self.textEdit_CancionUnitPrice.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
-    #             conn.commit()
-    #             record= cursor.fetchall()
-
-    def modifyAlbum(self):
-        if(self.textEdit_AlbumNombre.toPlainText()=="" or self.textEdit_AlbumNombre.toPlainText()==" " or self.textEdit_AlbumNuevoNombre.toPlainText() =="" or self.textEdit_AlbumNuevoNombre.toPlainText() ==" " ):
-            print('no voy a hacer nada')
-        else:
-            params = config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            query = """
-                UPDATE album
-                SET title = %s
-                WHERE title = %s
-                RETURNING albumid, title
-            """
-            cursor.execute(query,(self.textEdit_AlbumNuevoNombre.toPlainText(),self.textEdit_AlbumNombre.toPlainText()))
-            conn.commit()
-            record= cursor.fetchall()
-            print(record)
+        self.comboBox_OpcionesCambioCanciones.setItemText(0, _translate("MainWindow", "¿Que deseas cambiar?"))
+        self.comboBox_OpcionesCambioCanciones.setItemText(1, _translate("MainWindow", "Nombre"))
+        self.comboBox_OpcionesCambioCanciones.setItemText(2, _translate("MainWindow", "Género"))
+        self.comboBox_OpcionesCambioCanciones.setItemText(3, _translate("MainWindow", "Álbum"))
+        self.comboBox_OpcionesCambioCanciones.setItemText(4, _translate("MainWindow", "UnitPrice"))
+        self.comboBox_OpcionesCambioCanciones.setItemText(5, _translate("MainWindow", "Bytes"))
+        self.comboBox_OpcionesCambioCanciones.setItemText(6, _translate("MainWindow", "Composer"))
+        self.comboBox_OpcionesCambioCanciones.setItemText(7, _translate("MainWindow", "Milisegundos"))
