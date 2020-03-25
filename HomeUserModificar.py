@@ -163,6 +163,7 @@ class Ui_HomeUserModificar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MAlbum.setObjectName("pushButton_MAlbum")
+        self.pushButton_MAlbum.clicked.connect(self.modifyAlbum)
         self.pushButton_MArtista = QtWidgets.QPushButton(self.frame)
         self.pushButton_MArtista.setGeometry(QtCore.QRect(280, 248, 114, 32))
         self.pushButton_MArtista.setMinimumSize(QtCore.QSize(114, 32))
@@ -171,6 +172,7 @@ class Ui_HomeUserModificar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MArtista.setObjectName("pushButton_MArtista")
+        self.pushButton_MArtista.clicked.connect(self.modifyArtist)
         self.pushButton_MCancion = QtWidgets.QPushButton(self.frame)
         self.pushButton_MCancion.setGeometry(QtCore.QRect(390, 470, 114, 32))
         self.pushButton_MCancion.setMinimumSize(QtCore.QSize(114, 32))
@@ -179,6 +181,7 @@ class Ui_HomeUserModificar(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MCancion.setObjectName("pushButton_MCancion")
+        self.pushButton_MCancion.clicked.connect(self.modifySong)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(30, 260, 150, 25))
         self.label_5.setMinimumSize(QtCore.QSize(150, 25))
@@ -311,3 +314,158 @@ class Ui_HomeUserModificar(object):
         self.comboBox_OpcionesCambioCanciones.setItemText(5, _translate("MainWindow", "Bytes"))
         self.comboBox_OpcionesCambioCanciones.setItemText(6, _translate("MainWindow", "Composer"))
         self.comboBox_OpcionesCambioCanciones.setItemText(7, _translate("MainWindow", "Milisegundos"))
+
+    def modifyArtist (self):
+        if(self.textEdit_ArtistaNombre.toPlainText()=="" or self.textEdit_ArtistaNombre.toPlainText()==" " or self.textEdit_ArtistaNuevoNombre.toPlainText() =="" or self.textEdit_ArtistaNuevoNombre.toPlainText() ==" " ):
+            print('no voy a hacer nada')
+        else:
+            params = config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            query = """
+                UPDATE artist
+                SET name = %s
+                WHERE name = %s
+                RETURNING artistid, name
+            """
+            cursor.execute(query,(self.textEdit_ArtistaNuevoNombre.toPlainText(),self.textEdit_ArtistaNombre.toPlainText()))
+            conn.commit()
+            record= cursor.fetchall()
+            print(record)
+
+
+    def modifyAlbum(self):
+        if(self.textEdit_AlbumNombre.toPlainText()=="" or self.textEdit_AlbumNombre.toPlainText()==" " or self.textEdit_AlbumNuevoNombre.toPlainText() =="" or self.textEdit_AlbumNuevoNombre.toPlainText() ==" " ):
+            print('no voy a hacer nada')
+        else:
+            params = config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            query = """
+                UPDATE album
+                SET title = %s
+                WHERE title = %s
+                RETURNING albumid, title
+            """
+            cursor.execute(query,(self.textEdit_AlbumNuevoNombre.toPlainText(),self.textEdit_AlbumNombre.toPlainText()))
+            conn.commit()
+            record= cursor.fetchall()
+            print(record)
+
+    def modifySong(self):
+        if(self.textEdit_CancionNombre.toPlainText()!="" or self.textEdit_CancionNombre.toPlainText()!=" "):
+            if(self.comboBox_OpcionesCambioCanciones.currentIndex()==0):
+                print('no voy a hacer nada')
+            elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==1):
+                params = config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                query = """
+                    UPDATE track
+                    SET name = %s
+                    WHERE name = %s
+                    RETURNING track id, name
+                """
+                cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
+                conn.commit()
+                record= cursor.fetchall()
+                print(record)
+
+            elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==2):
+                try:
+                    params = config()
+                    conn = bd.connect(**params)
+                    cursor = conn.cursor()
+                    query = """
+                        UPDATE track
+                        SET genreid = %s
+                        WHERE name = %s
+                        RETURNING trackid , name 
+                    """
+                    cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                    conn.commit()
+                    record= cursor.fetchall()
+                    print(record)    
+                except (Exception) as error:
+                    print(error)
+                
+
+            elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==3):
+                try:
+                    params = config()
+                    conn = bd.connect(**params)
+                    cursor = conn.cursor()
+                    query = """
+                        UPDATE track
+                        SET albumid = %s
+                        WHERE name = %s
+                        RETURNING trackid , name 
+                    """
+                    cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                    conn.commit()
+                    record= cursor.fetchall()
+                    print(record)    
+                except (Exception) as error:
+                    print(error)
+
+            elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==4):
+                params = config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                query = """
+                    UPDATE track
+                    SET unitprice = %s
+                    WHERE name = %s
+                    RETURNING trackid , name
+                """
+                cursor.execute(query,(float(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                conn.commit()
+                record= cursor.fetchall()
+                print(record)
+
+            elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==5):
+                params = config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                query = """
+                    UPDATE track
+                    SET bytes = %s
+                    WHERE name = %s
+                    RETURNING trackid , name
+                """
+                cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                conn.commit()
+                record= cursor.fetchall()
+                print(record)
+
+            elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==6):
+                params = config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                query = """
+                    UPDATE track
+                    SET composer = %s
+                    WHERE name = %s
+                    RETURNING trackid , name
+                """
+                cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
+                conn.commit()
+                record= cursor.fetchall()
+                print(record)
+
+            elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==7):
+                params = config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                query = """
+                    UPDATE track
+                    SET milliseconds = %s
+                    WHERE name = %s
+                    RETURNING trackid , name
+                """
+                cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                conn.commit()
+                record= cursor.fetchall()
+                print(record)
+
+                
