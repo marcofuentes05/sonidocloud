@@ -404,42 +404,47 @@ class Ui_HomeUserRegistrar(object):
         duracion = self.textEdit_RCancionesMiliseconds.toPlainText()
         precio = self.textEdit_RCancionesUnitPrice.toPlainText()
         if(nombre != '' and album !='' and genero !='Escoga un género' and duracion!= '' and precio != ''):
-            conn = None
-            params=config()
-            conn= bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
-            recordAlbum= cursor.fetchall()
-            if(len(recordAlbum)!=0):
-                cursor.execute("SELECT track.trackid FROM track ORDER BY track.trackid DESC LIMIT 1")
-                record = cursor.fetchall()
-                id =record[0][0]+1
-                cursor.execute("SELECT album.albumid FROM album WHERE album.title= \'"+album+"\'")
-                recordAlbumId = cursor.fetchall()
-                albumid= recordAlbumId[0][0]
+            try:
+                duracion=int(duracion)
+                precio=float(precio)
+                conn = None
+                params=config()
+                conn= bd.connect(**params)
+                cursor = conn.cursor()
+                cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
+                recordAlbum= cursor.fetchall()
+                if(len(recordAlbum)!=0):
+                    cursor.execute("SELECT track.trackid FROM track ORDER BY track.trackid DESC LIMIT 1")
+                    record = cursor.fetchall()
+                    id =record[0][0]+1
+                    cursor.execute("SELECT album.albumid FROM album WHERE album.title= \'"+album+"\'")
+                    recordAlbumId = cursor.fetchall()
+                    albumid= recordAlbumId[0][0]
 
-                cursor.execute("SELECT track.albumid as aid FROM track WHERE track.name = \'"+nombre+"\'")
-                exists= False
-                recordExists = cursor.fetchall()
-                for a in recordExists:
-                    print("hola")
-                    print(a.aid," ",albumid)
-                    if(a.aid==albumid):
-                        exists=True
-                if(exists==False):
-                    cursor.execute("SELECT genre.genreid FROM genre WHERE genre.name= \'"+genero+"\'")
-                    recordGeneroId = cursor.fetchall()
-                    generoid=recordGeneroId[0][0]
-                    cursor.execute("SELECT artist.name FROM artist JOIN album ON album.artistid = artist.artistid WHERE album.albumid=\'"+str(albumid)+"\'")
-                    composer = cursor.fetchall()[0][0]
-                    sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                    datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio)
-                    cursor.execute(sql,datos)
-                    conn.commit()
+                    cursor.execute("SELECT track.albumid as aid FROM track WHERE track.name = \'"+nombre+"\'")
+                    exists= False
+                    recordExists = cursor.fetchall()
+                    for a in recordExists:
+                        print("hola")
+                        print(a.aid," ",albumid)
+                        if(a.aid==albumid):
+                            exists=True
+                    if(exists==False):
+                        cursor.execute("SELECT genre.genreid FROM genre WHERE genre.name= \'"+genero+"\'")
+                        recordGeneroId = cursor.fetchall()
+                        generoid=recordGeneroId[0][0]
+                        cursor.execute("SELECT artist.name FROM artist JOIN album ON album.artistid = artist.artistid WHERE album.albumid=\'"+str(albumid)+"\'")
+                        composer = cursor.fetchall()[0][0]
+                        sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                        datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio)
+                        cursor.execute(sql,datos)
+                        conn.commit()
+                    else:
+                        print("Ya existe esta cancion en este album")
                 else:
-                    print("Ya existe esta cancion en este album")
-            else:
-                print("No existe el album")
+                    print("No existe el album")
+            except(Exception) as error:
+                print("Error", error)
         else:
             print('Tienen que llenar todos los campos')
 
