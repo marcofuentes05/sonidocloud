@@ -9,6 +9,7 @@ import sys
 import psycopg2 as bd
 #import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
 from HomeUserRegistrar import Ui_HomeUserRegistrar
@@ -63,8 +64,8 @@ class Ui_HomeAdmin(object):
         self.label_3.setObjectName("label_3")
         self.comboBox = QtWidgets.QComboBox(self.frame)
         self.comboBox.setGeometry(QtCore.QRect(30, 140, 201, 30))
-        self.comboBox.setMinimumSize(QtCore.QSize(150, 30))
-        self.comboBox.setMaximumSize(QtCore.QSize(300, 30))
+        self.comboBox.setMinimumSize(QtCore.QSize(400, 30))
+        self.comboBox.setMaximumSize(QtCore.QSize(400, 30))
         self.comboBox.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
 "color: rgb(255, 255, 255);\n"
@@ -88,7 +89,7 @@ class Ui_HomeAdmin(object):
 "")
         self.label_7.setObjectName("label_7")
         self.tableWidget = QtWidgets.QTableWidget(self.frame)
-        self.tableWidget.setGeometry(QtCore.QRect(30, 260, 841, 261))
+        self.tableWidget.setGeometry(QtCore.QRect(30, 270, 841, 261))
         self.tableWidget.setStyleSheet("font: 13pt \"Times\";\n"
 "color: rgb(64, 55, 110);\n"
 "background-color: rgb(212, 228, 188);")
@@ -128,14 +129,14 @@ class Ui_HomeAdmin(object):
         self.pushButton_Exit.setObjectName("pushButton_Exit")
         self.pushButton_Exit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.textEdit_UserBuscar = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 230, 231, 31))
+        self.textEdit_UserBuscar.setGeometry(QtCore.QRect(565, 240, 231, 31))
         self.textEdit_UserBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius: 12px;")
         self.textEdit_UserBuscar.setObjectName("textEdit_UserBuscar")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(534, 229, 31, 31))
+        self.label_4.setGeometry(QtCore.QRect(534, 239, 31, 31))
         self.label_4.setStyleSheet("")
         self.label_4.setText("")
         self.label_4.setPixmap(QtGui.QPixmap("finder.png"))
@@ -182,7 +183,7 @@ class Ui_HomeAdmin(object):
 #         self.pushButton_Eliminar.setObjectName("pushButton_Eliminar")
 #         self.pushButton_Eliminar.clicked.connect(self.openHomeUserInactivarEliminar)
         self.pushButton_Op1 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op1.setGeometry(QtCore.QRect(240, 140, 75, 30))
+        self.pushButton_Op1.setGeometry(QtCore.QRect(440, 140, 75, 30))
         self.pushButton_Op1.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op1.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op1.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -191,7 +192,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op1.setObjectName("pushButton_Op1")
         self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
-        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 230, 181, 31))
+        self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 240, 181, 31))
         self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(181, 31))
         self.comboBox_OpcionesBuscar.setMaximumSize(QtCore.QSize(181, 31))
         self.comboBox_OpcionesBuscar.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -205,7 +206,7 @@ class Ui_HomeAdmin(object):
         self.comboBox_OpcionesBuscar.addItem("")
         self.comboBox_OpcionesBuscar.addItem("")
         self.pushButton_Buscar = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Buscar.setGeometry(QtCore.QRect(796, 230, 75, 31))
+        self.pushButton_Buscar.setGeometry(QtCore.QRect(796, 240, 75, 31))
         self.pushButton_Buscar.setMinimumSize(QtCore.QSize(75, 31))
         self.pushButton_Buscar.setMaximumSize(QtCore.QSize(75, 31))
         self.pushButton_Buscar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -214,7 +215,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
         self.pushButton_GestionPermisos = QtWidgets.QPushButton(self.frame)
-        self.pushButton_GestionPermisos.setGeometry(QtCore.QRect(30, 230, 200, 30))
+        self.pushButton_GestionPermisos.setGeometry(QtCore.QRect(30, 240, 200, 30))
         self.pushButton_GestionPermisos.setMinimumSize(QtCore.QSize(200, 30))
         self.pushButton_GestionPermisos.setMaximumSize(QtCore.QSize(200, 30))
         self.pushButton_GestionPermisos.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -548,11 +549,11 @@ class Ui_HomeAdmin(object):
         elif(self.comboBox.currentText()=="8. Los 5 artistas con más diversidad de géneros"):
             self.populateTableOpcion8()
 
-# if __name__ == "__main__":
-#     app = QtWidgets.QApplication(sys.argv)
-#     HomeAdmin = QtWidgets.QMainWindow()
-#     ui = Ui_HomeAdmin()
-#     ui.setupUi(HomeAdmin)
-#     HomeAdmin.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    HomeAdmin = QtWidgets.QMainWindow()
+    ui = Ui_HomeAdmin()
+    ui.setupUi(HomeAdmin)
+    HomeAdmin.show()
+    sys.exit(app.exec_())
 
