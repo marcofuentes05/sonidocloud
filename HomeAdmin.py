@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
 from HomeUserRegistrar import Ui_HomeUserRegistrar
+from HomeAdminGestionPermisos import Ui_HomeAdminGestionPermisos
 from queries import *
 from config import config
 
@@ -292,6 +293,7 @@ class Ui_HomeAdmin(object):
 "color: rgb(255, 255, 255);\n"
 "border-radius:12px;")
         self.pushButton_GestionPermisos.setObjectName("pushButton_Registro_2")
+        self.pushButton_GestionPermisos.clicked.connect(self.openHomeAdminGestionPermisos)
         self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -415,9 +417,10 @@ class Ui_HomeAdmin(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def openVentanaOpciones(self):
+    def openHomeAdminGestionPermisos(self):
         self.window = QtWidgets.QMainWindow()
-        self.window.resize(1000,500)
+        self.ui = Ui_HomeAdminGestionPermisos()
+        self.ui.setupUi(self.window)
         self.window.show()
 
     def populateTable(self):
