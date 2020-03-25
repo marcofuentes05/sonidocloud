@@ -163,8 +163,8 @@ class Ui_HomeAdmin(object):
         self.pushButton_Inactivar.clicked.connect(self.openHomeUserModificar)
         self.pushButton_Modficiar = QtWidgets.QPushButton(self.frame)
         self.pushButton_Modficiar.setGeometry(QtCore.QRect(514, 200, 228, 30))
-        self.pushButton_Modficiar.setMinimumSize(QtCore.QSize(114, 30))
-        self.pushButton_Modficiar.setMaximumSize(QtCore.QSize(114, 30))
+        self.pushButton_Modficiar.setMinimumSize(QtCore.QSize(228, 30))
+        self.pushButton_Modficiar.setMaximumSize(QtCore.QSize(228, 30))
         self.pushButton_Modficiar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);\n"
