@@ -8,6 +8,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import pgdb as bd
+#import psycopg2 as bd
+from config import config
 
 
 class Ui_HomeUserRegistrar(object):
@@ -306,8 +309,11 @@ class Ui_HomeUserRegistrar(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.SF NS Text\';\"><br /></p></body></html>"))
         self.label_14.setText(_translate("MainWindow", "Género"))
         self.pushButton_RAlbum.setText(_translate("MainWindow", "Registrar"))
+        self.pushButton_RAlbum.clicked.connect(self.addAlbum)        
         self.pushButton_RArtista.setText(_translate("MainWindow", "Registrar"))
+        self.pushButton_RArtista.clicked.connect(self.addArtist)        
         self.pushButton_RCancion.setText(_translate("MainWindow", "Registrar"))
+        self.pushButton_RCancion.clicked.connect(self.addSong)
         self.label_5.setText(_translate("MainWindow", "Nombre Artista"))
         self.textEdit_RAlbumArtista.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -340,3 +346,110 @@ class Ui_HomeUserRegistrar(object):
         self.comboBox.setItemText(23, _translate("MainWindow", "Alternative"))
         self.comboBox.setItemText(24, _translate("MainWindow", "Classical"))
         self.comboBox.setItemText(25, _translate("MainWindow", "Opera"))
+
+
+    def addArtist(self):
+        nombre = self.textEdit_RArtistaNombre.toPlainText()
+        if(nombre != ''):
+            conn = None
+            params=config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            cursor.execute("SELECT artist.name FROM artist WHERE artist.name= \'"+self.textEdit_RArtistaNombre.toPlainText()+"\'")
+            if(len(cursor.fetchall()) == 0):
+                cursor.execute("SELECT artist.artistid FROM artist ORDER BY artist.artistid DESC LIMIT 1")
+                record = cursor.fetchall()
+                id=record[0][0] +1
+                sql="INSERT INTO artist(artistid, name, customerid) VALUES (%s,%s,%s)"
+                datos=(id,nombre,0)
+                cursor.execute(sql,datos)
+                conn.commit()
+            else:
+                print("Ya existe este artista")
+        else:
+            print('No ha ingresado un nombre de artista')
+
+    def addAlbum(self):
+        album = self.textEdit_RAlbumNombre.toPlainText()
+        artista= self.textEdit_RAlbumArtista.toPlainText()
+        if(album != '' and artista != ''):
+            conn = None
+            params=config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            cursor.execute("SELECT artist.name FROM artist WHERE artist.name= \'"+artista+"\'")
+            recordArtist = cursor.fetchall()
+            cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
+            recordAlbum = cursor.fetchall()
+            if(len(recordArtist) != 0 and len(recordAlbum) == 0):
+                cursor.execute("SELECT album.albumid FROM album ORDER BY album.albumid DESC LIMIT 1")
+                record = cursor.fetchall()
+                id =record[0][0]+1
+                cursor.execute("SELECT artist.artistid FROM artist WHERE artist.name= \'"+artista+"\'")
+                recordArtistId = cursor.fetchall()
+                artistid= recordArtistId[0][0]
+                sql= "INSERT INTO album(albumid, title, artistid) VALUES (%s,%s,%s)"
+                datos=(id,album,artistid)
+                cursor.execute(sql, datos)
+                conn.commit()
+            else:
+                print("Ya existe el album o no exste el artista")
+        else:
+            print("No ha escrito el nombre del album o artista")
+
+    def addSong(self):
+        nombre = self.textEdit_RCancionesNombre.toPlainText().lower()
+        album = self.textEdit_RCancionesAlbum.toPlainText()
+        genero = self.comboBox.currentText()
+        duracion = self.textEdit_RCancionesMiliseconds.toPlainText()
+        precio = self.textEdit_RCancionesUnitPrice.toPlainText()
+        if(nombre != '' and album !='' and genero !='Escoga un género' and duracion!= '' and precio != ''):
+            conn = None
+            params=config()
+            conn= bd.connect(**params)
+            cursor = conn.cursor()
+            cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
+            recordAlbum= cursor.fetchall()
+            if(len(recordAlbum)!=0):
+                cursor.execute("SELECT track.trackid FROM track ORDER BY track.trackid DESC LIMIT 1")
+                record = cursor.fetchall()
+                id =record[0][0]+1
+                cursor.execute("SELECT album.albumid FROM album WHERE album.title= \'"+album+"\'")
+                recordAlbumId = cursor.fetchall()
+                albumid= recordAlbumId[0][0]
+
+                cursor.execute("SELECT track.albumid as aid FROM track WHERE track.name = \'"+nombre+"\'")
+                exists= False
+                recordExists = cursor.fetchall()
+                for a in recordExists:
+                    print("hola")
+                    print(a.aid," ",albumid)
+                    if(a.aid==albumid):
+                        exists=True
+                if(exists==False):
+                    cursor.execute("SELECT genre.genreid FROM genre WHERE genre.name= \'"+genero+"\'")
+                    recordGeneroId = cursor.fetchall()
+                    generoid=recordGeneroId[0][0]
+                    cursor.execute("SELECT artist.name FROM artist JOIN album ON album.artistid = artist.artistid WHERE album.albumid=\'"+str(albumid)+"\'")
+                    composer = cursor.fetchall()[0][0]
+                    sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                    datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio)
+                    cursor.execute(sql,datos)
+                    conn.commit()
+                else:
+                    print("Ya existe esta cancion en este album")
+            else:
+                print("No existe el album")
+        else:
+            print('Tienen que llenar todos los campos')
+
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    HomeUserregistrar = QtWidgets.QMainWindow()
+    ui = Ui_HomeUserInactivarEliminar()
+    ui.setupUi(HomeUserRegistrar)
+    HomeUserRegistrar.show()
+    sys.exit(app.exec_())
+
+
