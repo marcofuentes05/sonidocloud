@@ -172,7 +172,7 @@ class Ui_LoginAccount(object):
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
                 usuario = self.textEdit_Username.toPlainText()
-                contrasena = self.lineEdit_Password.toPlainText()
+                contrasena = self.lineEdit_Password.text()
                 query = """
                         SELECT usr, pw, type, ide FROM
                                 (SELECT username as usr, password as pw, usertype as type , clientid as ide FROM user_client  
