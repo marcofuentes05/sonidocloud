@@ -98,6 +98,7 @@ class Ui_HomeUserAuto(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Exit.setObjectName("pushButton_Exit")
+        self.pushButton_Exit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
         self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 230, 181, 31))
         self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(181, 31))
