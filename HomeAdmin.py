@@ -5,7 +5,7 @@
 # Created by: PyQt5 UI code generator 5.12.3
 #
 # WARNING! All changes made in this file will be lost!
-#import sys
+import sys
 import psycopg2 as bd
 #import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -62,7 +62,7 @@ class Ui_HomeAdmin(object):
 "")
         self.label_3.setObjectName("label_3")
         self.comboBox = QtWidgets.QComboBox(self.frame)
-        self.comboBox.setGeometry(QtCore.QRect(30, 130, 201, 30))
+        self.comboBox.setGeometry(QtCore.QRect(30, 140, 201, 30))
         self.comboBox.setMinimumSize(QtCore.QSize(150, 30))
         self.comboBox.setMaximumSize(QtCore.QSize(300, 30))
         self.comboBox.setStyleSheet("background-color: rgb(150, 172, 183);\n"
@@ -142,7 +142,7 @@ class Ui_HomeAdmin(object):
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.pushButton_Registro = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Registro.setGeometry(QtCore.QRect(30, 190, 114, 30))
+        self.pushButton_Registro.setGeometry(QtCore.QRect(30, 200, 114, 30))
         self.pushButton_Registro.setMinimumSize(QtCore.QSize(114, 30))
         self.pushButton_Registro.setMaximumSize(QtCore.QSize(114, 30))
         self.pushButton_Registro.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -152,7 +152,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Registro.setObjectName("pushButton_Registro")
         self.pushButton_Registro.clicked.connect(self.openHomeUserRegistrar)
         self.pushButton_Inactivar = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Inactivar.setGeometry(QtCore.QRect(272, 190, 114, 30))
+        self.pushButton_Inactivar.setGeometry(QtCore.QRect(272, 200, 228, 30))
         self.pushButton_Inactivar.setMinimumSize(QtCore.QSize(114, 30))
         self.pushButton_Inactivar.setMaximumSize(QtCore.QSize(114, 30))
         self.pushButton_Inactivar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -160,9 +160,9 @@ class Ui_HomeAdmin(object):
 "color: rgb(255, 255, 255);\n"
 "border-radius: 12px;")
         self.pushButton_Inactivar.setObjectName("pushButton_Inactivar")
-        self.pushButton_Inactivar.clicked.connect(self.openHomeUserInactivarEliminar)
+        self.pushButton_Inactivar.clicked.connect(self.openHomeUserModificar)
         self.pushButton_Modficiar = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Modficiar.setGeometry(QtCore.QRect(514, 190, 114, 30))
+        self.pushButton_Modficiar.setGeometry(QtCore.QRect(514, 200, 114, 30))
         self.pushButton_Modficiar.setMinimumSize(QtCore.QSize(114, 30))
         self.pushButton_Modficiar.setMaximumSize(QtCore.QSize(114, 30))
         self.pushButton_Modficiar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -170,17 +170,17 @@ class Ui_HomeAdmin(object):
 "color: rgb(255, 255, 255);\n"
 "border-radius: 12px;")
         self.pushButton_Modficiar.setObjectName("pushButton_Modficiar")
-        self.pushButton_Modficiar.clicked.connect(self.openHomeUserModificar)
-        self.pushButton_Eliminar = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Eliminar.setGeometry(QtCore.QRect(757, 190, 114, 30))
-        self.pushButton_Eliminar.setMinimumSize(QtCore.QSize(114, 30))
-        self.pushButton_Eliminar.setMaximumSize(QtCore.QSize(114, 30))
-        self.pushButton_Eliminar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
-"font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Eliminar.setObjectName("pushButton_Eliminar")
-        self.pushButton_Eliminar.clicked.connect(self.openHomeUserInactivarEliminar)
+        self.pushButton_Modficiar.clicked.connect(self.openHomeUserInactivarEliminar)
+#         self.pushButton_Eliminar = QtWidgets.QPushButton(self.frame)
+#         self.pushButton_Eliminar.setGeometry(QtCore.QRect(757, 200, 114, 30))
+#         self.pushButton_Eliminar.setMinimumSize(QtCore.QSize(114, 30))
+#         self.pushButton_Eliminar.setMaximumSize(QtCore.QSize(114, 30))
+#         self.pushButton_Eliminar.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+# "font: 14pt \"Times\";\n"
+# "color: rgb(255, 255, 255);\n"
+# "border-radius: 12px;")
+#         self.pushButton_Eliminar.setObjectName("pushButton_Eliminar")
+#         self.pushButton_Eliminar.clicked.connect(self.openHomeUserInactivarEliminar)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(240, 110, 550, 25))
         self.label_5.setMinimumSize(QtCore.QSize(550, 25))
@@ -190,7 +190,7 @@ class Ui_HomeAdmin(object):
 "")
         self.label_5.setObjectName("label_5")
         self.pushButton_Op1 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op1.setGeometry(QtCore.QRect(240, 130, 75, 30))
+        self.pushButton_Op1.setGeometry(QtCore.QRect(240, 140, 75, 30))
         self.pushButton_Op1.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op1.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op1.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -199,7 +199,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op1.setObjectName("pushButton_Op1")
         self.pushButton_Op2 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op2.setGeometry(QtCore.QRect(319, 130, 75, 30))
+        self.pushButton_Op2.setGeometry(QtCore.QRect(319, 140, 75, 30))
         self.pushButton_Op2.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op2.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op2.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -208,7 +208,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op2.setObjectName("pushButton_Op2")
         self.pushButton_Op4 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op4.setGeometry(QtCore.QRect(477, 130, 75, 30))
+        self.pushButton_Op4.setGeometry(QtCore.QRect(477, 140, 75, 30))
         self.pushButton_Op4.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op4.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op4.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -217,7 +217,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op4.setObjectName("pushButton_Op4")
         self.pushButton_Op3 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op3.setGeometry(QtCore.QRect(398, 130, 75, 30))
+        self.pushButton_Op3.setGeometry(QtCore.QRect(398, 140, 75, 30))
         self.pushButton_Op3.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op3.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op3.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -226,7 +226,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op3.setObjectName("pushButton_Op3")
         self.pushButton_Op5 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op5.setGeometry(QtCore.QRect(559, 130, 75, 30))
+        self.pushButton_Op5.setGeometry(QtCore.QRect(559, 140, 75, 30))
         self.pushButton_Op5.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op5.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op5.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -235,7 +235,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op5.setObjectName("pushButton_Op5")
         self.pushButton_Op6 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op6.setGeometry(QtCore.QRect(638, 130, 75, 30))
+        self.pushButton_Op6.setGeometry(QtCore.QRect(638, 140, 75, 30))
         self.pushButton_Op6.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op6.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op6.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -244,7 +244,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op6.setObjectName("pushButton_Op6")
         self.pushButton_Op7 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op7.setGeometry(QtCore.QRect(717, 130, 75, 30))
+        self.pushButton_Op7.setGeometry(QtCore.QRect(717, 140, 75, 30))
         self.pushButton_Op7.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op7.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op7.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -253,7 +253,7 @@ class Ui_HomeAdmin(object):
 "border-radius: 12px;")
         self.pushButton_Op7.setObjectName("pushButton_Op7")
         self.pushButton_Op8 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op8.setGeometry(QtCore.QRect(796, 130, 75, 30))
+        self.pushButton_Op8.setGeometry(QtCore.QRect(796, 140, 75, 30))
         self.pushButton_Op8.setMinimumSize(QtCore.QSize(75, 30))
         self.pushButton_Op8.setMaximumSize(QtCore.QSize(75, 30))
         self.pushButton_Op8.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -307,7 +307,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Registro.raise_()
         self.pushButton_Inactivar.raise_()
         self.pushButton_Modficiar.raise_()
-        self.pushButton_Eliminar.raise_()
+        # self.pushButton_Eliminar.raise_()
         self.label_5.raise_()
         self.pushButton_Op1.raise_()
         self.pushButton_Op2.raise_()
@@ -368,10 +368,10 @@ class Ui_HomeAdmin(object):
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.pushButton_Registro.setText(_translate("MainWindow", "Registro"))
-        self.pushButton_Inactivar.setText(_translate("MainWindow", "Inactivación"))
-        self.pushButton_Modficiar.setText(_translate("MainWindow", "Modificación"))
-        self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
-        self.label_5.setText(_translate("MainWindow", "(Para recibir un reporte, vea la lista y luego presione el botón del reporte que desea obtener)"))
+        self.pushButton_Inactivar.setText(_translate("MainWindow", "Modificación"))
+        self.pushButton_Modficiar.setText(_translate("MainWindow", "Inactivación/Eliminación"))
+        # self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
+        self.label_5.setText(_translate("MainWindow", "(Vea la lista y luego presione el botón del reporte que desea obtener)"))
         self.pushButton_Op1.setText(_translate("MainWindow", "Opción 1"))
         self.pushButton_Op1.clicked.connect(self.populateTableOpcion1)
         self.pushButton_Op2.setText(_translate("MainWindow", "Opción 2"))
@@ -650,4 +650,11 @@ class Ui_HomeAdmin(object):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
 
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     HomeAdmin = QtWidgets.QMainWindow()
+#     ui = Ui_HomeAdmin()
+#     ui.setupUi(HomeAdmin)
+#     HomeAdmin.show()
+#     sys.exit(app.exec_())
 

@@ -269,11 +269,11 @@ class Ui_HomeUserAuto(object):
 
 
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    HomeUserAuto = QtWidgets.QMainWindow()
-    ui = Ui_HomeUserAuto()
-    ui.setupUi(HomeUserAuto)
-    HomeUserAuto.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     HomeUserAuto = QtWidgets.QMainWindow()
+#     ui = Ui_HomeUserAuto()
+#     ui.setupUi(HomeUserAuto)
+#     HomeUserAuto.show()
+#     sys.exit(app.exec_())
 
