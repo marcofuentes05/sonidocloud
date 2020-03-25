@@ -251,14 +251,14 @@ class Ui_HomeAdmin(object):
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
         self.label_3.setText(_translate("MainWindow", "Módulo de reportería"))
         self.comboBox.setItemText(0, _translate("MainWindow", "Reportería"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "1. Los artistas con más álbumes publicados"))
-        self.comboBox.setItemText(2, _translate("MainWindow", "2. Géneros con más canciones"))
+        self.comboBox.setItemText(1, _translate("MainWindow", "1. Los 5 artistas con más álbumes publicados"))
+        self.comboBox.setItemText(2, _translate("MainWindow", "2. Los 5 géneros con más canciones"))
         self.comboBox.setItemText(3, _translate("MainWindow", "3. Total de duración de cada playlist"))
-        self.comboBox.setItemText(4, _translate("MainWindow", "4. Canciones de mayor duración con información del artista"))
-        self.comboBox.setItemText(5, _translate("MainWindow", "5. Usuarios que han registrado más canciones"))
+        self.comboBox.setItemText(4, _translate("MainWindow", "4. Las 5 canciones de mayor duración con información del artista"))
+        self.comboBox.setItemText(5, _translate("MainWindow", "5. Los 5 usuarios que han registrado más canciones"))
         self.comboBox.setItemText(6, _translate("MainWindow", "6. Promedio de duración de canciones por género"))
         self.comboBox.setItemText(7, _translate("MainWindow", "7. Cantidad de artistas diferentes por playlist"))
-        self.comboBox.setItemText(8, _translate("MainWindow", "8. Los artistas con más diversidad de géneros"))
+        self.comboBox.setItemText(8, _translate("MainWindow", "8. Los 5 artistas con más diversidad de géneros"))
         self.label_7.setText(_translate("MainWindow", "Módulo de autorización"))
         # item = self.tableWidget.verticalHeaderItem(0)
         # item.setText(_translate("MainWindow", "aqui"))
@@ -293,7 +293,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Modficiar.setText(_translate("MainWindow", "Inactivación/Eliminación"))
         # self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
         self.pushButton_Op1.setText(_translate("MainWindow", "Reporte"))
-        self.pushButton_Op1.clicked.connect(self.populateTableOpcion1)
+        self.pushButton_Op1.clicked.connect(self.report)
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))
         self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "Género"))
@@ -356,8 +356,8 @@ class Ui_HomeAdmin(object):
                 query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
                 if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
@@ -367,8 +367,8 @@ class Ui_HomeAdmin(object):
                 query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
                 if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
@@ -378,8 +378,8 @@ class Ui_HomeAdmin(object):
                 query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
                 if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
@@ -396,16 +396,11 @@ class Ui_HomeAdmin(object):
         query = query1()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
     def populateTableOpcion2(self):
@@ -417,16 +412,11 @@ class Ui_HomeAdmin(object):
         query = query2()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
     def populateTableOpcion3(self):
@@ -438,16 +428,11 @@ class Ui_HomeAdmin(object):
         query = query3()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
     def populateTableOpcion4(self):
@@ -459,16 +444,11 @@ class Ui_HomeAdmin(object):
         query = query4()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
     def populateTableOpcion5(self):
@@ -480,16 +460,11 @@ class Ui_HomeAdmin(object):
         query = query5()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
     def populateTableOpcion6(self):
@@ -501,16 +476,11 @@ class Ui_HomeAdmin(object):
         query = query6()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
     def populateTableOpcion7(self):
@@ -522,16 +492,11 @@ class Ui_HomeAdmin(object):
         query = query7()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
     def populateTableOpcion8(self):
@@ -543,18 +508,33 @@ class Ui_HomeAdmin(object):
         query = query8()
         cursor.execute(query)
         record = cursor.fetchall()
-        self.tableWidget.setColumnCount(len(record[0]))
-        print(record)
-        print(len(record[0]))
-        print(len(record))
-        print(record[0][1])
         if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
+
+    def report(self):
+        if(self.comboBox.currentText()=="Reportería"):
+            print("Eliga una opcion")
+        elif(self.comboBox.currentText()=="1. Los 5 artistas con más álbumes publicados"):
+            self.populateTableOpcion1()
+        elif(self.comboBox.currentText()=="2. Los 5 géneros con más canciones"):
+            self.populateTableOpcion2()
+        elif(self.comboBox.currentText()=="3. Total de duración de cada playlist"):
+            self.populateTableOpcion3()
+        elif(self.comboBox.currentText()=="4. Las 5 canciones de mayor duración con información del artista"):
+            self.populateTableOpcion4()
+        elif(self.comboBox.currentText()=="5. Los 5 usuarios que han registrado más canciones"):
+            self.populateTableOpcion5()
+        elif(self.comboBox.currentText()=="6. Promedio de duración de canciones por género"):
+            self.populateTableOpcion6()
+        elif(self.comboBox.currentText()=="7. Cantidad de artistas diferentes por playlist"):
+            self.populateTableOpcion7()
+        elif(self.comboBox.currentText()=="8. Los 5 artistas con más diversidad de géneros"):
+            self.populateTableOpcion8()
 
 # if __name__ == "__main__":
 #     app = QtWidgets.QApplication(sys.argv)

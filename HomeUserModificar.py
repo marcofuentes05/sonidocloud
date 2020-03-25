@@ -353,7 +353,7 @@ class Ui_HomeUserModificar(object):
             print(record)
 
     def modifySong(self):
-        if(self.textEdit_CancionNombre.toPlainText()!="" or self.textEdit_CambioNuevo.toPlainText()!=""):
+        if(self.textEdit_CancionNombre.toPlainText()=="" or self.textEdit_CambioNuevo.toPlainText()==" "):
             if(self.comboBox_OpcionesCambioCanciones.currentIndex()==0):
                 print('no voy a hacer nada')
             elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==1):
