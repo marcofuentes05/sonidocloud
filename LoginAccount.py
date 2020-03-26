@@ -134,7 +134,7 @@ class Ui_LoginAccount(object):
         self.label_4.setText(_translate("MainWindow", "Contraseña"))
         self.pushButton_Login.setText(_translate("MainWindow", "Login"))
         self.label_5.setText(_translate("MainWindow", "o"))
-        self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta nueva"))
+        self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta"))
 
     def openPopUpError(self, mensaje):
         msgError = QMessageBox()
