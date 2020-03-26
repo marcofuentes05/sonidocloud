@@ -5,8 +5,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.uic import loadUi
 from HomeUser import Ui_HomeUser
-import pgdb as db
-#import psycopg2 as db
+#import pgdb as db
+import psycopg2 as db
 from config import config
 
 
