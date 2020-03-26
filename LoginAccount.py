@@ -136,15 +136,15 @@ class Ui_LoginAccount(object):
         self.label_5.setText(_translate("MainWindow", "o"))
         self.pushButton_CreateAccount.setText(_translate("MainWindow", "Crear cuenta nueva"))
 
-    def openPopUpError(self):
+    def openPopUpError(self, mensaje):
         msgError = QMessageBox()
-        msgError.setText("Aqui va una variable")
+        msgError.setText(mensaje)
         msgError.setIcon(QMessageBox.Warning)
         x = msgError.exec_()
 
-    def openPopUpCheck(self):
+    def openPopUpCheck(self,mensaje):
         msgGood = QMessageBox()
-        msgGood.setText("Aqui va una variable")
+        msgGood.setText(mensaje)
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
@@ -207,6 +207,7 @@ class Ui_LoginAccount(object):
                                 self.openHomeUser()
                 else:
                         print("error in loging")
+                        self.openPopUpError("Usuario o contraseña incorrecto")
         except (Exception) as error:
                 print("Error", error)
         finally:

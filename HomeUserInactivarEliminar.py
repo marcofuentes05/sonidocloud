@@ -424,24 +424,26 @@ class Ui_HomeUserInactivarEliminar(object):
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
                 cursor.execute(query2)
-                conn.commit() 
+                conn.commit()
+                self.openPopUpCheck('Se borró con éxito')
             except(Exception) as error:
                 print("EROOOR", error)
+                self.openPopUpError('Error')
             finally:
                 if(conn):
                     cursor.close()
                     conn.close()
                     self.llenarTablaCanciones()
 
-    def openPopUpError(self):
+    def openPopUpError(self, mensaje):
         msgError = QMessageBox()
-        msgError.setText("Aqui va una variable")
+        msgError.setText(mensaje)
         msgError.setIcon(QMessageBox.Warning)
         x = msgError.exec_()
 
-    def openPopUpCheck(self):
+    def openPopUpCheck(self, mensaje):
         msgGood = QMessageBox()
-        msgGood.setText("Aqui va una variable")
+        msgGood.setText(mensaje)
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
@@ -457,8 +459,10 @@ class Ui_HomeUserInactivarEliminar(object):
                cursor = conn.cursor()
                cursor.execute(query1)
                conn.commit()
+               self.openPopUpCheck('Se borró con éxito')
             except(Exception) as error:
                print("Error", error)
+               self.openPopUpError('Error')
             finally:
                if(conn):
                   cursor.close()
@@ -555,8 +559,10 @@ class Ui_HomeUserInactivarEliminar(object):
                 cursor = conn.cursor()
                 cursor.execute(query2)
                 conn.commit() 
+                self.openPopUpCheck('Se borró con éxito')
             except(Exception) as error:
                 print("EROOOR", error)
+                self.openPopUpError('Error')
             finally:
                 if(conn):
                     cursor.close()
@@ -575,8 +581,10 @@ class Ui_HomeUserInactivarEliminar(object):
                 cursor = conn.cursor()
                 cursor.execute(query2)
                 conn.commit() 
+                self.openPopUpCheck('Se borró con éxito')
             except(Exception) as error:
                 print("EROOOR", error)
+                self.openPopUpError('Error')                
             finally:
                 if(conn):
                     cursor.close()

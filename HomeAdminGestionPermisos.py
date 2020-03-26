@@ -257,6 +257,7 @@ class Ui_HomeAdminGestionPermisos(object):
             except(Exception) as error:
                 print("Error",error)
         else:
+            self.openPopUpError("Seleccione el permiso nuevo")
             print("Seleccione el permiso nuevo")
 
 

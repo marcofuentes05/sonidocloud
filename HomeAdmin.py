@@ -304,15 +304,15 @@ class Ui_HomeAdmin(object):
         self.pushButton_GestionPermisos.setText(_translate("MainWindow", "Gestión de permisos"))
         self.pushButton_Buscar.clicked.connect(self.populateTable)
 
-    def openPopUpError(self):
+    def openPopUpError(self, mensaje):
         msgError = QMessageBox()
-        msgError.setText("Aqui va una variable")
+        msgError.setText(mensaje)
         msgError.setIcon(QMessageBox.Warning)
         x = msgError.exec_()
 
-    def openPopUpCheck(self):
+    def openPopUpCheck(self, mensaje):
         msgGood = QMessageBox()
-        msgGood.setText("Aqui va una variable")
+        msgGood.setText(mensaje)
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 

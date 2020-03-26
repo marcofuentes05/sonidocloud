@@ -319,6 +319,7 @@ class Ui_HomeUserModificar(object):
     def modifyArtist (self):
         if(self.textEdit_ArtistaNombre.toPlainText()=="" or self.textEdit_ArtistaNombre.toPlainText()==" " or self.textEdit_ArtistaNuevoNombre.toPlainText() =="" or self.textEdit_ArtistaNuevoNombre.toPlainText() ==" " ):
             print('no voy a hacer nada')
+            self.openPopUpError('Tiene que llenar todos los campos')
         else:
             params = config()
             conn = bd.connect(**params)
@@ -331,6 +332,7 @@ class Ui_HomeUserModificar(object):
             """
             cursor.execute(query,(self.textEdit_ArtistaNuevoNombre.toPlainText(),self.textEdit_ArtistaNombre.toPlainText()))
             conn.commit()
+            self.openPopUpCheck('Se modifcó con éxito')
             record= cursor.fetchall()
             print(record)
 
@@ -338,6 +340,7 @@ class Ui_HomeUserModificar(object):
     def modifyAlbum(self):
         if(self.textEdit_AlbumNombre.toPlainText()=="" or self.textEdit_AlbumNombre.toPlainText()==" " or self.textEdit_AlbumNuevoNombre.toPlainText() =="" or self.textEdit_AlbumNuevoNombre.toPlainText() ==" " ):
             print('no voy a hacer nada')
+            self.openPopUpError('Tiene que llenar todos los campos')
         else:
             params = config()
             conn = bd.connect(**params)
@@ -350,18 +353,19 @@ class Ui_HomeUserModificar(object):
             """
             cursor.execute(query,(self.textEdit_AlbumNuevoNombre.toPlainText(),self.textEdit_AlbumNombre.toPlainText()))
             conn.commit()
+            self.openPopUpCheck('Se modifcó con éxito')
             record= cursor.fetchall()
             print(record)
 
-    def openPopUpError(self):
+    def openPopUpError(self, mensaje):
         msgError = QMessageBox()
-        msgError.setText("Aqui va una variable")
+        msgError.setText(mensaje)
         msgError.setIcon(QMessageBox.Warning)
         x = msgError.exec_()
 
-    def openPopUpCheck(self):
+    def openPopUpCheck(self, mensaje):
         msgGood = QMessageBox()
-        msgGood.setText("Aqui va una variable")
+        msgGood.setText(mensaje)
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
@@ -370,6 +374,7 @@ class Ui_HomeUserModificar(object):
         if(self.textEdit_CancionNombre.toPlainText()=="" or self.textEdit_CambioNuevo.toPlainText()==" "):
             if(self.comboBox_OpcionesCambioCanciones.currentIndex()==0):
                 print('no voy a hacer nada')
+                self.openPopUpError('Tiene que elegis una opcion')
             elif(self.comboBox_OpcionesCambioCanciones.currentIndex()==1):
                 params = config()
                 conn = bd.connect(**params)
@@ -382,6 +387,7 @@ class Ui_HomeUserModificar(object):
                 """
                 cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
+                self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
                 print(record)
 
@@ -398,6 +404,7 @@ class Ui_HomeUserModificar(object):
                     """
                     cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
                     conn.commit()
+                    self.openPopUpCheck('Se modifcó con éxito')
                     record= cursor.fetchall()
                     print(record)    
                 except (Exception) as error:
@@ -417,6 +424,7 @@ class Ui_HomeUserModificar(object):
                     """
                     cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
                     conn.commit()
+                    self.openPopUpCheck('Se modifcó con éxito')
                     record= cursor.fetchall()
                     print(record)    
                 except (Exception) as error:
@@ -434,6 +442,7 @@ class Ui_HomeUserModificar(object):
                 """
                 cursor.execute(query,(float(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
+                self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
                 print(record)
 
@@ -449,6 +458,7 @@ class Ui_HomeUserModificar(object):
                 """
                 cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
+                self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
                 print(record)
 
@@ -464,6 +474,7 @@ class Ui_HomeUserModificar(object):
                 """
                 cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
+                self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
                 print(record)
 
@@ -479,10 +490,12 @@ class Ui_HomeUserModificar(object):
                 """
                 cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
+                self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
                 print(record)
         else:
             print("Debe llenar los campos")
+            self.openPopUpError('Tiene que llenar todos los campos')
 
 # if __name__ == "__main__":
 #     app = QtWidgets.QApplication(sys.argv)

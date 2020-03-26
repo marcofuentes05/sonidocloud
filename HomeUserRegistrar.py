@@ -365,20 +365,23 @@ class Ui_HomeUserRegistrar(object):
                 datos=(id,nombre,0)
                 cursor.execute(sql,datos)
                 conn.commit()
+                self.openPopUpCheck('Se agregó con éxito')
             else:
                 print("Ya existe este artista")
+                self.openPopUpError("Ya existe este artista")
         else:
             print('No ha ingresado un nombre de artista')
+            self.openPopUpError('No ha ingresado un nombre de artista')
 
-    def openPopUpError(self):
+    def openPopUpError(self, mensaje):
         msgError = QMessageBox()
-        msgError.setText("Aqui va una variable")
+        msgError.setText(mensaje)
         msgError.setIcon(QMessageBox.Warning)
         x = msgError.exec_()
 
-    def openPopUpCheck(self):
+    def openPopUpCheck(self, mensaje):
         msgGood = QMessageBox()
-        msgGood.setText("Aqui va una variable")
+        msgGood.setText(mensaje)
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
@@ -406,10 +409,13 @@ class Ui_HomeUserRegistrar(object):
                 datos=(id,album,artistid)
                 cursor.execute(sql, datos)
                 conn.commit()
+                self.openPopUpCheck('Se agregó con éxito')
             else:
                 print("Ya existe el album o no exste el artista")
+                self.openPopUpError("Ya existe el album o no exste el artista")
         else:
             print("No ha escrito el nombre del album o artista")
+            self.openPopUpError("No ha escrito el nombre del album o artista")
 
     def addSong(self):
         nombre = self.textEdit_RCancionesNombre.toPlainText().lower()
@@ -453,14 +459,19 @@ class Ui_HomeUserRegistrar(object):
                         datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio)
                         cursor.execute(sql,datos)
                         conn.commit()
+                        self.openPopUpCheck('Se agregó con éxito')
                     else:
                         print("Ya existe esta cancion en este album")
+                        self.openPopUpError("Ya existe esta cancion en este album")
                 else:
                     print("No existe el album")
+                    self.openPopUpError("No existe el album")
             except(Exception) as error:
                 print("Error", error)
+                self.openPopUpError('Milisegundos tiene que ser un entero y UnitPrice tiene que ser un float ')
         else:
             print('Tienen que llenar todos los campos')
+            self.openPopUpError('Tienen que llenar todos los campos')
 
 
 if __name__ == "__main__":
