@@ -5,8 +5,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.uic import loadUi
 from HomeUser import Ui_HomeUser
-#import pgdb as db
-import psycopg2 as db
+import pgdb as db
+#import psycopg2 as db
 from config import config
 
 
@@ -131,15 +131,15 @@ class Ui_CreateAccount(object):
         self.comboBox_Suscripciones.setItemText(2, _translate("MainWindow", "Semestral"))
         self.comboBox_Suscripciones.setItemText(3, _translate("MainWindow", "Anual"))
 
-    def openPopUpError(self):
+    def openPopUpError(self, mensaje):
         msgError = QMessageBox()
-        msgError.setText("Aqui va una variable")
+        msgError.setText(mensaje)
         msgError.setIcon(QMessageBox.Warning)
         x = msgError.exec_()
 
-    def openPopUpCheck(self):
+    def openPopUpCheck(self, mensaje):
         msgGood = QMessageBox()
-        msgGood.setText("Aqui va una variable")
+        msgGood.setText(mensaje)
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
@@ -173,8 +173,11 @@ class Ui_CreateAccount(object):
                 self.openHomeUser()
             else:
                 print("El usuario ya existe o es igual al nombre de un cantante")
+                self.openPopUpError("El usuario ya existe o es igual al nombre de un cantante")
+
         else:
             print("Tiene que ingresar un usuario y contraseña")
+            self.openPopUpError("Tiene que ingresar un usuario y contraseña")
 
 
 if __name__ == "__main__":
