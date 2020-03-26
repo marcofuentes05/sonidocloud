@@ -254,8 +254,8 @@ class Ui_HomeUserAuto(object):
                     query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                     cursor.execute(query)
                     record = cursor.fetchall()
-                    self.tableWidget.setColumnCount(len(record[0]))
                     if(len(record)!= 0):
+                        self.tableWidget.setColumnCount(len(record[0]))
                         self.tableWidget.setHorizontalHeaderItem(
                             0, QtWidgets.QTableWidgetItem("Cancion"))
                         self.tableWidget.setHorizontalHeaderItem(
@@ -269,8 +269,8 @@ class Ui_HomeUserAuto(object):
                     query = "SELECT track.name, album.title FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                     cursor.execute(query)
                     record = cursor.fetchall()
-                    self.tableWidget.setColumnCount(len(record[0]))
                     if(len(record)!= 0):
+                        self.tableWidget.setColumnCount(len(record[0]))
                         self.tableWidget.setHorizontalHeaderItem(
                             0, QtWidgets.QTableWidgetItem("Cancion"))
                         self.tableWidget.setHorizontalHeaderItem(
@@ -284,8 +284,8 @@ class Ui_HomeUserAuto(object):
                     query = "SELECT track.name,  album.title, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON artist.artistid=album.artistid WHERE track.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                     cursor.execute(query)
                     record = cursor.fetchall()
-                    self.tableWidget.setColumnCount(len(record[0]))
                     if(len(record)!= 0):
+                        self.tableWidget.setColumnCount(len(record[0]))
                         self.tableWidget.setHorizontalHeaderItem(
                             0, QtWidgets.QTableWidgetItem("Cancion"))
                         self.tableWidget.setHorizontalHeaderItem(

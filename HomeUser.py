@@ -229,8 +229,8 @@ class Ui_HomeUser(object):
                 query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
                 if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
@@ -240,8 +240,8 @@ class Ui_HomeUser(object):
                 query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
                 if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):
@@ -251,8 +251,8 @@ class Ui_HomeUser(object):
                 query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
-                self.tableWidget.setColumnCount(len(record[0]))
                 if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
                     for i in range(len(record)):
                         self.tableWidget.insertRow(i)
                         for j in range(len(record[0])):

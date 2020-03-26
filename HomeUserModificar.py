@@ -317,7 +317,7 @@ class Ui_HomeUserModificar(object):
         self.comboBox_OpcionesCambioCanciones.setItemText(7, _translate("MainWindow", "Milisegundos"))
 
     def modifyArtist (self):
-        if(self.textEdit_ArtistaNombre.toPlainText()=="" or self.textEdit_ArtistaNombre.toPlainText()==" " or self.textEdit_ArtistaNuevoNombre.toPlainText() =="" or self.textEdit_ArtistaNuevoNombre.toPlainText() ==" " ):
+        if(self.textEdit_ArtistaNombre.toPlainText()!="" and self.textEdit_ArtistaNombre.toPlainText()!=" " and self.textEdit_ArtistaNuevoNombre.toPlainText() !="" and self.textEdit_ArtistaNuevoNombre.toPlainText() !=" " ):
             print('no voy a hacer nada')
             self.openPopUpError('Tiene que llenar todos los campos')
         else:
@@ -338,7 +338,7 @@ class Ui_HomeUserModificar(object):
 
 
     def modifyAlbum(self):
-        if(self.textEdit_AlbumNombre.toPlainText()=="" or self.textEdit_AlbumNombre.toPlainText()==" " or self.textEdit_AlbumNuevoNombre.toPlainText() =="" or self.textEdit_AlbumNuevoNombre.toPlainText() ==" " ):
+        if(self.textEdit_AlbumNombre.toPlainText()!="" and self.textEdit_AlbumNombre.toPlainText()!=" " and self.textEdit_AlbumNuevoNombre.toPlainText() !="" and self.textEdit_AlbumNuevoNombre.toPlainText() !=" " ):
             print('no voy a hacer nada')
             self.openPopUpError('Tiene que llenar todos los campos')
         else:
@@ -371,7 +371,7 @@ class Ui_HomeUserModificar(object):
 
 
     def modifySong(self):
-        if(self.textEdit_CancionNombre.toPlainText()=="" or self.textEdit_CambioNuevo.toPlainText()==" "):
+        if(self.textEdit_CancionNombre.toPlainText()!="" and self.textEdit_CambioNuevo.toPlainText()!=""):
             if(self.comboBox_OpcionesCambioCanciones.currentIndex()==0):
                 print('no voy a hacer nada')
                 self.openPopUpError('Tiene que elegis una opcion')

@@ -193,9 +193,9 @@ class Ui_HomeAdminGestionPermisos(object):
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
         self.pushButton_Cambiar.setText(_translate("MainWindow", "Cambiar"))
 
-    def openPopUpError(self):
+    def openPopUpError(self, mensaje):
         msgError = QMessageBox()
-        msgError.setText("Aqui va una variable")
+        msgError.setText(mensaje)
         msgError.setIcon(QMessageBox.Warning)
         x = msgError.exec_()
 

@@ -177,7 +177,7 @@ class Ui_CreateAccount(object):
 
         else:
             print("Tiene que ingresar un usuario y contraseña")
-            self.openPopUpError("Tiene que ingresar un usuario y contraseña")
+            self.openPopUpError("Tiene que ingresar un usuario, contraseña y elegir una opciond de suscripción")
 
 
 if __name__ == "__main__":

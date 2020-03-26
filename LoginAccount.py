@@ -15,7 +15,7 @@ from HomeAdmin import Ui_HomeAdmin
 from CreateAccount import Ui_CreateAccount
 from HomeUserAuto import Ui_HomeUserAuto
 from HomeUser import Ui_HomeUser
-import psycopg2 as bd
+#import pgdb as bd
 from config import config
 
 class Ui_LoginAccount(object):
