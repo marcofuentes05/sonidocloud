@@ -1,8 +1,8 @@
 
 def getLogin(self,bd,  userdb, passworddb, host, port, database,username, password):
       try:
-          conn = bd.connect(user = 'marco',
-                              password = '12345678',
+          conn = bd.connect(user = '',
+                              password = '',
                               host= host ,
                               port= port,
                               database= database )

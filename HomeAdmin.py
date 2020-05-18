@@ -7,9 +7,13 @@
 # WARNING! All changes made in this file will be lost!
 import sys
 import psycopg2 as bd
+import os
+import csv
 #import pgdb as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from PyQt5.QtGui import QImage, QPainter
+from PyQt5.QtCore import QFile, QDir
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
 from HomeUserRegistrar import Ui_HomeUserRegistrar
@@ -388,7 +392,7 @@ class Ui_HomeAdmin(object):
                             self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
 
             elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
-                query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                query = "SELECT track.name FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
                 if(len(record)!= 0):
@@ -415,6 +419,12 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion1.csv', 'w') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Artista', 'No. Albumés publicados'])
+                for row in record:
+                    thewriter.writerow(row)
+            
 
     def populateTableOpcion2(self):
         self.tableWidget.setRowCount(0)
@@ -431,6 +441,12 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion2.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Genero', 'No. Canciones'])
+                for row in record:
+                    thewriter.writerow(row)
+
 
     def populateTableOpcion3(self):
         self.tableWidget.setRowCount(0)
@@ -447,6 +463,12 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion3.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Playlist', 'Duración (milisegundos)'])
+                for row in record:
+                    thewriter.writerow(row)
+
 
     def populateTableOpcion4(self):
         self.tableWidget.setRowCount(0)
@@ -463,6 +485,12 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion4.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Canción','Artista', 'Duración (milisegundos)'])
+                for row in record:
+                    thewriter.writerow(row)
+
 
     def populateTableOpcion5(self):
         self.tableWidget.setRowCount(0)
@@ -479,6 +507,12 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion5.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Nombre', 'No. Canciones Subidas'])
+                for row in record:
+                    thewriter.writerow(row)
+
 
     def populateTableOpcion6(self):
         self.tableWidget.setRowCount(0)
@@ -495,6 +529,12 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion6.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Canción', 'Promedio de duración (milisegundos)'])
+                for row in record:
+                    thewriter.writerow(row)
+
 
     def populateTableOpcion7(self):
         self.tableWidget.setRowCount(0)
@@ -511,6 +551,13 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion7.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Playlist', 'No. Artistas diferentes'])
+                for row in record:
+                    thewriter.writerow(row)
+
+
 
     def populateTableOpcion8(self):
         self.tableWidget.setRowCount(0)
@@ -527,6 +574,12 @@ class Ui_HomeAdmin(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion8.csv', 'w') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Artista', 'No. Generos'])
+                for row in record:
+                    thewriter.writerow(row)
+        
 
 
     def report(self):
@@ -548,6 +601,8 @@ class Ui_HomeAdmin(object):
             self.populateTableOpcion7()
         elif(self.comboBox.currentText()=="8. Los 5 artistas con más diversidad de géneros"):
             self.populateTableOpcion8()
+
+    
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
