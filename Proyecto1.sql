@@ -16,6 +16,8 @@ CREATE TABLE Artist
     ArtistId INT NOT NULL,
     Name VARCHAR(120),
     customerId INT DEFAULT 0,
+    last_modified_by DEFAULT NULL,
+    deleted_by DEFAULT NULL,
     CONSTRAINT PK_Artist PRIMARY KEY (ArtistId)
 );
 
@@ -24,6 +26,8 @@ CREATE TABLE Album
     AlbumId INT NOT NULL,
     Title VARCHAR(160) NOT NULL,
     ArtistId INT NOT NULL,
+    last_modified_by DEFAULT NULL,
+    deleted_by DEFAULT NULL,
     CONSTRAINT PK_Album PRIMARY KEY (AlbumId),
     FOREIGN KEY (ArtistId) REFERENCES Artist (ArtistId) ON DELETE CASCADE ON UPDATE NO ACTION
 );
@@ -115,6 +119,8 @@ CREATE TABLE Track
     Bytes INT,
     UnitPrice NUMERIC(10,2) NOT NULL,
     isActive BOOLEAN NOT NULL DEFAULT true,
+    last_modified_by DEFAULT NULL,
+    deleted_by DEFAULT NULL,
     CONSTRAINT PK_Track PRIMARY KEY (TrackId),
     FOREIGN KEY (AlbumId) REFERENCES Album (AlbumId) ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY (GenreId) REFERENCES Genre (GenreId) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -139,6 +145,8 @@ CREATE TABLE Playlist
 (
     PlaylistId INT NOT NULL,
     Name VARCHAR(120),
+    last_modified_by DEFAULT NULL,
+    deleted_by DEFAULT NULL,
     CONSTRAINT PK_Playlist PRIMARY KEY (PlaylistId)
 );
 
@@ -15830,3 +15838,77 @@ INSERT INTO user_client (clientid, username, password, usertype) VALUES (7, 'tst
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (8, 'tst6', 'contrasena', 0);
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (9, 'tst7', 'contrasena', 2);
 INSERT INTO user_client (clientid, username, password, usertype) VALUES (10, 'tst8', 'contrasena', 0);
+
+/*******************************************************************************
+   Logbook related Stuff
+********************************************************************************/
+DROP TABLE IF EXISTS logbook;
+CREATE TABLE logbook(
+	username VARCHAR(40) REFERENCES user_client(username),
+	typeOfModification VARCHAR(40),
+	tableModified VARCHAR(40),
+	itemModified INT,
+	dateModified DATE DEFAULT CURRENT_DATE
+)
+
+CREATE OR REPLACE FUNCTION save_modification()
+RETURNS trigger as 
+$BODY$
+BEGIN
+	IF(TG_TABLE_NAME ='track' ) THEN
+		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL  ) THEN
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.trackid);
+		ELSIF(TG_OP = 'DELETE') THEN
+			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.trackid);
+		END IF;
+	ELSIF(TG_TABLE_NAME ='album') THEN
+		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL ) THEN
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.albumid);
+		ELSIF(TG_OP = 'DELETE') THEN
+			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.albumid);
+		END IF;
+	ELSIF(TG_TABLE_NAME ='artist') THEN
+		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL ) THEN
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.artistid);
+		ELSIF(TG_OP = 'DELETE') THEN
+			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.artistid);
+		END IF;
+	ELSIF(TG_TABLE_NAME ='playlist') THEN
+		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL ) THEN
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.playlistid);
+		ELSIF(TG_OP = 'DELETE') THEN
+			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.playlistid);
+		END IF;
+	END IF;
+	IF (TG_OP != 'DELETE') THEN
+		RETURN NEW;
+	ELSE
+		RETURN OLD;
+	END IF;
+END;
+$BODY$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER modification_made_track
+AFTER INSERT OR DELETE OR UPDATE 
+ON track
+FOR EACH ROW
+EXECUTE PROCEDURE save_modification();
+
+CREATE TRIGGER modification_made_artist
+AFTER INSERT OR DELETE OR UPDATE 
+ON artist
+FOR EACH ROW
+EXECUTE PROCEDURE save_modification();
+
+CREATE TRIGGER modification_made_album
+AFTER INSERT OR DELETE OR UPDATE 
+ON album
+FOR EACH ROW
+EXECUTE PROCEDURE save_modification();
+
+CREATE TRIGGER modification_made_playlist
+AFTER INSERT OR DELETE OR UPDATE 
+ON playlist
+FOR EACH ROW
+EXECUTE PROCEDURE save_modification();
