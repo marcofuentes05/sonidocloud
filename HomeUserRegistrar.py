@@ -24,7 +24,7 @@ class Ui_HomeUserRegistrar(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(60, 40, 900, 550))
+        self.frame.setGeometry(QtCore.QRect(50, 50, 900, 550))
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"

@@ -17,6 +17,7 @@ from PyQt5.QtCore import QFile, QDir
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
 from Tienda import Ui_Tienda
+from HomeAdminReporteria import Ui_HomeAdminReporteria
 from HomeUserRegistrar import Ui_HomeUserRegistrar
 from HomeAdminGestionPermisos import Ui_HomeAdminGestionPermisos
 from queries import *
@@ -33,7 +34,7 @@ class Ui_HomeAdmin(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(60, 40, 900, 550))
+        self.frame.setGeometry(QtCore.QRect(50, 50, 900, 550))
         self.frame.setMinimumSize(QtCore.QSize(900, 550))
         self.frame.setMaximumSize(QtCore.QSize(900, 550))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -67,24 +68,24 @@ class Ui_HomeAdmin(object):
 "color: rgb(10, 54, 157);\n"
 "")
         self.label_3.setObjectName("label_3")
-        self.comboBox = QtWidgets.QComboBox(self.frame)
-        self.comboBox.setGeometry(QtCore.QRect(30, 140, 201, 30))
-        self.comboBox.setMinimumSize(QtCore.QSize(400, 30))
-        self.comboBox.setMaximumSize(QtCore.QSize(400, 30))
-        self.comboBox.setStyleSheet("background-color: rgb(150, 172, 183);\n"
-"font: 13pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+#         self.comboBox = QtWidgets.QComboBox(self.frame)
+#         self.comboBox.setGeometry(QtCore.QRect(30, 140, 201, 30))
+#         self.comboBox.setMinimumSize(QtCore.QSize(400, 30))
+#         self.comboBox.setMaximumSize(QtCore.QSize(400, 30))
+#         self.comboBox.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+# "font: 13pt \"Times\";\n"
+# "color: rgb(255, 255, 255);\n"
+# "border-radius: 12px;")
+#         self.comboBox.setObjectName("comboBox")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
+#         self.comboBox.addItem("")
         self.label_7 = QtWidgets.QLabel(self.frame)
         self.label_7.setGeometry(QtCore.QRect(30, 170, 230, 25))
         self.label_7.setMinimumSize(QtCore.QSize(230, 25))
@@ -187,15 +188,25 @@ class Ui_HomeAdmin(object):
 # "border-radius: 12px;")
 #         self.pushButton_Eliminar.setObjectName("pushButton_Eliminar")
 #         self.pushButton_Eliminar.clicked.connect(self.openHomeUserInactivarEliminar)
-        self.pushButton_Op1 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_Op1.setGeometry(QtCore.QRect(440, 140, 75, 30))
-        self.pushButton_Op1.setMinimumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op1.setMaximumSize(QtCore.QSize(75, 30))
-        self.pushButton_Op1.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+#         self.pushButton_Op1 = QtWidgets.QPushButton(self.frame)
+#         self.pushButton_Op1.setGeometry(QtCore.QRect(440, 140, 75, 30))
+#         self.pushButton_Op1.setMinimumSize(QtCore.QSize(75, 30))
+#         self.pushButton_Op1.setMaximumSize(QtCore.QSize(75, 30))
+#         self.pushButton_Op1.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+# "font: 14pt \"Times\";\n"
+# "color: rgb(255, 255, 255);\n"
+# "border-radius: 12px;")
+#         self.pushButton_Op1.setObjectName("pushButton_Op1")
+
+        self.pushButton_Reporteria = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Reporteria.setGeometry(QtCore.QRect(30, 140, 100, 30))
+        self.pushButton_Reporteria.setMinimumSize(QtCore.QSize(100, 30))
+        self.pushButton_Reporteria.setMaximumSize(QtCore.QSize(75, 30))
+        self.pushButton_Reporteria.setStyleSheet("background-color: rgb(10, 54, 157);\n"
 "font: 14pt \"Times\";\n"
-"color: rgb(255, 255, 255);\n"
-"border-radius: 12px;")
-        self.pushButton_Op1.setObjectName("pushButton_Op1")
+"color: rgb(255, 255, 255);")
+        self.pushButton_Reporteria.setObjectName("pushButton_Reporteria")
+        self.pushButton_Reporteria.clicked.connect(self.openHomeAdminReporteria)
         self.comboBox_OpcionesBuscar = QtWidgets.QComboBox(self.frame)
         self.comboBox_OpcionesBuscar.setGeometry(QtCore.QRect(353, 240, 181, 31))
         self.comboBox_OpcionesBuscar.setMinimumSize(QtCore.QSize(181, 31))
@@ -242,7 +253,7 @@ class Ui_HomeAdmin(object):
         self.label.raise_()
         self.label_2.raise_()
         self.label_3.raise_()
-        self.comboBox.raise_()
+        # self.comboBox.raise_()
         self.tableWidget.raise_()
         self.pushButton_Exit.raise_()
         self.textEdit_UserBuscar.raise_()
@@ -251,7 +262,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Inactivar.raise_()
         self.pushButton_Modficiar.raise_()
         # self.pushButton_Eliminar.raise_()
-        self.pushButton_Op1.raise_()
+        # self.pushButton_Op1.raise_()
         self.pushButton_Buscar.raise_()
         self.pushButton_GestionPermisos.raise_()
         self.pushButton_Tienda.raise_()
@@ -266,15 +277,15 @@ class Ui_HomeAdmin(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
         self.label_3.setText(_translate("MainWindow", "Módulo de reportería"))
-        self.comboBox.setItemText(0, _translate("MainWindow", "Reportería"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "1. Los 5 artistas con más álbumes publicados"))
-        self.comboBox.setItemText(2, _translate("MainWindow", "2. Los 5 géneros con más canciones"))
-        self.comboBox.setItemText(3, _translate("MainWindow", "3. Total de duración de cada playlist"))
-        self.comboBox.setItemText(4, _translate("MainWindow", "4. Las 5 canciones de mayor duración con información del artista"))
-        self.comboBox.setItemText(5, _translate("MainWindow", "5. Los 5 usuarios que han registrado más canciones"))
-        self.comboBox.setItemText(6, _translate("MainWindow", "6. Promedio de duración de canciones por género"))
-        self.comboBox.setItemText(7, _translate("MainWindow", "7. Cantidad de artistas diferentes por playlist"))
-        self.comboBox.setItemText(8, _translate("MainWindow", "8. Los 5 artistas con más diversidad de géneros"))
+        # self.comboBox.setItemText(0, _translate("MainWindow", "Reportería"))
+        # self.comboBox.setItemText(1, _translate("MainWindow", "1. Los 5 artistas con más álbumes publicados"))
+        # self.comboBox.setItemText(2, _translate("MainWindow", "2. Los 5 géneros con más canciones"))
+        # self.comboBox.setItemText(3, _translate("MainWindow", "3. Total de duración de cada playlist"))
+        # self.comboBox.setItemText(4, _translate("MainWindow", "4. Las 5 canciones de mayor duración con información del artista"))
+        # self.comboBox.setItemText(5, _translate("MainWindow", "5. Los 5 usuarios que han registrado más canciones"))
+        # self.comboBox.setItemText(6, _translate("MainWindow", "6. Promedio de duración de canciones por género"))
+        # self.comboBox.setItemText(7, _translate("MainWindow", "7. Cantidad de artistas diferentes por playlist"))
+        # self.comboBox.setItemText(8, _translate("MainWindow", "8. Los 5 artistas con más diversidad de géneros"))
         self.label_7.setText(_translate("MainWindow", "Módulo de autorización"))
         # item = self.tableWidget.verticalHeaderItem(0)
         # item.setText(_translate("MainWindow", "aqui"))
@@ -308,8 +319,10 @@ class Ui_HomeAdmin(object):
         self.pushButton_Inactivar.setText(_translate("MainWindow", "Modificación"))
         self.pushButton_Modficiar.setText(_translate("MainWindow", "Inactivación/Eliminación"))
         # self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
-        self.pushButton_Op1.setText(_translate("MainWindow", "Reporte"))
-        self.pushButton_Op1.clicked.connect(self.report)
+        # self.pushButton_Op1.setText(_translate("MainWindow", "Reporte"))
+        # self.pushButton_Op1.clicked.connect(self.report)
+        self.pushButton_Reporteria.setText(_translate("MainWindow", "Reporteria"))
+        self.pushButton_Reporteria.clicked.connect(self.openHomeAdminReporteria)
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))
         self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "Género"))
@@ -335,6 +348,12 @@ class Ui_HomeAdmin(object):
     def openTienda(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_Tienda()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def openHomeAdminReporteria(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_HomeAdminReporteria()
         self.ui.setupUi(self.window)
         self.window.show()
 
