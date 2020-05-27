@@ -16,6 +16,7 @@ from PyQt5.QtGui import QImage, QPainter
 from PyQt5.QtCore import QFile, QDir
 from HomeUserInactivarEliminar import Ui_HomeUserInactivarEliminar
 from HomeUserModificar import Ui_HomeUserModificar
+from Tienda import Ui_Tienda
 from HomeUserRegistrar import Ui_HomeUserRegistrar
 from HomeAdminGestionPermisos import Ui_HomeAdminGestionPermisos
 from queries import *
@@ -228,6 +229,14 @@ class Ui_HomeAdmin(object):
 "border-radius:12px;")
         self.pushButton_GestionPermisos.setObjectName("pushButton_Registro_2")
         self.pushButton_GestionPermisos.clicked.connect(self.openHomeAdminGestionPermisos)
+        self.pushButton_Tienda = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Tienda.setGeometry(QtCore.QRect(630, 50, 114, 32))
+        self.pushButton_Tienda.setMinimumSize(QtCore.QSize(114, 32))
+        self.pushButton_Tienda.setMaximumSize(QtCore.QSize(114, 32))
+        self.pushButton_Tienda.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_Tienda.setObjectName("pushButton_Tienda")
         self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -245,6 +254,8 @@ class Ui_HomeAdmin(object):
         self.pushButton_Op1.raise_()
         self.pushButton_Buscar.raise_()
         self.pushButton_GestionPermisos.raise_()
+        self.pushButton_Tienda.raise_()
+        self.pushButton_Tienda.clicked.connect(self.openTienda)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -307,6 +318,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
         self.pushButton_GestionPermisos.setText(_translate("MainWindow", "Gestión de permisos"))
         self.pushButton_Buscar.clicked.connect(self.populateTable)
+        self.pushButton_Tienda.setText(_translate("MainWindow", "Tienda"))
 
     def openPopUpError(self, mensaje):
         msgError = QMessageBox()
@@ -320,6 +332,11 @@ class Ui_HomeAdmin(object):
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
+    def openTienda(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_Tienda()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def openHomeUserInactivarEliminar(self):
         self.window = QtWidgets.QMainWindow()

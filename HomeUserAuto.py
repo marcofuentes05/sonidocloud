@@ -11,6 +11,7 @@ import psycopg2 as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from HomeUserAutoRegistrar import Ui_HomeUserAutoRegistrar
+from Tienda import Ui_Tienda
 import sys
 from config import config
 class Ui_HomeUserAuto(object):
@@ -143,6 +144,14 @@ class Ui_HomeUserAuto(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.pushButton_Tienda = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Tienda.setGeometry(QtCore.QRect(630, 50, 114, 32))
+        self.pushButton_Tienda.setMinimumSize(QtCore.QSize(114, 32))
+        self.pushButton_Tienda.setMaximumSize(QtCore.QSize(114, 32))
+        self.pushButton_Tienda.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_Tienda.setObjectName("pushButton_Tienda")
         self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -154,6 +163,8 @@ class Ui_HomeUserAuto(object):
         self.pushButton_Registro.raise_()
         self.pushButton_Buscar.raise_()
         self.pushButton_Buscar.clicked.connect(self.populateTable)
+        self.pushButton_Tienda.raise_()
+        self.pushButton_Tienda.clicked.connect(self.openTienda)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -199,6 +210,7 @@ class Ui_HomeUserAuto(object):
         self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
         self.pushButton_Registro.setText(_translate("MainWindow", "Registro"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
+        self.pushButton_Tienda.setText(_translate("MainWindow", "Tienda"))
 
     def openPopUpError(self):
         msgError = QMessageBox()
@@ -213,8 +225,15 @@ class Ui_HomeUserAuto(object):
         y = msgGood.exec_()
 
 
+    def openTienda(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_Tienda()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def openHomeUserRegistrar(self, id):
         self.open(self.id)
+
 
     def open(self,id):
         self.window = QtWidgets.QMainWindow()
@@ -303,11 +322,11 @@ class Ui_HomeUserAuto(object):
 
 
 
-# if __name__ == "__main__":
-#     app = QtWidgets.QApplication(sys.argv)
-#     HomeUserAuto = QtWidgets.QMainWindow()
-#     ui = Ui_HomeUserAuto()
-#     ui.setupUi(HomeUserAuto)
-#     HomeUserAuto.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    HomeUserAuto = QtWidgets.QMainWindow()
+    ui = Ui_HomeUserAuto()
+    ui.setupUi(HomeUserAuto)
+    HomeUserAuto.show()
+    sys.exit(app.exec_())
 
