@@ -16,8 +16,8 @@ CREATE TABLE Artist
     ArtistId INT NOT NULL,
     Name VARCHAR(120),
     customerId INT DEFAULT 0,
-    last_modified_by DEFAULT NULL,
-    deleted_by DEFAULT NULL,
+    last_modified_by VARCHAR(50) DEFAULT NULL,
+    deleted_by VARCHAR(50) DEFAULT NULL,
     CONSTRAINT PK_Artist PRIMARY KEY (ArtistId)
 );
 
@@ -26,8 +26,8 @@ CREATE TABLE Album
     AlbumId INT NOT NULL,
     Title VARCHAR(160) NOT NULL,
     ArtistId INT NOT NULL,
-    last_modified_by DEFAULT NULL,
-    deleted_by DEFAULT NULL,
+    last_modified_by VARCHAR(50) DEFAULT NULL,
+    deleted_by VARCHAR(50) DEFAULT NULL,
     CONSTRAINT PK_Album PRIMARY KEY (AlbumId),
     FOREIGN KEY (ArtistId) REFERENCES Artist (ArtistId) ON DELETE CASCADE ON UPDATE NO ACTION
 );
@@ -75,6 +75,17 @@ CREATE TABLE Customer
     FOREIGN KEY (SupportRepId) REFERENCES Employee (EmployeeId) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS user_client;
+CREATE TABLE user_client
+(  
+    clientid INT NOT NULL ,
+    username VARCHAR(40) NOT NULL UNIQUE,
+    password VARCHAR(40) NOT NULL ,
+    usertype INT DEFAULT 2,
+    suscripcion VARCHAR(40) DEFAULT 'Anual',
+    CONSTRAINT PK_user_client PRIMARY KEY(clientid)
+);
+
 CREATE TABLE Genre
 (
     GenreId INT NOT NULL,
@@ -95,7 +106,7 @@ CREATE TABLE Invoice
     BillingPostalCode VARCHAR(10),
     Total NUMERIC(10,2) NOT NULL,
     CONSTRAINT PK_Invoice PRIMARY KEY (InvoiceId),
-    FOREIGN KEY (CustomerId) REFERENCES Customer (CustomerId) ON DELETE NO ACTION ON UPDATE NO ACTION
+    FOREIGN KEY (CustomerId) REFERENCES user_client (clientid) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 DROP TABLE IF EXISTS MediaType;
@@ -119,12 +130,23 @@ CREATE TABLE Track
     Bytes INT,
     UnitPrice NUMERIC(10,2) NOT NULL,
     isActive BOOLEAN NOT NULL DEFAULT true,
-    last_modified_by DEFAULT NULL,
-    deleted_by DEFAULT NULL,
+    last_modified_by VARCHAR(50) DEFAULT NULL,
+    deleted_by VARCHAR(50) DEFAULT NULL,
     CONSTRAINT PK_Track PRIMARY KEY (TrackId),
     FOREIGN KEY (AlbumId) REFERENCES Album (AlbumId) ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY (GenreId) REFERENCES Genre (GenreId) ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (MediaTypeId) REFERENCES MediaType (MediaTypeId) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+DROP TABLE IF EXISTS Carrito;
+CREATE TABLE Carrito
+(
+    carritoId INT NOT NULL,
+    clientId INT NOT NULL,
+    trackId INT NOT NULL,
+    CONSTRAINT PK_Carrito PRIMARY KEY (carritoId),
+    FOREIGN KEY (clientid) REFERENCES  user_client (clientid) ON DELETE CASCADE,
+    FOREIGN KEY (trackId) REFERENCES Track (trackId) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS InvoiceLine;
@@ -145,8 +167,8 @@ CREATE TABLE Playlist
 (
     PlaylistId INT NOT NULL,
     Name VARCHAR(120),
-    last_modified_by DEFAULT NULL,
-    deleted_by DEFAULT NULL,
+    last_modified_by VARCHAR(50) DEFAULT NULL,
+    deleted_by VARCHAR(50) DEFAULT NULL,
     CONSTRAINT PK_Playlist PRIMARY KEY (PlaylistId)
 );
 
@@ -159,17 +181,7 @@ CREATE TABLE PlaylistTrack
     FOREIGN KEY (PlaylistId) REFERENCES Playlist (PlaylistId) ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY (TrackId) REFERENCES Track (TrackId) ON DELETE CASCADE ON UPDATE NO ACTION
 );
-DROP TABLE IF EXISTS user_client;
-CREATE TABLE user_client
-(  
-    clientid INT NOT NULL ,
-    username VARCHAR(40) NOT NULL UNIQUE,
-    password VARCHAR(40) NOT NULL ,
-    usertype INT DEFAULT 2,
-    suscripcion VARCHAR(40) DEFAULT 'Anual',
-    CONSTRAINT PK_user_client PRIMARY KEY(clientid),
-    FOREIGN KEY (clientid) REFERENCES Customer (CustomerId)  ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+
 
 
 
@@ -4438,6 +4450,68 @@ INSERT INTO Customer (CustomerId, FirstName, LastName, Address, City, Country, P
 INSERT INTO Customer (CustomerId, FirstName, LastName, Address, City, Country, Phone, Email, SupportRepId) VALUES (57,'Luis','Rojas','Calle Lira, 198','Santiago','Chile','+56 (0)2 635 4444','luisrojas@yahoo.cl', 5);
 INSERT INTO Customer (CustomerId, FirstName, LastName, Address, City, Country, PostalCode, Phone, Email, SupportRepId) VALUES (58,'Manoj','Pareek','12,Community Centre','Delhi','India','110017','+91 0124 39883988','manoj.pareek@rediff.com', 3);
 INSERT INTO Customer (CustomerId, FirstName, LastName, Address, City, Country, PostalCode, Phone, Email, SupportRepId) VALUES (59,'Puja','Srivastava','3,Raj Bhavan Road','Bangalore','India','560001','+91 080 22289999','puja_srivastava@yahoo.in', 3);
+
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (1, 'luisg95', 'contrasena', 0);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (2, 'tst0', 'contrasena', 0);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (3, 'tst1', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (4, 'tst2', 'contrasena', 1);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (5, 'tst3', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (6, 'tst4', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (7, 'tst5', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (8, 'tst6', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (9, 'tst7', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (10, 'tst8', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (11, 'tst9', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (12, 'tst10', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (13, 'tst11', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (14, 'tst12', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (15, 'tst13', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (16, 'tst14', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (17, 'tst15', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (18, 'tst16', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (19, 'tst17', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (20, 'tst18', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (21, 'tst19', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (22, 'tst20', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (23, 'tst21', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (24, 'tst22', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (25, 'tst23', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (26, 'tst24', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (27, 'tst25', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (28, 'tst26', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (29, 'tst27', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (30, 'tst28', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (31, 'tst29', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (32, 'tst30', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (33, 'tst31', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (34, 'tst32', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (35, 'tst33', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (36, 'tst34', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (37, 'tst35', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (38, 'tst36', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (39, 'tst37', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (40, 'tst38', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (41, 'tst39', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (42, 'tst40', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (43, 'tst41', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (44, 'tst42', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (45, 'tst43', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (46, 'tst44', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (47, 'tst45', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (48, 'tst46', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (49, 'tst47', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (50, 'tst48', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (51, 'tst49', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (52, 'tst50', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (53, 'tst51', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (54, 'tst52', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (55, 'tst53', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (56, 'tst54', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (57, 'tst55', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (58, 'tst56', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (59, 'tst57', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (60, 'tst58', 'contrasena', 2);
+INSERT INTO user_client (clientid, username, password, usertype) VALUES (61, 'tst59', 'contrasena', 2);
 
 INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingCountry, BillingPostalCode, Total) VALUES (1, 2, '2009/1/1','Theodor-Heuss-Straße 34','Stuttgart','Germany','70174', 1.98);
 INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingCountry, BillingPostalCode, Total) VALUES (2, 4, '2009/1/2','Ullevålsveien 14','Oslo','Norway','0171', 3.96);
@@ -15828,16 +15902,8 @@ INSERT INTO PlaylistTrack (PlaylistId, TrackId) VALUES (17, 2096);
 INSERT INTO PlaylistTrack (PlaylistId, TrackId) VALUES (17, 3290);
 INSERT INTO PlaylistTrack (PlaylistId, TrackId) VALUES (18, 597);
 
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (1, 'luisg95', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (2, 'tst0', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (3, 'tst1', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (4, 'tst2', 'contrasena', 1);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (5, 'tst3', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (6, 'tst4', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (7, 'tst5', 'contrasena', 2);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (8, 'tst6', 'contrasena', 0);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (9, 'tst7', 'contrasena', 2);
-INSERT INTO user_client (clientid, username, password, usertype) VALUES (10, 'tst8', 'contrasena', 0);
+
+
 
 /*******************************************************************************
    Logbook related Stuff
@@ -15849,7 +15915,7 @@ CREATE TABLE logbook(
 	tableModified VARCHAR(40),
 	itemModified INT,
 	dateModified DATE DEFAULT CURRENT_DATE
-)
+);
 
 CREATE OR REPLACE FUNCTION save_modification()
 RETURNS trigger as 
