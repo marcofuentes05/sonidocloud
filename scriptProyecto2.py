@@ -3,11 +3,11 @@ import psycopg2 as bd
 from pymongo import MongoClient
 import pprint
 
-host = 'localhost'
-dbname = 'postgres'
-user = 'administrador'
-password = 'gamecube'
-port = '5430'
+host = '127.0.0.1'
+dbname = 'proyectoFinal'
+user = 'postgres'
+password = '59809690'
+port = '5432'
 
 
 client = MongoClient()

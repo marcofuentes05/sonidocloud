@@ -386,9 +386,9 @@ class Ui_HomeAdmin(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def openMiMusica(self):
+    def openMiMusica(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_MiMusica()
+        self.ui = Ui_MiMusica(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 

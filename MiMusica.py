@@ -14,8 +14,17 @@ from PyQt5.uic import loadUi
 #import pgdb as bd
 from config import config
 
+#for playing music
+import urllib.request
+import urllib.parse
+import re
+import webbrowser
 
 class Ui_MiMusica(object):
+    def __init__(self, id):
+        super(Ui_MiMusica, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -71,18 +80,54 @@ class Ui_MiMusica(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        #for music playing
+        self.tableWidget.itemDoubleClicked.connect(self.playMusicOnClick)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
         self.label_8.setText(_translate("MainWindow", "Mi Música"))
+        self.populateTable()
+
+    def populateTable(self):
+        #clear the table
+        self.tableWidget.setRowCount(0)
+        userId = self.id
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = """  SELECT t.name, t.composer, t.milliseconds/(1000*60) as duration 
+                            FROM invoice i 
+                            INNER JOIN invoiceline il on il.invoiceid = i.invoiceid 
+                            INNER JOIN user_client u on u.clientid = i.customerid
+                            INNER JOIN track t on t.trackid = il.trackid WHERE u.clientid = %(id)s """
+        query_data = {
+            'id': userId
+        }
+        cursor.execute(query, query_data)
+        record = cursor.fetchall()
+        if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    print(i,j)
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+    
+    def playMusicOnClick(self, item):
+        query_string = urllib.parse.urlencode({"search_query" : item.data(0)})
+        html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
+        search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
+        url ="http://www.youtube.com/watch?v=" + search_results[0]
+        webbrowser.open(url)
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MiMusica = QtWidgets.QMainWindow()
-    ui = Ui_MiMusica()
+    ui = Ui_MiMusica(id)
     ui.setupUi(MiMusica)
     MiMusica.show()
     sys.exit(app.exec_())
