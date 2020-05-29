@@ -16,6 +16,10 @@ from config import config
 #import pgdb as bd
 
 class Ui_HomeUser(object):
+    def __init__(self, id=0):
+        super(Ui_HomeUser, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -213,9 +217,9 @@ class Ui_HomeUser(object):
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
-    def openTienda(self):
+    def openTienda(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_Tienda()
+        self.ui = Ui_Tienda(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 

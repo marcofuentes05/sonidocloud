@@ -25,6 +25,11 @@ from config import config
 
 
 class Ui_HomeAdmin(object):
+
+    def __init__(self, id=0):
+        super(Ui_HomeAdmin, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -345,9 +350,9 @@ class Ui_HomeAdmin(object):
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
-    def openTienda(self):
+    def openTienda(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_Tienda()
+        self.ui = Ui_Tienda(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 
@@ -387,6 +392,7 @@ class Ui_HomeAdmin(object):
         self.tableWidget.setRowCount(0)
         if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
             print('Bien')
+            print(self.id)
             conn = None
             params =config()
             conn = bd.connect(**params)

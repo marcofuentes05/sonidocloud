@@ -149,9 +149,9 @@ class Ui_LoginAccount(object):
         y = msgGood.exec_()
 
 
-    def openHomeAdmin(self):
+    def openHomeAdmin(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeAdmin()
+        self.ui = Ui_HomeAdmin(id)
         self.ui.setupUi(self.window)
         LoginAccount.hide()
         self.window.show()
@@ -171,9 +171,9 @@ class Ui_LoginAccount(object):
         LoginAccount.hide()
         self.window.show()
 
-    def openHomeUser(self):
+    def openHomeUser(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeUser()
+        self.ui = Ui_HomeUser(id)
         self.ui.setupUi(self.window)
         LoginAccount.hide()
         self.window.show()
@@ -200,11 +200,11 @@ class Ui_LoginAccount(object):
                 print(record)
                 if(len(record) != 0):
                         if (record[0][2] == 0):
-                                self.openHomeAdmin()
+                                self.openHomeAdmin(record[0][3])
                         elif (record[0][2] == 1 ):
                                 self.openHomeUserAuto(record[0][3])
                         else:
-                                self.openHomeUser()
+                                self.openHomeUser(record[0][3])
                 else:
                         print("error in loging")
                         self.openPopUpError("Usuario o contraseña incorrecto")

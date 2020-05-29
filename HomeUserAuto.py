@@ -225,9 +225,9 @@ class Ui_HomeUserAuto(object):
         y = msgGood.exec_()
 
 
-    def openTienda(self):
+    def openTienda(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_Tienda()
+        self.ui = Ui_Tienda(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 
