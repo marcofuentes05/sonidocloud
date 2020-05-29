@@ -16,6 +16,10 @@ from config import config
 
 
 class Ui_Tienda(object):
+    def __init__(self, id):
+        super(Ui_Tienda, self).__init__()
+        self.id = id
+    
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -80,6 +84,7 @@ class Ui_Tienda(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Buscar.setObjectName("pushButton_Buscar")
+        self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.pushButton_AgregaCarrito = QtWidgets.QPushButton(self.frame)
         self.pushButton_AgregaCarrito.setGeometry(QtCore.QRect(720, 490, 150, 31))
         self.pushButton_AgregaCarrito.setMinimumSize(QtCore.QSize(150, 31))
@@ -134,6 +139,7 @@ class Ui_Tienda(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.pushButton_Buscar.setText(_translate("MainWindow", "Buscar"))
         self.pushButton_AgregaCarrito.setText(_translate("MainWindow", "Añadir a Carrito"))
+        self.pushButton_AgregaCarrito.clicked.connect(self.addCarrito)
         self.pushButton_VerCarrito.setText(_translate("MainWindow", "Ver Carrito"))
         self.label_8.setText(_translate("MainWindow", "Tienda"))
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
@@ -142,12 +148,112 @@ class Ui_Tienda(object):
         self.comboBox_OpcionesBuscar.setItemText(3, _translate("MainWindow", "Álbum"))
         self.comboBox_OpcionesBuscar.setItemText(4, _translate("MainWindow", "Canción"))
 
-    
-    def openCarrito(self):
+    def openPopUpError(self, mensaje):
+        msgError = QMessageBox()
+        msgError.setText(mensaje)
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
+
+    def openCarrito(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_Carrito()
+        self.ui = Ui_Carrito(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
+
+    def populateTable(self):
+        #clear the table
+        self.tableWidget.setRowCount(0)
+        if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
+            print('Bien')
+            print(self.id)
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
+                query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                print(record)
+                if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            print(i,j)
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+
+
+            elif(self.comboBox_OpcionesBuscar.currentText() == 'Género'):
+                query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+
+            elif(self.comboBox_OpcionesBuscar.currentText() == 'Álbum'):
+                query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+
+            elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
+                query = "SELECT track.name FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
+                cursor.execute(query)
+                record = cursor.fetchall()
+                if(len(record)!= 0):
+                    self.tableWidget.setColumnCount(len(record[0]))
+                    for i in range(len(record)):
+                        self.tableWidget.insertRow(i)
+                        for j in range(len(record[0])):
+                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+        else:
+            print('Mal')
+
+    def addCarrito(self):
+        if(self.tableWidget.item(self.tableWidget.currentRow(),0)):
+            userId = self.id
+            originalName = self.tableWidget.item(self.tableWidget.currentRow(),0).text()
+            try:
+                params = config()
+                conn = bd.connect(**params)
+                cursor=conn.cursor()
+                
+                index = originalName.find("'")
+                if(index > -1):
+                    trackName = originalName[:index] + "'" + originalName[index:]
+                else:
+                    trackName=originalName
+
+                cursor.execute("SELECT track.trackid, track.name FROM track WHERE track.name = \'"+str(trackName)+"\' and track.name NOT IN ( SELECT DISTINCT track.name FROM user_client JOIN invoice ON invoice.customerid = user_client.clientid JOIN invoiceline ON invoiceline.invoiceid = invoice.invoiceid JOIN track ON track.trackid = invoiceline.trackid WHERE user_client.clientid = \'"+str(userId)+"\')")
+                record = cursor.fetchall()
+                print(record)
+                if(len(record)>0):
+                    cursor.execute("SELECT trackid FROM track WHERE name = \'"+trackName+"\'")
+                    trackId = cursor.fetchall()[0][0]
+                    query= "INSERT INTO carrito(clientid, trackid,trackname, comprado) VALUES (%s,%s,%s,%s)"
+                    datos = (userId,trackId,originalName,False)
+                    cursor.execute(query,datos)
+                    conn.commit()
+                    self.openPopUpError("Se agregó la cancion a su carrito")
+                else:
+                    self.openPopUpError('Ya compró esta canción')
+                    
+            except(Exception) as error:
+                print('Error:', error)
+                self.openPopUpError('Ya agregó esta canción a su carrito')
+        else:
+            self.openPopUpError("No ha seleccionado ninguna canción")
+            
 
 
 
