@@ -21,6 +21,7 @@ from Mongo import Ui_Mongo
 from HomeAdminReporteria import Ui_HomeAdminReporteria
 from HomeUserRegistrar import Ui_HomeUserRegistrar
 from HomeAdminGestionPermisos import Ui_HomeAdminGestionPermisos
+from MiMusica import Ui_MiMusica
 from queries import *
 from config import config
 
@@ -262,6 +263,14 @@ class Ui_HomeAdmin(object):
 "color: rgb(255, 255, 255);")
         self.pushButton_Mongo.setObjectName("pushButton_Mongo")
         self.pushButton_Tienda.setObjectName("pushButton_Tienda")
+        self.pushButton_MiMusica = QtWidgets.QPushButton(self.frame)
+        self.pushButton_MiMusica.setGeometry(QtCore.QRect(378, 50, 114, 32))
+        self.pushButton_MiMusica.setMinimumSize(QtCore.QSize(114, 32))
+        self.pushButton_MiMusica.setMaximumSize(QtCore.QSize(114, 32))
+        self.pushButton_MiMusica.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_MiMusica.setObjectName("pushButton_Mongo")
         self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -283,6 +292,8 @@ class Ui_HomeAdmin(object):
         self.pushButton_Mongo.raise_()
         self.pushButton_Tienda.clicked.connect(self.openTienda)
         self.pushButton_Mongo.clicked.connect(self.openMongo)
+        self.pushButton_MiMusica.raise_()
+        self.pushButton_MiMusica.clicked.connect(self.openMiMusica)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -349,6 +360,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.pushButton_Tienda.setText(_translate("MainWindow", "Tienda"))
         self.pushButton_Mongo.setText(_translate("MainWindow", "Mongo"))
+        self.pushButton_MiMusica.setText(_translate("MainWindow", "Mi Música"))
 
     def openPopUpError(self, mensaje):
         msgError = QMessageBox()
@@ -374,6 +386,12 @@ class Ui_HomeAdmin(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
+    def openMiMusica(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_MiMusica()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def openHomeAdminReporteria(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_HomeAdminReporteria()
@@ -385,7 +403,6 @@ class Ui_HomeAdmin(object):
         self.ui = Ui_HomeUserInactivarEliminar()
         self.ui.setupUi(self.window)
         self.window.show()
-
 
     def openHomeUserModificar(self):
         self.window = QtWidgets.QMainWindow()
