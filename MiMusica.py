@@ -98,7 +98,7 @@ class Ui_MiMusica(object):
         params =config()
         conn = bd.connect(**params)
         cursor = conn.cursor()
-        query = """  SELECT t.name, t.composer, t.milliseconds/(1000*60) as duration 
+        query = """  SELECT t.name, t.composer
                             FROM invoice i 
                             INNER JOIN invoiceline il on il.invoiceid = i.invoiceid 
                             INNER JOIN user_client u on u.clientid = i.customerid
@@ -113,7 +113,6 @@ class Ui_MiMusica(object):
             for i in range(len(record)):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
-                    print(i,j)
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
     
     def playMusicOnClick(self, item):
@@ -122,6 +121,18 @@ class Ui_MiMusica(object):
         search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
         url ="http://www.youtube.com/watch?v=" + search_results[0]
         webbrowser.open(url)
+        userId = self.id
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = """  INSERT INTO reproducciones VALUES( %(id)s, %(track)s) """
+        query_data = {
+            'id': userId,
+            'track': item.data(0)
+        }
+        cursor.execute(query, query_data)
+        conn.commit()
 
 
 if __name__ == "__main__":
