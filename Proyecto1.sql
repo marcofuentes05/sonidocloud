@@ -15922,6 +15922,34 @@ CREATE TABLE logbook(
 	dateModified DATE DEFAULT CURRENT_DATE
 );
 
+INSERT INTO logbook (username, typeOfModification, tableModified, itemModified, dateModified)
+VALUES 
+    ('luisg95', 'ADD' , 'track' , 1 , '2020/5/1' ),
+    ('luisg95', 'ADD' , 'track' , 2 , '2020/5/2' ),
+    ('luisg95', 'ADD' , 'track' , 3 , '2020/5/3' ),
+    ('luisg95', 'ADD' , 'track' , 4 , '2020/5/4' ),
+    ('luisg95', 'ADD' , 'track' , 5 , '2020/5/5' ),
+    ('luisg95', 'ADD' , 'track' , 6 , '2020/5/6' ),
+    ('luisg95', 'ADD' , 'track' , 7 , '2020/5/7' ),
+    ('luisg95', 'ADD' , 'track' , 8 , '2020/5/8' ),
+    ('luisg95', 'ADD' , 'track' , 9 , '2020/5/9' ),
+    ('luisg95', 'ADD' , 'track' , 10 , '2020/5/10' ),
+    ('luisg95', 'ADD' , 'track' , 11 , '2020/5/11' ),
+    ('luisg95', 'ADD' , 'track' , 12 , '2020/5/12' ),
+    ('luisg95', 'ADD' , 'track' , 13 , '2020/5/13' ),
+    ('luisg95', 'ADD' , 'track' , 14 , '2020/5/14' ),
+    ('luisg95', 'ADD' , 'track' , 15 , '2020/5/15' ),
+    ('luisg95', 'ADD' , 'track' , 16 , '2020/5/16' ),
+    ('luisg95', 'ADD' , 'track' , 17 , '2020/5/17' ),
+    ('luisg95', 'ADD' , 'track' , 18 , '2020/5/18' ),
+    ('luisg95', 'ADD' , 'track' , 19 , '2020/5/19' ),
+    ('luisg95', 'ADD' , 'track' , 20 , '2020/5/20' ),
+    ('luisg95', 'ADD' , 'track' , 3350 , '2020/5/21' ),
+    ('luisg95', 'ADD' , 'track' , 3142 , '2020/5/22' ),
+    ('luisg95', 'ADD' , 'track' , 2814 , '2020/5/22' ),
+    ('luisg95', 'ADD' , 'track' , 2586 , '2020/5/21' ),
+    ('luisg95', 'ADD' , 'track' , 2586 , '2020/5/21' );
+
 CREATE OR REPLACE FUNCTION save_modification()
 RETURNS trigger as 
 $BODY$
