@@ -348,7 +348,7 @@ class Ui_HomeAdmin(object):
         # self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminación"))
         # self.pushButton_Op1.setText(_translate("MainWindow", "Reporte"))
         # self.pushButton_Op1.clicked.connect(self.report)
-        self.pushButton_Reporteria.setText(_translate("MainWindow", "Reporteria"))
+        self.pushButton_Reporteria.setText(_translate("MainWindow", "Reportería"))
         self.pushButton_Reporteria.clicked.connect(self.openHomeAdminReporteria)
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "¿Qué deseas buscar?"))
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "Artista"))

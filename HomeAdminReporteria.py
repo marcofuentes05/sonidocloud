@@ -8,6 +8,8 @@
 import sys
 import psycopg2 as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
+from config import config
+from queries import *
 
 
 class Ui_HomeAdminReporteria(object):
@@ -117,6 +119,7 @@ class Ui_HomeAdminReporteria(object):
         self.calendarWidget_Final.setMinimumSize(QtCore.QSize(310, 171))
         self.calendarWidget_Final.setMaximumSize(QtCore.QSize(310, 171))
         self.calendarWidget_Final.setObjectName("calendarWidget_Final")
+        # print(self.calendarWidget_Final.clicked[QDate].connect(self.showDate))
         self.calendarWidget_Inicial = QtWidgets.QCalendarWidget(self.frame)
         self.calendarWidget_Inicial.setGeometry(QtCore.QRect(570, 130, 310, 171))
         self.calendarWidget_Inicial.setMinimumSize(QtCore.QSize(310, 171))
@@ -234,8 +237,7 @@ class Ui_HomeAdminReporteria(object):
         self.comboBox_OpcionesBuscarFecha.setItemText(2, _translate("MainWindow", "2. Los N artistas con las mayores ventas por fechas"))
         self.comboBox_OpcionesBuscarFecha.setItemText(3, _translate("MainWindow", "3. Total de ventas por género"))
         self.comboBox_OpcionesBuscarFecha.setItemText(4, _translate("MainWindow", "4. Las N canciones con más reproducciones para un artista"))
-        self.pushButton_Reportar.setText(_translate("MainWindow", "Reportar"))
-        self.pushButton_Reportar.clicked.connect(self.report)
+        self.pushButton_ReportarPorFecha.setText(_translate("MainWindow", "Reportar"))
         self.label_9.setText(_translate("MainWindow", "Ingrese artista"))
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "Reportería"))
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "1. Los 5 artistas con más álbumes publicados"))
@@ -246,7 +248,8 @@ class Ui_HomeAdminReporteria(object):
         self.comboBox_OpcionesBuscar.setItemText(6, _translate("MainWindow", "6. Promedio de duración de canciones por género"))
         self.comboBox_OpcionesBuscar.setItemText(7, _translate("MainWindow", "7. Cantidad de artistas diferentes por playlist"))
         self.comboBox_OpcionesBuscar.setItemText(8, _translate("MainWindow", "8. Los 5 artistas con más diversidad de géneros"))
-        self.pushButton_ReportarPorFecha.setText(_translate("MainWindow", "Reportar"))
+        self.pushButton_Reportar.setText(_translate("MainWindow", "Reportar"))
+        self.pushButton_Reportar.clicked.connect(self.reportReporteria)
         self.label_10.setText(_translate("MainWindow", "Reportería"))
         self.label_11.setText(_translate("MainWindow", "Escoja fecha inicial"))
         self.label_12.setText(_translate("MainWindow", "Escoja fecha final"))
@@ -264,16 +267,15 @@ class Ui_HomeAdminReporteria(object):
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
-    def populateTable(self):
-        #clear the table
+    def populateTableReporteriaFechaOpcion1(self):
         self.tableWidget.setRowCount(0)
-        if(self.textEdit_UserBuscar.toPlainText()!='' and self.comboBox_OpcionesBuscar.currentText() != '¿Qué deseas buscar?' ):
-            print('Bien')
-            conn = None
-            params =config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            if(self.comboBox_OpcionesBuscar.currentText() == 'Artista'):
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = query1()
+        cursor.execute(query)
+        if(self.comboBox_OpcionesBuscar.currentText() == '1. Total de ventas por semana'):
                 query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
                 cursor.execute(query)
                 record = cursor.fetchall()
@@ -286,59 +288,7 @@ class Ui_HomeAdminReporteria(object):
                             print(i,j)
                             self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
 
-
-            elif(self.comboBox_OpcionesBuscar.currentText() == 'Género'):
-                query = "SELECT track.name, genre.name FROM track INNER JOIN genre ON track.genreid = genre.genreid WHERE genre.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                if(len(record)!= 0):
-                    self.tableWidget.setColumnCount(len(record[0]))
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
-
-            elif(self.comboBox_OpcionesBuscar.currentText() == 'Álbum'):
-                query = "SELECT track.name FROM track INNER JOIN album ON track.albumid = album.albumid WHERE album.title ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                if(len(record)!= 0):
-                    self.tableWidget.setColumnCount(len(record[0]))
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
-
-            elif(self.comboBox_OpcionesBuscar.currentText() == 'Canción'):
-                query = "SELECT * FROM track  WHERE name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                if(len(record)!= 0):
-                    self.tableWidget.setColumnCount(len(record[0]))
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-        else:
-            print('Mal')
-
-    def populateTableOpcion1(self):
-        self.tableWidget.setRowCount(0)
-        conn = None
-        params =config()
-        conn = bd.connect(**params)
-        cursor = conn.cursor()
-        query = query1()
-        cursor.execute(query)
-        record = cursor.fetchall()
-        if(len(record)!= 0):
-            self.tableWidget.setColumnCount(len(record[0]))
-            for i in range(len(record)):
-                self.tableWidget.insertRow(i)
-                for j in range(len(record[0])):
-                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-
-    def populateTableOpcion2(self):
+    def populateTableReporteriaFechaOpcion2(self):
         self.tableWidget.setRowCount(0)
         conn = None
         params =config()
@@ -354,7 +304,7 @@ class Ui_HomeAdminReporteria(object):
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
-    def populateTableOpcion3(self):
+    def populateTableReporteriaFechaOpcion3(self):
         self.tableWidget.setRowCount(0)
         conn = None
         params =config()
@@ -370,7 +320,7 @@ class Ui_HomeAdminReporteria(object):
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
-    def populateTableOpcion4(self):
+    def populateTableReporteriaFechaOpcion4(self):
         self.tableWidget.setRowCount(0)
         conn = None
         params =config()
@@ -386,7 +336,91 @@ class Ui_HomeAdminReporteria(object):
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
 
-    def populateTableOpcion5(self):
+    def populateTableReporteriaOpcion1(self):
+        self.tableWidget.setRowCount(0)
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = query1()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion1.csv', 'w') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Artista', 'No. Albumés publicados'])
+                for row in record:
+                    thewriter.writerow(row)
+
+    def populateTableReporteriaOpcion2(self):
+        self.tableWidget.setRowCount(0)
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = query2()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion2.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Genero', 'No. Canciones'])
+                for row in record:
+                    thewriter.writerow(row)
+
+    def populateTableReporteriaOpcion3(self):
+        self.tableWidget.setRowCount(0)
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = query3()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion3.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Playlist', 'Duración (milisegundos)'])
+                for row in record:
+                    thewriter.writerow(row)
+
+    def populateTableReporteriaOpcion4(self):
+        self.tableWidget.setRowCount(0)
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = query4()
+        cursor.execute(query)
+        record = cursor.fetchall()
+        if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion4.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Canción','Artista', 'Duración (milisegundos)'])
+                for row in record:
+                    thewriter.writerow(row)
+
+    def populateTableReporteriaOpcion5(self):
         self.tableWidget.setRowCount(0)
         conn = None
         params =config()
@@ -401,8 +435,13 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion5.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Nombre', 'No. Canciones Subidas'])
+                for row in record:
+                    thewriter.writerow(row)
 
-    def populateTableOpcion6(self):
+    def populateTableReporteriaOpcion6(self):
         self.tableWidget.setRowCount(0)
         conn = None
         params =config()
@@ -417,8 +456,13 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion6.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Canción', 'Promedio de duración (milisegundos)'])
+                for row in record:
+                    thewriter.writerow(row)
 
-    def populateTableOpcion7(self):
+    def populateTableReporteriaOpcion7(self):
         self.tableWidget.setRowCount(0)
         conn = None
         params =config()
@@ -433,8 +477,13 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion7.csv', 'w', newline='') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Playlist', 'No. Artistas diferentes'])
+                for row in record:
+                    thewriter.writerow(row)
 
-    def populateTableOpcion8(self):
+    def populateTableReporteriaOpcion8(self):
         self.tableWidget.setRowCount(0)
         conn = None
         params =config()
@@ -449,35 +498,49 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+            with open('Opcion8.csv', 'w') as f:
+                thewriter = csv.writer(f, delimiter=',')
+                thewriter.writerow(['Artista', 'No. Generos'])
+                for row in record:
+                    thewriter.writerow(row)
 
 
-    def report(self):
+    def reportReporteria(self):
         if(self.comboBox_OpcionesBuscar.currentText()=="Reportería"):
             print("Eliga una opcion")
         elif(self.comboBox_OpcionesBuscar.currentText()=="1. Los 5 artistas con más álbumes publicados"):
-            self.populateTableOpcion1()
+            self.populateTableReporteriaOpcion1()
         elif(self.comboBox_OpcionesBuscar.currentText()=="2. Los 5 géneros con más canciones"):
-            self.populateTableOpcion2()
+            self.populateTableReporteriaOpcion2()
         elif(self.comboBox_OpcionesBuscar.currentText()=="3. Total de duración de cada playlist"):
-            self.populateTableOpcion3()
+            self.populateTableReporteriaOpcion3()
         elif(self.comboBox_OpcionesBuscar.currentText()=="4. Las 5 canciones de mayor duración con información del artista"):
-            self.populateTableOpcion4()
+            self.populateTableReporteriaOpcion4()
         elif(self.comboBox_OpcionesBuscar.currentText()=="5. Los 5 usuarios que han registrado más canciones"):
-            self.populateTableOpcion5()
+            self.populateTableReporteriaOpcion5()
         elif(self.comboBox_OpcionesBuscar.currentText()=="6. Promedio de duración de canciones por género"):
-            self.populateTableOpcion6()
+            self.populateTableReporteriaOpcion6()
         elif(self.comboBox_OpcionesBuscar.currentText()=="7. Cantidad de artistas diferentes por playlist"):
-            self.populateTableOpcion7()
+            self.populateTableReporteriaOpcion7()
         elif(self.comboBox_OpcionesBuscar.currentText()=="8. Los 5 artistas con más diversidad de géneros"):
-            self.populateTableOpcion8()
-
+            self.populateTableReporteriaOpcion8()
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    HomeAdmin = QtWidgets.QMainWindow()
-    ui = Ui_HomeAdmin()
-    ui.setupUi(HomeAdmin)
-    HomeAdmin.show()
+    HomeAdminReporteria = QtWidgets.QMainWindow()
+    ui = Ui_HomeAdminReporteria()
+    ui.setupUi(HomeAdminReporteria)
+    HomeAdminReporteria.show()
     sys.exit(app.exec_())
+
+# Query 1 Reporteria Fecha
+# select count(invoiceid) as ventas_por_semana, invoicedate 
+# from invoice
+# where invoicedate > '2009-01-01 00:00:00' and invoicedate < '2009-02-28 00:00:00' 
+# group by date_trunc('month', invoicedate), invoicedate 
+# ORDER BY date_trunc('month', invoicedate) asc
+
+
+
 

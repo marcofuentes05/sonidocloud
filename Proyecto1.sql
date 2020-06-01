@@ -1,14 +1,19 @@
 ﻿/*******************************************************************************
    Create Tables
 ********************************************************************************/
-DROP TABLE IF EXISTS Artist;
-DROP TABLE IF EXISTS Album;
-DROP TABLE IF EXISTS Employee;
-DROP TABLE IF EXISTS Customer;
-DROP TABLE IF EXISTS Genre;
-
-
-
+DROP TABLE IF EXISTS Artist CASCADE;
+DROP TABLE IF EXISTS Album CASCADE;
+DROP TABLE IF EXISTS Employee CASCADE;
+DROP TABLE IF EXISTS Customer CASCADE;
+DROP TABLE IF EXISTS Genre CASCADE;
+DROP TABLE IF EXISTS user_client CASCADE;
+DROP TABLE IF EXISTS Invoice CASCADE;
+DROP TABLE IF EXISTS MediaType CASCADE;
+DROP TABLE IF EXISTS Track CASCADE;
+DROP TABLE IF EXISTS Carrito CASCADE;
+DROP TABLE IF EXISTS InvoiceLine CASCADE;
+DROP TABLE IF EXISTS Playlist CASCADE;
+DROP TABLE IF EXISTS PlaylistTrack CASCADE;
 
 
 CREATE TABLE Artist
@@ -75,7 +80,7 @@ CREATE TABLE Customer
     FOREIGN KEY (SupportRepId) REFERENCES Employee (EmployeeId) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-DROP TABLE IF EXISTS user_client;
+
 CREATE TABLE user_client
 (  
     clientid INT NOT NULL ,
@@ -95,7 +100,7 @@ CREATE TABLE Genre
     CONSTRAINT PK_Genre PRIMARY KEY (GenreId)
 );
 
-DROP TABLE IF EXISTS Invoice;
+
 CREATE TABLE Invoice
 (
     InvoiceId INT NOT NULL,
@@ -111,7 +116,7 @@ CREATE TABLE Invoice
     FOREIGN KEY (CustomerId) REFERENCES user_client (clientid) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-DROP TABLE IF EXISTS MediaType;
+
 CREATE TABLE MediaType
 (
     MediaTypeId INT NOT NULL,
@@ -119,7 +124,7 @@ CREATE TABLE MediaType
     CONSTRAINT PK_MediaType PRIMARY KEY (MediaTypeId)
 );
 
-DROP TABLE IF EXISTS Track;
+
 CREATE TABLE Track
 (
     TrackId INT NOT NULL,
@@ -140,7 +145,7 @@ CREATE TABLE Track
     FOREIGN KEY (MediaTypeId) REFERENCES MediaType (MediaTypeId) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-DROP TABLE IF EXISTS Carrito;
+
 CREATE TABLE Carrito
 (
     clientId INT NOT NULL,
@@ -152,7 +157,7 @@ CREATE TABLE Carrito
     FOREIGN KEY (trackId) REFERENCES Track (trackId) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS InvoiceLine;
+
 CREATE TABLE InvoiceLine
 (
     InvoiceLineId INT NOT NULL,
@@ -165,7 +170,6 @@ CREATE TABLE InvoiceLine
     FOREIGN KEY (TrackId) REFERENCES Track (TrackId) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
-DROP TABLE IF EXISTS Playlist;
 CREATE TABLE Playlist
 (
     PlaylistId INT NOT NULL,
@@ -175,7 +179,37 @@ CREATE TABLE Playlist
     CONSTRAINT PK_Playlist PRIMARY KEY (PlaylistId)
 );
 
-DROP TABLE IF EXISTS PlaylistTrack;
+SELECT artist.name, COUNT(invoice.total) 
+FROM track
+	JOIN album ON track.albumId = album.albumid
+	join artist on album.artistid = artist.artistid 
+	join invoiceline on track.TrackId = invoiceline.TrackId
+	join invoice on invoiceline.invoiceId = invoice.InvoiceId 
+where invoice.invoicedate > '2009-01-01 00:00:00' and invoice.invoicedate < '2009-01-11 00:00:00'
+GROUP BY artist.name 
+ORDER BY COUNT(invoice.total) DESC LIMIT 5
+
+select count(invoiceid), invoicedate 
+from invoice
+where invoicedate > '2009-01-01 00:00:00' and invoicedate < '2009-01-14 00:00:00' 
+group by date_trunc('week', invoicedate), invoicedate 
+
+
+select *
+from invi
+	join invoiceline on track.TrackId = invoiceline.TrackId
+	join invoice on invoiceline.invoiceId = invoice.InvoiceId
+where invoice.invoicedate > '2009-01-01 00:00:00' and invoice.invoicedate < '2009-01-11 00:00:00'
+
+select track.name, invoice.total
+from track
+	join invoiceline on track.TrackId = invoiceline.TrackId
+	join invoice on invoiceline.invoiceId = invoice.InvoiceId
+where invoice.invoicedate > '2009-01-01 00:00:00' and invoice.invoicedate < '2009-01-11 00:00:00'
+group by ('week', inco)
+
+
+
 CREATE TABLE PlaylistTrack
 (
     PlaylistId INT NOT NULL,
