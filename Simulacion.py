@@ -183,7 +183,7 @@ class Ui_Simulacion(object):
                 print(user)
                 total = cantidad*0.99
                 query = "INSERT INTO invoice(invoiceid, customerid, invoicedate, total) VALUES (%s,%s,%s,%s)"
-                datos = (invoiceId, user, datetime.date(datetime.now()), total )
+                datos = (invoiceId, user, fecha, total )
                 cursor.execute(query, datos)
                 print(invoiceId)
                 
