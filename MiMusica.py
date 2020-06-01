@@ -102,9 +102,19 @@ class Ui_MiMusica(object):
                             FROM invoice i 
                             INNER JOIN invoiceline il on il.invoiceid = i.invoiceid 
                             INNER JOIN user_client u on u.clientid = i.customerid
-                            INNER JOIN track t on t.trackid = il.trackid WHERE u.clientid = %(id)s """
+                            INNER JOIN track t on t.trackid = il.trackid WHERE u.clientid = %(id)s 
+                            
+                            UNION
+
+                            SELECT t.name, t.composer
+                            FROM track t 
+                            INNER JOIN album a on a.albumid = t.trackid
+                            INNER JOIN artist at on at.artistid = a.artistid
+                            INNER JOIN user_client c on at.customerid = c.clientid
+                            WHERE c.clientid =%(id2)s"""
         query_data = {
             'id': userId
+            'id2':userId
         }
         cursor.execute(query, query_data)
         record = cursor.fetchall()

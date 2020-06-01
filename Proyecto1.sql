@@ -15933,8 +15933,9 @@ CREATE TABLE logbook(
 	typeOfModification VARCHAR(40),
 	tableModified VARCHAR(40),
 	itemModified INT,
+	newData text,
 	dateModified DATE DEFAULT CURRENT_DATE
-);
+)
 
 INSERT INTO logbook (username, typeOfModification, tableModified, itemModified, dateModified)
 VALUES 
@@ -15970,25 +15971,25 @@ $BODY$
 BEGIN
 	IF(TG_TABLE_NAME ='track' ) THEN
 		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL  ) THEN
-			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.trackid);
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.trackid,CAST(NEW.* AS text));
 		ELSIF(TG_OP = 'DELETE') THEN
 			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.trackid);
 		END IF;
 	ELSIF(TG_TABLE_NAME ='album') THEN
 		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL ) THEN
-			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.albumid);
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.albumid, CAST(NEW.* AS text));
 		ELSIF(TG_OP = 'DELETE') THEN
 			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.albumid);
 		END IF;
 	ELSIF(TG_TABLE_NAME ='artist') THEN
 		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL ) THEN
-			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.artistid);
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.artistid, CAST(NEW.* AS text));
 		ELSIF(TG_OP = 'DELETE') THEN
 			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.artistid);
 		END IF;
 	ELSIF(TG_TABLE_NAME ='playlist') THEN
 		IF(TG_OP != 'DELETE' AND NEW.deleted_by IS NULL ) THEN
-			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.playlistid);
+			INSERT INTO logbook VALUES(NEW.last_modified_by, TG_OP, TG_TABLE_NAME, NEW.playlistid, CAST(NEW.* AS text));
 		ELSIF(TG_OP = 'DELETE') THEN
 			INSERT INTO logbook VALUES(OLD.deleted_by, TG_OP, TG_TABLE_NAME, OLD.playlistid);
 		END IF;
