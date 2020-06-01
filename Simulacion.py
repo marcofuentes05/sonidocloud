@@ -9,6 +9,11 @@
 import sys
 import psycopg2 as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
+from config import config
+from datetime import datetime
+import random
+from HomeAdminReporteria import Ui_HomeAdminReporteria
+
 
 
 class Ui_Simulacion(object):
@@ -74,6 +79,7 @@ class Ui_Simulacion(object):
         self.calendarWidget = QtWidgets.QCalendarWidget(self.frame)
         self.calendarWidget.setGeometry(QtCore.QRect(559, 110, 312, 173))
         self.calendarWidget.setObjectName("calendarWidget")
+        self.calendarWidget.clicked[QtCore.QDate].connect(lambda arg : self.set_date(arg.toString('yyyy-MM-dd')))
         self.label_7 = QtWidgets.QLabel(self.frame)
         self.label_7.setGeometry(QtCore.QRect(30, 190, 300, 25))
         self.label_7.setMinimumSize(QtCore.QSize(300, 25))
@@ -116,6 +122,85 @@ class Ui_Simulacion(object):
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.pushButton_IrReporteria.setText(_translate("MainWindow", "Reportería"))
+        self.pushButton_Buscar.clicked.connect(self.simular)
+
+    def set_date (self, newDate) : 
+        self.DATE = newDate
+        return self.DATE == newDate
+
+    def openReporteria (self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui= Ui_HomeAdminReporteria
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+
+    def simular(self):
+        print(self.DATE)
+        fecha =self.DATE
+        cantidad = self.textEdit_UserBuscar.toPlainText()
+        try:
+            cantidad = int(cantidad)
+
+            params = config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+
+            cursor.execute("SELECT MAX(trackid) FROM track ")
+            maxCancionId = cursor.fetchall()[0][0]+1
+            cursor.execute("SELECT MAX(clientid) FROM user_client")
+            maxUserId = cursor.fetchall()[0][0]+1
+
+            cursor.execute("SELECT MAX(invoiceid) from invoice")
+            invoiceId = cursor.fetchall()[0][0]+1
+            cursor.execute("SELECT MAX(invoicelineid) FROM invoiceline")
+            invoicelineId = cursor.fetchall()[0][0]+1
+
+            for i in range(cantidad):
+                user = random.randint(1,maxUserId)
+                print(user)
+                query="""SELECT track.trackid, track.name FROM track 
+                                    JOIN invoiceline on invoiceline.trackid = track.trackid
+                                    JOIN invoice on invoice.invoiceid = invoiceline.invoiceid
+                                    JOIN user_client on user_client.clientid = invoice.customerid
+                                    where invoice.customerid = %(id)s"""
+                data= {
+                    'id':user
+                }
+                cursor.execute(query,data)
+                record=cursor.fetchall()
+                for j in range(random.randint(1,cantidad+1)):
+                    cancionKey = random.randint(0,len(record))
+                    cancion = record[cancionKey][1]
+                    print('rep',cancion,user)
+                    query2 = "INSERT INTO reproducciones(clientid, trackname) VALUES (%s,%s)"
+                    datos=(str(user),cancion)
+                    cursor.execute(query2,datos)
+                    conn.commit()
+
+            for i in range(cantidad):
+                user = random.randint(1,maxUserId)
+                print(user)
+                total = cantidad*0.99
+                query = "INSERT INTO invoice(invoiceid, customerid, invoicedate, total) VALUES (%s,%s,%s,%s)"
+                datos = (invoiceId, user, datetime.date(datetime.now()), total )
+                cursor.execute(query, datos)
+                print(invoiceId)
+                
+                for j in range(cantidad):
+                    trackId = random.randint(1,maxCancionId)
+                    query2= "INSERT INTO invoiceline(invoicelineid, invoiceid, trackid, unitprice, quantity) VALUES (%s,%s,%s,%s,%s)"
+                    data = (invoicelineId, invoiceId, trackId, 0.99, 1)
+                    cursor.execute(query2, data)
+                    print('compra',trackId, invoiceId)
+                    invoicelineId +=1
+                invoiceId+=1
+            conn.commit()
+
+
+        except(Exception) as error:
+            print(error)
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

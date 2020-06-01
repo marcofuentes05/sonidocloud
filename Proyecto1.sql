@@ -180,34 +180,6 @@ CREATE TABLE Playlist
     CONSTRAINT PK_Playlist PRIMARY KEY (PlaylistId)
 );
 
-SELECT artist.name, COUNT(invoice.total) 
-FROM track
-	JOIN album ON track.albumId = album.albumid
-	join artist on album.artistid = artist.artistid 
-	join invoiceline on track.TrackId = invoiceline.TrackId
-	join invoice on invoiceline.invoiceId = invoice.InvoiceId 
-where invoice.invoicedate > '2009-01-01 00:00:00' and invoice.invoicedate < '2009-01-11 00:00:00'
-GROUP BY artist.name 
-ORDER BY COUNT(invoice.total) DESC LIMIT 5
-
-select count(invoiceid), invoicedate 
-from invoice
-where invoicedate > '2009-01-01 00:00:00' and invoicedate < '2009-01-14 00:00:00' 
-group by date_trunc('week', invoicedate), invoicedate 
-
-
-select *
-from invi
-	join invoiceline on track.TrackId = invoiceline.TrackId
-	join invoice on invoiceline.invoiceId = invoice.InvoiceId
-where invoice.invoicedate > '2009-01-01 00:00:00' and invoice.invoicedate < '2009-01-11 00:00:00'
-
-select track.name, invoice.total
-from track
-	join invoiceline on track.TrackId = invoiceline.TrackId
-	join invoice on invoiceline.invoiceId = invoice.InvoiceId
-where invoice.invoicedate > '2009-01-01 00:00:00' and invoice.invoicedate < '2009-01-11 00:00:00'
-group by ('week', inco)
 
 
 
@@ -224,7 +196,7 @@ CREATE TABLE reproducciones
 (
     clientid INT,
     trackName VARCHAR (200),
-    FOREIGN KEY (clientid) REFERENCES  user_client (clientid) ON DELETE CASCADE,
+    FOREIGN KEY (clientid) REFERENCES  user_client (clientid) ON DELETE CASCADE
 );
 
 
