@@ -23,6 +23,7 @@ from HomeUserRegistrar import Ui_HomeUserRegistrar
 from HomeAdminGestionPermisos import Ui_HomeAdminGestionPermisos
 from Simulacion import Ui_Simulacion
 from MiMusica import Ui_MiMusica
+from Bitacora import Ui_Bitacora
 from queries import *
 from config import config
 
@@ -280,6 +281,14 @@ class Ui_HomeAdmin(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_Simulacion.setObjectName("pushButton_Simulacion")
+        self.pushButton_Bitacora = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Bitacora.setGeometry(QtCore.QRect(250, 140, 100, 30))
+        self.pushButton_Bitacora.setMinimumSize(QtCore.QSize(100, 30))
+        self.pushButton_Bitacora.setMaximumSize(QtCore.QSize(75, 30))
+        self.pushButton_Bitacora.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_Bitacora.setObjectName("pushButton_Bitacora")
         self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -304,6 +313,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_MiMusica.raise_()
         self.pushButton_MiMusica.clicked.connect(self.openMiMusica)
         self.pushButton_Simulacion.raise_()
+        self.pushButton_Bitacora.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -373,6 +383,8 @@ class Ui_HomeAdmin(object):
         self.pushButton_Simulacion.setText(_translate("MainWindow", "Simulación"))
         self.pushButton_Simulacion.clicked.connect(self.openSimulacion)
         self.pushButton_MiMusica.setText(_translate("MainWindow", "Mi Música"))
+        self.pushButton_Bitacora.setText(_translate("MainWindow", "Bitácora"))
+        self.pushButton_Bitacora.clicked.connect(self.openBitacora)
 
     def openPopUpError(self, mensaje):
         msgError = QMessageBox()
@@ -389,6 +401,12 @@ class Ui_HomeAdmin(object):
     def openTienda(self, id):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_Tienda(self.id)
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def openBitacora(self, id):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_Bitacora(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 
