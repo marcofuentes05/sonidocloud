@@ -13,10 +13,16 @@ from config import config
 from datetime import datetime
 import random
 from HomeAdminReporteria import Ui_HomeAdminReporteria
+from PyQt5.QtWidgets import QMessageBox
+
 
 
 
 class Ui_Simulacion(object):
+    def __init__(self, id):
+        super(Ui_Simulacion, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -105,6 +111,7 @@ class Ui_Simulacion(object):
 "color: rgb(255, 255, 255);")
         self.pushButton_IrReporteria.setObjectName("pushButton_IrReporteria")
         MainWindow.setCentralWidget(self.centralwidget)
+        self.pushButton_IrReporteria.clicked.connect(self.openReporteria)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -130,16 +137,21 @@ class Ui_Simulacion(object):
 
     def openReporteria (self):
         self.window = QtWidgets.QMainWindow()
-        self.ui= Ui_HomeAdminReporteria
+        self.ui= Ui_HomeAdminReporteria()
         self.ui.setupUi(self.window)
         self.window.show()
 
+    def openPopUpError(self, mensaje):
+        msgError = QMessageBox()
+        msgError.setText(mensaje)
+        msgError.setIcon(QMessageBox.Warning)
+        x = msgError.exec_()
 
     def simular(self):
-        print(self.DATE)
-        fecha =self.DATE
-        cantidad = self.textEdit_UserBuscar.toPlainText()
         try:
+            print(self.DATE)
+            fecha =self.DATE
+            cantidad = self.textEdit_UserBuscar.toPlainText()
             cantidad = int(cantidad)
 
             params = config()
@@ -170,7 +182,7 @@ class Ui_Simulacion(object):
                 cursor.execute(query,data)
                 record=cursor.fetchall()
                 for j in range(random.randint(1,cantidad+1)):
-                    cancionKey = random.randint(0,len(record))
+                    cancionKey = random.randint(0,len(record)-1)
                     cancion = record[cancionKey][1]
                     print('rep',cancion,user)
                     query2 = "INSERT INTO reproducciones(clientid, trackname) VALUES (%s,%s)"
@@ -196,10 +208,12 @@ class Ui_Simulacion(object):
                     invoicelineId +=1
                 invoiceId+=1
             conn.commit()
+            self.openPopUpError('Simulacion exitosa')
 
 
         except(Exception) as error:
             print(error)
+            self.openPopUpError('Error en la simulacion')
 
 
 if __name__ == "__main__":

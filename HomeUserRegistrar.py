@@ -15,6 +15,10 @@ from config import config
 
 
 class Ui_HomeUserRegistrar(object):
+    def __init__(self, id):
+        super(Ui_HomeUserRegistrar, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -361,8 +365,10 @@ class Ui_HomeUserRegistrar(object):
                 cursor.execute("SELECT artist.artistid FROM artist ORDER BY artist.artistid DESC LIMIT 1")
                 record = cursor.fetchall()
                 id=record[0][0] +1
-                sql="INSERT INTO artist(artistid, name, customerid) VALUES (%s,%s,%s)"
-                datos=(id,nombre,0)
+                cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+                username = cursor.fetchall()[0][0]
+                sql="INSERT INTO artist(artistid, name, customerid,last_modified_by) VALUES (%s,%s,%s,%s)"
+                datos=(id,nombre,0,username)
                 cursor.execute(sql,datos)
                 conn.commit()
                 self.openPopUpCheck('Se agregó con éxito')
@@ -405,8 +411,10 @@ class Ui_HomeUserRegistrar(object):
                 cursor.execute("SELECT artist.artistid FROM artist WHERE artist.name= \'"+artista+"\'")
                 recordArtistId = cursor.fetchall()
                 artistid= recordArtistId[0][0]
-                sql= "INSERT INTO album(albumid, title, artistid) VALUES (%s,%s,%s)"
-                datos=(id,album,artistid)
+                cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+                username = cursor.fetchall()[0][0]
+                sql= "INSERT INTO album(albumid, title, artistid, last_modified_by) VALUES (%s,%s,%s,%s)"
+                datos=(id,album,artistid, username)
                 cursor.execute(sql, datos)
                 conn.commit()
                 self.openPopUpCheck('Se agregó con éxito')
@@ -455,8 +463,10 @@ class Ui_HomeUserRegistrar(object):
                         generoid=recordGeneroId[0][0]
                         cursor.execute("SELECT artist.name FROM artist JOIN album ON album.artistid = artist.artistid WHERE album.albumid=\'"+str(albumid)+"\'")
                         composer = cursor.fetchall()[0][0]
-                        sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                        datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio)
+                        cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+                        username = cursor.fetchall()[0][0]
+                        sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice, last_modified_by) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                        datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio,username)
                         cursor.execute(sql,datos)
                         conn.commit()
                         self.openPopUpCheck('Se agregó con éxito')

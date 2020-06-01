@@ -416,21 +416,21 @@ class Ui_HomeAdmin(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def openHomeUserInactivarEliminar(self):
+    def openHomeUserInactivarEliminar(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeUserInactivarEliminar()
+        self.ui = Ui_HomeUserInactivarEliminar(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def openHomeUserModificar(self):
+    def openHomeUserModificar(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeUserModificar()
+        self.ui = Ui_HomeUserModificar(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def openHomeUserRegistrar(self):
+    def openHomeUserRegistrar(self, id):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeUserRegistrar()
+        self.ui = Ui_HomeUserRegistrar(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 

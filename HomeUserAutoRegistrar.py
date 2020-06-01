@@ -323,32 +323,37 @@ class Ui_HomeUserAutoRegistrar(object):
 
 
     def addAlbum(self):
-        album = self.textEdit_RArtistaNombre.toPlainText()
-        if(album != ''):
-            conn = None
-            params=config()
-            conn = bd.connect(**params)
-            cursor = conn.cursor()
-            cursor.execute("SELECT artist.artistid FROM artist  WHERE artist.customerid = \'"+str(self.id)+"\'")
-            recordArtistid = cursor.fetchall()
-            artistid=recordArtistid[0][0]
-            cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
-            recordAlbum = cursor.fetchall()
-            if(len(recordAlbum) == 0):
-                cursor.execute("SELECT album.albumid FROM album ORDER BY album.albumid DESC LIMIT 1")
-                record = cursor.fetchall()
-                id =record[0][0]+1
-                sql= "INSERT INTO album(albumid, title, artistid) VALUES (%s,%s,%s)"
-                datos=(id,album,artistid)
-                cursor.execute(sql, datos)
-                conn.commit()
-                self.openPopUpCheck('Se agregó con éxito')
+        try:
+            album = self.textEdit_RArtistaNombre.toPlainText()
+            if(album != ''):
+                conn = None
+                params=config()
+                conn = bd.connect(**params)
+                cursor = conn.cursor()
+                cursor.execute("SELECT artist.artistid FROM artist  WHERE artist.customerid = \'"+str(self.id)+"\'")
+                recordArtistid = cursor.fetchall()
+                artistid=recordArtistid[0][0]
+                cursor.execute("SELECT album.title FROM album WHERE album.title= \'"+album+"\'")
+                recordAlbum = cursor.fetchall()
+                if(len(recordAlbum) == 0):
+                    cursor.execute("SELECT album.albumid FROM album ORDER BY album.albumid DESC LIMIT 1")
+                    record = cursor.fetchall()
+                    id =record[0][0]+1
+                    cursor.execute("SELECT username from user_client where clientid=\'"+str(self.id)+"\'")
+                    username = cursor.fetchall()[0][0]
+                    sql= "INSERT INTO album(albumid, title, artistid, last_modified_by) VALUES (%s,%s,%s,%s)"
+                    datos=(id,album,artistid,username)
+                    cursor.execute(sql, datos)
+                    conn.commit()
+                    self.openPopUpCheck('Se agregó con éxito')
+                else:
+                    print("Ya existe el album o no exste el artista")
+                    self.openPopUpError("Ya existe el album o no exste el artista")
             else:
-                print("Ya existe el album o no exste el artista")
-                self.openPopUpError("Ya existe el album o no exste el artista")
-        else:
-            print("No ha escrito el nombre del album o artista")
-            self.openPopUpError("No ha escrito el nombre del album o artista")
+                print("No ha escrito el nombre del album o artista")
+                self.openPopUpError("No ha escrito el nombre del album o artista")
+        except(Exception) as error:
+            print(error)
 
     def openPopUpError(self, mensaje):
         msgError = QMessageBox()
@@ -399,13 +404,15 @@ class Ui_HomeUserAutoRegistrar(object):
                         if(a.aid==albumid):
                             exists=True
                     if(exists==False):
+                        cursor.execute("select username from user_client where clientid=\'"+str(self.id)+"\'")
+                        username = cursor.fetchall()[0][0]
                         cursor.execute("SELECT genre.genreid FROM genre WHERE genre.name= \'"+genero+"\'")
                         recordGeneroId = cursor.fetchall()
                         generoid=recordGeneroId[0][0]
                         cursor.execute("SELECT artist.name FROM artist JOIN album ON album.artistid = artist.artistid WHERE album.albumid=\'"+str(albumid)+"\'")
                         composer = cursor.fetchall()[0][0]
-                        sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                        datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio)
+                        sql="INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice, last_modified_by) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                        datos=(id,nombre,albumid,2,generoid,composer,duracion,235342, precio,username)
                         cursor.execute(sql,datos)
                         conn.commit()
                         self.openPopUpCheck("Se agregó con éxito")

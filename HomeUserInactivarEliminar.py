@@ -15,6 +15,10 @@ import psycopg2 as bd
 from config import config
 
 class Ui_HomeUserInactivarEliminar(object):
+    def __init__(self, id):
+        super(Ui_HomeUserInactivarEliminar, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -423,6 +427,11 @@ class Ui_HomeUserInactivarEliminar(object):
                 params=config()
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
+                cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+                username = cursor.fetchall()[0][0]
+                query = "UPDATE track SET deleted_by=%s WHERE trackid = %s"
+                data=(username, trackid)
+                cursor.execute(query,data)
                 cursor.execute(query2)
                 conn.commit()
                 self.openPopUpCheck('Se borró con éxito')
@@ -557,6 +566,11 @@ class Ui_HomeUserInactivarEliminar(object):
                 params=config()
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
+                cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+                username = cursor.fetchall()[0][0]
+                query = "UPDATE artist SET deleted_by=%s WHERE artistid = %s"
+                data=(username, artistId)
+                cursor.execute(query,data)
                 cursor.execute(query2)
                 conn.commit() 
                 self.openPopUpCheck('Se borró con éxito')
@@ -579,6 +593,11 @@ class Ui_HomeUserInactivarEliminar(object):
                 params=config()
                 conn = bd.connect(**params)
                 cursor = conn.cursor()
+                cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+                username = cursor.fetchall()[0][0]
+                query = "UPDATE album SET deleted_by=%s WHERE albumid = %s"
+                data=(username, albumid)
+                cursor.execute(query,data)
                 cursor.execute(query2)
                 conn.commit() 
                 self.openPopUpCheck('Se borró con éxito')

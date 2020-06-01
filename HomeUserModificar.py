@@ -17,6 +17,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_HomeUserModificar(object):
+    def __init__(self, id):
+        super(Ui_HomeUserModificar, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -317,20 +321,22 @@ class Ui_HomeUserModificar(object):
         self.comboBox_OpcionesCambioCanciones.setItemText(7, _translate("MainWindow", "Milisegundos"))
 
     def modifyArtist (self):
-        if(self.textEdit_ArtistaNombre.toPlainText()!="" and self.textEdit_ArtistaNombre.toPlainText()!=" " and self.textEdit_ArtistaNuevoNombre.toPlainText() !="" and self.textEdit_ArtistaNuevoNombre.toPlainText() !=" " ):
+        if(self.textEdit_ArtistaNombre.toPlainText()=="" and self.textEdit_ArtistaNombre.toPlainText()==" " and self.textEdit_ArtistaNuevoNombre.toPlainText() =="" and self.textEdit_ArtistaNuevoNombre.toPlainText() ==" " ):
             print('no voy a hacer nada')
             self.openPopUpError('Tiene que llenar todos los campos')
         else:
             params = config()
             conn = bd.connect(**params)
             cursor = conn.cursor()
+            cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+            username = cursor.fetchall()[0][0]
             query = """
                 UPDATE artist
-                SET name = %s
+                SET name = %s, last_modified_by= %s
                 WHERE name = %s
                 RETURNING artistid, name
             """
-            cursor.execute(query,(self.textEdit_ArtistaNuevoNombre.toPlainText(),self.textEdit_ArtistaNombre.toPlainText()))
+            cursor.execute(query,(self.textEdit_ArtistaNuevoNombre.toPlainText(),username,self.textEdit_ArtistaNombre.toPlainText()))
             conn.commit()
             self.openPopUpCheck('Se modifcó con éxito')
             record= cursor.fetchall()
@@ -338,20 +344,22 @@ class Ui_HomeUserModificar(object):
 
 
     def modifyAlbum(self):
-        if(self.textEdit_AlbumNombre.toPlainText()!="" and self.textEdit_AlbumNombre.toPlainText()!=" " and self.textEdit_AlbumNuevoNombre.toPlainText() !="" and self.textEdit_AlbumNuevoNombre.toPlainText() !=" " ):
+        if(self.textEdit_AlbumNombre.toPlainText()=="" and self.textEdit_AlbumNombre.toPlainText()==" " and self.textEdit_AlbumNuevoNombre.toPlainText() =="" and self.textEdit_AlbumNuevoNombre.toPlainText() ==" " ):
             print('no voy a hacer nada')
             self.openPopUpError('Tiene que llenar todos los campos')
         else:
             params = config()
             conn = bd.connect(**params)
             cursor = conn.cursor()
+            cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+            username = cursor.fetchall()[0][0]
             query = """
                 UPDATE album
-                SET title = %s
+                SET title = %s, last_modified_by= %s
                 WHERE title = %s
                 RETURNING albumid, title
             """
-            cursor.execute(query,(self.textEdit_AlbumNuevoNombre.toPlainText(),self.textEdit_AlbumNombre.toPlainText()))
+            cursor.execute(query,(self.textEdit_AlbumNuevoNombre.toPlainText(),username,self.textEdit_AlbumNombre.toPlainText()))
             conn.commit()
             self.openPopUpCheck('Se modifcó con éxito')
             record= cursor.fetchall()
@@ -372,6 +380,11 @@ class Ui_HomeUserModificar(object):
 
     def modifySong(self):
         if(self.textEdit_CancionNombre.toPlainText()!="" and self.textEdit_CambioNuevo.toPlainText()!=""):
+            params = config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            cursor.execute("select username from user_client where clientid = \'"+str(self.id)+"\' ")
+            username = cursor.fetchall()[0][0]
             if(self.comboBox_OpcionesCambioCanciones.currentIndex()==0):
                 print('no voy a hacer nada')
                 self.openPopUpError('Tiene que elegis una opcion')
@@ -381,11 +394,11 @@ class Ui_HomeUserModificar(object):
                 cursor = conn.cursor()
                 query = """
                     UPDATE track
-                    SET name = %s
+                    SET name = %s, last_modified_by= %s
                     WHERE name = %s
                     RETURNING track id, name
                 """
-                cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
+                cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),username,self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
                 self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
@@ -398,11 +411,11 @@ class Ui_HomeUserModificar(object):
                     cursor = conn.cursor()
                     query = """
                         UPDATE track
-                        SET genreid = %s
+                        SET genreid = %s, last_modified_by= %s
                         WHERE name = %s
                         RETURNING trackid , name 
                     """
-                    cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                    cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),username,self.textEdit_CancionNombre.toPlainText()))
                     conn.commit()
                     self.openPopUpCheck('Se modifcó con éxito')
                     record= cursor.fetchall()
@@ -418,11 +431,11 @@ class Ui_HomeUserModificar(object):
                     cursor = conn.cursor()
                     query = """
                         UPDATE track
-                        SET albumid = %s
+                        SET albumid = %s, last_modified_by= %s
                         WHERE name = %s
                         RETURNING trackid , name 
                     """
-                    cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                    cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),username,self.textEdit_CancionNombre.toPlainText()))
                     conn.commit()
                     self.openPopUpCheck('Se modifcó con éxito')
                     record= cursor.fetchall()
@@ -436,11 +449,11 @@ class Ui_HomeUserModificar(object):
                 cursor = conn.cursor()
                 query = """
                     UPDATE track
-                    SET unitprice = %s
+                    SET unitprice = %s, last_modified_by= %s
                     WHERE name = %s
                     RETURNING trackid , name
                 """
-                cursor.execute(query,(float(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                cursor.execute(query,(float(self.textEdit_CambioNuevo.toPlainText()),username,self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
                 self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
@@ -452,11 +465,11 @@ class Ui_HomeUserModificar(object):
                 cursor = conn.cursor()
                 query = """
                     UPDATE track
-                    SET bytes = %s
+                    SET bytes = %s, last_modified_by= %s
                     WHERE name = %s
                     RETURNING trackid , name
                 """
-                cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),username,self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
                 self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
@@ -468,11 +481,11 @@ class Ui_HomeUserModificar(object):
                 cursor = conn.cursor()
                 query = """
                     UPDATE track
-                    SET composer = %s
+                    SET composer = %s, last_modified_by= %s
                     WHERE name = %s
                     RETURNING trackid , name
                 """
-                cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),self.textEdit_CancionNombre.toPlainText()))
+                cursor.execute(query,(self.textEdit_CambioNuevo.toPlainText(),username,self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
                 self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
@@ -484,11 +497,11 @@ class Ui_HomeUserModificar(object):
                 cursor = conn.cursor()
                 query = """
                     UPDATE track
-                    SET milliseconds = %s
+                    SET milliseconds = %s, last_modified_by= %s
                     WHERE name = %s
                     RETURNING trackid , name
                 """
-                cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),self.textEdit_CancionNombre.toPlainText()))
+                cursor.execute(query,(int(self.textEdit_CambioNuevo.toPlainText()),username,self.textEdit_CancionNombre.toPlainText()))
                 conn.commit()
                 self.openPopUpCheck('Se modifcó con éxito')
                 record= cursor.fetchall()
