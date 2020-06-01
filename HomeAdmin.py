@@ -21,6 +21,7 @@ from Mongo import Ui_Mongo
 from HomeAdminReporteria import Ui_HomeAdminReporteria
 from HomeUserRegistrar import Ui_HomeUserRegistrar
 from HomeAdminGestionPermisos import Ui_HomeAdminGestionPermisos
+from Simulacion import Ui_Simulacion
 from MiMusica import Ui_MiMusica
 from queries import *
 from config import config
@@ -271,6 +272,14 @@ class Ui_HomeAdmin(object):
 "font: 14pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_MiMusica.setObjectName("pushButton_Mongo")
+        self.pushButton_Simulacion = QtWidgets.QPushButton(self.frame)
+        self.pushButton_Simulacion.setGeometry(QtCore.QRect(140, 140, 100, 30))
+        self.pushButton_Simulacion.setMinimumSize(QtCore.QSize(100, 30))
+        self.pushButton_Simulacion.setMaximumSize(QtCore.QSize(75, 30))
+        self.pushButton_Simulacion.setStyleSheet("background-color: rgb(10, 54, 157);\n"
+"font: 14pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton_Simulacion.setObjectName("pushButton_Simulacion")
         self.comboBox_OpcionesBuscar.raise_()
         self.label_7.raise_()
         self.label.raise_()
@@ -294,6 +303,7 @@ class Ui_HomeAdmin(object):
         self.pushButton_Mongo.clicked.connect(self.openMongo)
         self.pushButton_MiMusica.raise_()
         self.pushButton_MiMusica.clicked.connect(self.openMiMusica)
+        self.pushButton_Simulacion.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -360,6 +370,8 @@ class Ui_HomeAdmin(object):
         self.pushButton_Buscar.clicked.connect(self.populateTable)
         self.pushButton_Tienda.setText(_translate("MainWindow", "Tienda"))
         self.pushButton_Mongo.setText(_translate("MainWindow", "Mongo"))
+        self.pushButton_Simulacion.setText(_translate("MainWindow", "Simulación"))
+        self.pushButton_Simulacion.clicked.connect(self.openSimulacion)
         self.pushButton_MiMusica.setText(_translate("MainWindow", "Mi Música"))
 
     def openPopUpError(self, mensaje):
@@ -377,6 +389,12 @@ class Ui_HomeAdmin(object):
     def openTienda(self, id):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_Tienda(self.id)
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def openSimulacion(self, id):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_Simulacion(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 
