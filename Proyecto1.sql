@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS Carrito CASCADE;
 DROP TABLE IF EXISTS InvoiceLine CASCADE;
 DROP TABLE IF EXISTS Playlist CASCADE;
 DROP TABLE IF EXISTS PlaylistTrack CASCADE;
+DROP TABLE IF EXISTS reproducciones CASCADE;
 
 
 CREATE TABLE Artist
@@ -217,6 +218,13 @@ CREATE TABLE PlaylistTrack
     CONSTRAINT PK_PlaylistTrack PRIMARY KEY (PlaylistId, TrackId),
     FOREIGN KEY (PlaylistId) REFERENCES Playlist (PlaylistId) ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY (TrackId) REFERENCES Track (TrackId) ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+CREATE TABLE reproducciones
+(
+    clientid INT,
+    trackName VARCHAR (200),
+    FOREIGN KEY (clientid) REFERENCES  user_client (clientid) ON DELETE CASCADE,
 );
 
 
