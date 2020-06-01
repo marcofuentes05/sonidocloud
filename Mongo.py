@@ -288,7 +288,8 @@ FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
             # Los seriaizo a un diccionario
             lista = self.porFechaSerializer(record)
             #Los agrego a mi coleccion
-            self.mydb.invoice.insert_many(lista)
+            if len(lista) > 0 :
+                self.mydb.invoice.insert_many(lista)
             porFecha = list(self.mydb.invoice.find({'fecha' : fecha}))
             
             self.tableWidget.setColumnCount(3)
