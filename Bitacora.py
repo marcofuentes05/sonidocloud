@@ -87,8 +87,8 @@ class Ui_Bitacora(object):
         params =config()
         conn = bd.connect(**params)
         cursor = conn.cursor()
-        query = """  SELECT *
-                    FROM logbook """
+        query = """  SELECT username, typeofmodification, tablemodified, CAST(itemmodified AS TEXT), newData,
+                    CAST(datemodified AS TEXT) FROM logbook """
         cursor.execute(query)
         record = cursor.fetchall()
         if(len(record)!= 0):
