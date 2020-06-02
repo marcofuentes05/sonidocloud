@@ -8,7 +8,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import psycopg2 as bd
+import sys
+from config import config
 
 class Ui_Bitacora(object):
     def __init__(self, id):
@@ -76,3 +78,22 @@ class Ui_Bitacora(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
         self.label_8.setText(_translate("MainWindow", "Bitácora"))
+        self.populateTable()
+
+    def populateTable(self):
+    #clear the table
+        self.tableWidget.setRowCount(0)
+        conn = None
+        params =config()
+        conn = bd.connect(**params)
+        cursor = conn.cursor()
+        query = """  SELECT *
+                    FROM logbook """
+        cursor.execute(query)
+        record = cursor.fetchall()
+        if(len(record)!= 0):
+            self.tableWidget.setColumnCount(len(record[0]))
+            for i in range(len(record)):
+                self.tableWidget.insertRow(i)
+                for j in range(len(record[0])):
+                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
