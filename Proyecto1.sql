@@ -16048,7 +16048,7 @@ begin
 	(
 		SELECT count(invoiceid) AS ventas_por_semana
 		FROM invoice 
-		WHERE invoicedate > inicio AND invoicedate < fin 
+		WHERE invoicedate >= inicio AND invoicedate <= fin 
 		GROUP BY date_trunc('week', invoicedate) 
 		ORDER BY date_trunc('week', invoicedate) ASC
 	);
@@ -16074,7 +16074,7 @@ begin
 			JOIN track ON invoiceline.trackid = track.trackid 
 			JOIN album ON track.albumid = album.albumid 
 			JOIN artist ON album.artistid = artist.artistid 
-		WHERE invoicedate > inicio AND invoicedate < fin 
+		WHERE invoicedate >= inicio AND invoicedate <= fin 
 		GROUP BY artist.name 
 		ORDER BY count(invoice.invoiceid) DESC LIMIT numero
 	);
@@ -16099,7 +16099,7 @@ begin
 			JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
 			JOIN track ON invoiceline.trackid = track.trackid
 			JOIN genre ON track.genreid = genre.genreid 
-		WHERE invoicedate > inicio AND invoicedate < fin
+		WHERE invoicedate >= inicio AND invoicedate <= fin
 		GROUP BY genre.name
 		ORDER BY count(invoice.invoiceid) DESC
 	);
@@ -16149,11 +16149,10 @@ begin
 			join track on reproducciones.trackname = track.name
 			join album on track.albumid = album.albumid 
 			join artist on album.artistid = artist.artistid 
-		WHERE reproducciones.fecha > inicio AND reproducciones.fecha < fin and artist.name = artista
+		WHERE reproducciones.fecha >= inicio AND reproducciones.fecha <= fin and artist.name = artista
 		group by artist.name, track.name
 		order by count(reproducciones.clientid) desc
 	);
 end;
 $$
 language 'plpgsql';
-select * from canciones_mas_reproducidas_artista_por_fecha('2020-06-01', '2020-07-31','Queen')

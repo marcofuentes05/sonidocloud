@@ -237,35 +237,38 @@ class Ui_Carrito(object):
         invoicelineId = cursor.fetchall()[0][0]+1
 
         total = len(canciones) * 0.99
-        try:
+        if(len(canciones)>0):
+            try:
 
-            query = "INSERT INTO invoice(invoiceid, customerid, invoicedate, total) VALUES (%s,%s,%s,%s)"
-            datos = (invoiceId, userId, datetime.date(datetime.now()), total )
-            cursor.execute(query, datos)
-            for i in range(len(canciones)):
-                trackId = canciones[i][0]
-                query2= "INSERT INTO invoiceline(invoicelineid, invoiceid, trackid, unitprice, quantity) VALUES (%s,%s,%s,%s,%s)"
-                data = (invoicelineId, invoiceId, trackId, 0.99, 1)
-                cursor.execute(query2, data)
-                invoicelineId +=1
-            conn.commit()
-            self.deleteAll()
-            self.openPopUpError('Compra exitosa')
-            pdf= FPDF()
-            pdf.add_page()
-            pdf.set_font("Arial", size = 14)
-            pdf.cell(200, 10, txt = "Comprobante de compra", ln=2, align="C")
-            pdf.cell(200, 20, txt = "Canciones compradas:", ln=1)
-            for i in range(len(canciones)):
-                txt = str(i+1)+". "+str(canciones[i][1])
-                pdf.cell(200,10,txt=txt,ln=1)
-            texto= "Total:"+str(total)+"$"
-            pdf.cell(200,20,txt=texto,ln=1)
-            pdf.output("comprobante.pdf")
+                query = "INSERT INTO invoice(invoiceid, customerid, invoicedate, total) VALUES (%s,%s,%s,%s)"
+                datos = (invoiceId, userId, datetime.date(datetime.now()), total )
+                cursor.execute(query, datos)
+                for i in range(len(canciones)):
+                    trackId = canciones[i][0]
+                    query2= "INSERT INTO invoiceline(invoicelineid, invoiceid, trackid, unitprice, quantity) VALUES (%s,%s,%s,%s,%s)"
+                    data = (invoicelineId, invoiceId, trackId, 0.99, 1)
+                    cursor.execute(query2, data)
+                    invoicelineId +=1
+                conn.commit()
+                self.deleteAll()
+                self.openPopUpError('Compra exitosa')
+                pdf= FPDF()
+                pdf.add_page()
+                pdf.set_font("Arial", size = 14)
+                pdf.cell(200, 10, txt = "Comprobante de compra", ln=2, align="C")
+                pdf.cell(200, 20, txt = "Canciones compradas:", ln=1)
+                for i in range(len(canciones)):
+                    txt = str(i+1)+". "+str(canciones[i][1])
+                    pdf.cell(200,10,txt=txt,ln=1)
+                texto= "Total:"+str(total)+"$"
+                pdf.cell(200,20,txt=texto,ln=1)
+                pdf.output("comprobante.pdf")
 
-        except(Exception) as error:
-            print(error)
-            self.openPopUpError('No se pudo comprar')
+            except(Exception) as error:
+                print(error)
+                self.openPopUpError('No se pudo comprar')
+        else:
+            self.openPopUpError('No tiene canciones en su carrito')
 
 
 

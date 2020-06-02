@@ -244,7 +244,7 @@ class Ui_Tienda(object):
                     datos = (userId,trackId,originalName,False)
                     cursor.execute(query,datos)
                     conn.commit()
-                    self.openPopUpError("Se agregó la cancion a su carrito")
+                    self.openPopUpError("Se agregó la canción a su carrito")
                 else:
                     self.openPopUpError('Ya compró esta canción')
                     

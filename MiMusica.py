@@ -15,6 +15,7 @@ from PyQt5.uic import loadUi
 from config import config
 
 #for playing music
+import urllib
 import urllib.request
 import urllib.parse
 import re

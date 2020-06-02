@@ -168,6 +168,9 @@ class Ui_Simulacion(object):
             cursor.execute("SELECT MAX(invoicelineid) FROM invoiceline")
             invoicelineId = cursor.fetchall()[0][0]+1
 
+            totalRep=0
+            totalComp=0
+
             for i in range(cantidad):
                 user = random.randint(1,maxUserId)
                 print(user)
@@ -189,6 +192,7 @@ class Ui_Simulacion(object):
                     datos=(str(user),cancion)
                     cursor.execute(query2,datos)
                     conn.commit()
+                    totalRep+=1
 
             for i in range(cantidad):
                 user = random.randint(1,maxUserId)
@@ -206,9 +210,10 @@ class Ui_Simulacion(object):
                     cursor.execute(query2, data)
                     print('compra',trackId, invoiceId)
                     invoicelineId +=1
+                    totalComp+=1
                 invoiceId+=1
             conn.commit()
-            self.openPopUpError('Simulacion exitosa')
+            self.openPopUpError('Simulacion exitosa:'+str(totalRep)+' reproducciones y '+str(totalComp)+' compras')
 
 
         except(Exception) as error:

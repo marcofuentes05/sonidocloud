@@ -14,8 +14,12 @@ $ pip install pyqt5
 ```bash
 $ pip install psycopg2
 ```
+Si no funciona psycopg2 probar:
 ```bash
-$ pip install pgdb
+$ pip install psycopg2-binary
+```
+```bash
+$ pip install fpdf
 ```
 
 Además, montar el archivo ```Proyecto1.sql```
