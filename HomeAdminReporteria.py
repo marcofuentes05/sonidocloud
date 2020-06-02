@@ -6,9 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 import sys
+import csv
 import psycopg2 as bd
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 from config import config
+from datetime import datetime
 from queries import *
 
 
@@ -56,34 +59,22 @@ class Ui_HomeAdminReporteria(object):
 "color: rgb(64, 55, 110);\n"
 "background-color: rgb(212, 228, 188);")
         self.tableWidget.setObjectName("tableWidget")
-        # self.tableWidget.setColumnCount(4)
-        # self.tableWidget.setRowCount(5)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setVerticalHeaderItem(0, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setVerticalHeaderItem(1, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setVerticalHeaderItem(2, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setVerticalHeaderItem(3, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setVerticalHeaderItem(4, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setHorizontalHeaderItem(0, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setHorizontalHeaderItem(1, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setHorizontalHeaderItem(2, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tableWidget.setHorizontalHeaderItem(3, item)
-        self.textEdit_IngresarArtista = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_IngresarArtista.setGeometry(QtCore.QRect(30, 210, 200, 31))
-        self.textEdit_IngresarArtista.setMinimumSize(QtCore.QSize(200, 31))
-        self.textEdit_IngresarArtista.setMaximumSize(QtCore.QSize(200, 31))
-        self.textEdit_IngresarArtista.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+        self.textEdit_NoArtista = QtWidgets.QTextEdit(self.frame)
+        self.textEdit_NoArtista.setGeometry(QtCore.QRect(30, 210, 160, 31))
+        self.textEdit_NoArtista.setMinimumSize(QtCore.QSize(160, 31))
+        self.textEdit_NoArtista.setMaximumSize(QtCore.QSize(160, 31))
+        self.textEdit_NoArtista.setStyleSheet("background-color: rgb(150, 172, 183);\n"
 "font: 13pt \"Times\";\n"
 "color: rgb(255, 255, 255);")
-        self.textEdit_IngresarArtista.setObjectName("textEdit_IngresarArtista")
+        self.textEdit_NoArtista.setObjectName("textEdit_NoArtista")
+        self.textEdit_NombreArtista = QtWidgets.QTextEdit(self.frame)
+        self.textEdit_NombreArtista.setGeometry(QtCore.QRect(200, 210, 160, 31))
+        self.textEdit_NombreArtista.setMinimumSize(QtCore.QSize(160, 31))
+        self.textEdit_NombreArtista.setMaximumSize(QtCore.QSize(150, 31))
+        self.textEdit_NombreArtista.setStyleSheet("background-color: rgb(150, 172, 183);\n"
+"font: 13pt \"Times\";\n"
+"color: rgb(255, 255, 255);")
+        self.textEdit_NombreArtista.setObjectName("textEdit_NombreArtista")
         self.label_8 = QtWidgets.QLabel(self.frame)
         self.label_8.setGeometry(QtCore.QRect(30, 100, 210, 25))
         self.label_8.setMinimumSize(QtCore.QSize(210, 25))
@@ -106,6 +97,7 @@ class Ui_HomeAdminReporteria(object):
         self.comboBox_OpcionesBuscarFecha.addItem("")
         self.comboBox_OpcionesBuscarFecha.addItem("")
         self.comboBox_OpcionesBuscarFecha.addItem("")
+        self.comboBox_OpcionesBuscarFecha.addItem("")
         self.pushButton_Reportar = QtWidgets.QPushButton(self.frame)
         self.pushButton_Reportar.setGeometry(QtCore.QRect(430, 490, 80, 31))
         self.pushButton_Reportar.setMinimumSize(QtCore.QSize(80, 31))
@@ -119,16 +111,17 @@ class Ui_HomeAdminReporteria(object):
         self.calendarWidget_Final.setMinimumSize(QtCore.QSize(310, 171))
         self.calendarWidget_Final.setMaximumSize(QtCore.QSize(310, 171))
         self.calendarWidget_Final.setObjectName("calendarWidget_Final")
-        # print(self.calendarWidget_Final.clicked[QDate].connect(self.showDate))
+        self.calendarWidget_Final.clicked[QtCore.QDate].connect(lambda arg : self.set_date_fin(arg.toString('yyyy-MM-dd')))
         self.calendarWidget_Inicial = QtWidgets.QCalendarWidget(self.frame)
         self.calendarWidget_Inicial.setGeometry(QtCore.QRect(570, 130, 310, 171))
         self.calendarWidget_Inicial.setMinimumSize(QtCore.QSize(310, 171))
         self.calendarWidget_Inicial.setMaximumSize(QtCore.QSize(310, 171))
         self.calendarWidget_Inicial.setObjectName("calendarWidget_Inicial")
+        self.calendarWidget_Inicial.clicked[QtCore.QDate].connect(lambda arg : self.set_date_inicio(arg.toString('yyyy-MM-dd')))
         self.label_9 = QtWidgets.QLabel(self.frame)
-        self.label_9.setGeometry(QtCore.QRect(30, 180, 200, 25))
-        self.label_9.setMinimumSize(QtCore.QSize(200, 25))
-        self.label_9.setMaximumSize(QtCore.QSize(200, 25))
+        self.label_9.setGeometry(QtCore.QRect(30, 180, 440, 25))
+        self.label_9.setMinimumSize(QtCore.QSize(440, 25))
+        self.label_9.setMaximumSize(QtCore.QSize(440, 25))
         self.label_9.setStyleSheet("font: 18pt \"Times\";\n"
 "color: rgb(10, 54, 157);\n"
 "")
@@ -153,7 +146,7 @@ class Ui_HomeAdminReporteria(object):
         self.comboBox_OpcionesBuscar.addItem("")
         self.comboBox_OpcionesBuscar.addItem("")
         self.pushButton_ReportarPorFecha = QtWidgets.QPushButton(self.frame)
-        self.pushButton_ReportarPorFecha.setGeometry(QtCore.QRect(430, 210, 80, 31))
+        self.pushButton_ReportarPorFecha.setGeometry(QtCore.QRect(430, 180, 80, 31))
         self.pushButton_ReportarPorFecha.setMinimumSize(QtCore.QSize(80, 31))
         self.pushButton_ReportarPorFecha.setMaximumSize(QtCore.QSize(80, 31))
         self.pushButton_ReportarPorFecha.setStyleSheet("background-color: rgb(10, 54, 157);\n"
@@ -191,7 +184,8 @@ class Ui_HomeAdminReporteria(object):
         self.label.raise_()
         self.label_2.raise_()
         self.tableWidget.raise_()
-        self.textEdit_IngresarArtista.raise_()
+        self.textEdit_NoArtista.raise_()
+        self.textEdit_NombreArtista.raise_()
         self.comboBox_OpcionesBuscarFecha.raise_()
         self.pushButton_Reportar.raise_()
         self.calendarWidget_Final.raise_()
@@ -208,25 +202,12 @@ class Ui_HomeAdminReporteria(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
-        # item = self.tableWidget.verticalHeaderItem(0)
-        # item.setText(_translate("MainWindow", "aqui"))
-        # item = self.tableWidget.verticalHeaderItem(1)
-        # item.setText(_translate("MainWindow", "van"))
-        # item = self.tableWidget.verticalHeaderItem(2)
-        # item.setText(_translate("MainWindow", "New Row"))
-        # item = self.tableWidget.verticalHeaderItem(3)
-        # item.setText(_translate("MainWindow", "las"))
-        # item = self.tableWidget.verticalHeaderItem(4)
-        # item.setText(_translate("MainWindow", "filas"))
-        # item = self.tableWidget.horizontalHeaderItem(0)
-        # item.setText(_translate("MainWindow", "aqui"))
-        # item = self.tableWidget.horizontalHeaderItem(1)
-        # item.setText(_translate("MainWindow", "van"))
-        # item = self.tableWidget.horizontalHeaderItem(2)
-        # item.setText(_translate("MainWindow", "las"))
-        # item = self.tableWidget.horizontalHeaderItem(3)
-        # item.setText(_translate("MainWindow", "columnas"))
-        self.textEdit_IngresarArtista.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.textEdit_NoArtista.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.textEdit_NombreArtista.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Times\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
@@ -237,8 +218,9 @@ class Ui_HomeAdminReporteria(object):
         self.comboBox_OpcionesBuscarFecha.setItemText(2, _translate("MainWindow", "2. Los N artistas con las mayores ventas por fechas"))
         self.comboBox_OpcionesBuscarFecha.setItemText(3, _translate("MainWindow", "3. Total de ventas por género"))
         self.comboBox_OpcionesBuscarFecha.setItemText(4, _translate("MainWindow", "4. Las N canciones con más reproducciones para un artista"))
+        self.comboBox_OpcionesBuscarFecha.setItemText(5, _translate("MainWindow", "5. Las canciones con más reproducciones para un artista por fechas"))
         self.pushButton_ReportarPorFecha.setText(_translate("MainWindow", "Reportar"))
-        self.label_9.setText(_translate("MainWindow", "Ingrese artista"))
+        self.label_9.setText(_translate("MainWindow", "No. Artistas a Mostrar / Ingrese Artista"))
         self.comboBox_OpcionesBuscar.setItemText(0, _translate("MainWindow", "Reportería"))
         self.comboBox_OpcionesBuscar.setItemText(1, _translate("MainWindow", "1. Los 5 artistas con más álbumes publicados"))
         self.comboBox_OpcionesBuscar.setItemText(2, _translate("MainWindow", "2. Los 5 géneros con más canciones"))
@@ -253,6 +235,7 @@ class Ui_HomeAdminReporteria(object):
         self.label_10.setText(_translate("MainWindow", "Reportería"))
         self.label_11.setText(_translate("MainWindow", "Escoja fecha inicial"))
         self.label_12.setText(_translate("MainWindow", "Escoja fecha final"))
+        self.pushButton_ReportarPorFecha.clicked.connect(self.reportReporteriaFecha)
 
 
     def openPopUpError(self, mensaje):
@@ -267,74 +250,146 @@ class Ui_HomeAdminReporteria(object):
         msgGood.setIcon(QMessageBox.Information)
         y = msgGood.exec_()
 
+    def set_date_inicio(self, newDate):
+        self.DATEINICIO = newDate
+        return self.DATEINICIO == newDate
+    
+    def set_date_fin(self, newDate):
+        self.DATEFIN = newDate
+        return self.DATEFIN == newDate
+
     def populateTableReporteriaFechaOpcion1(self):
-        self.tableWidget.setRowCount(0)
-        conn = None
-        params =config()
-        conn = bd.connect(**params)
-        cursor = conn.cursor()
-        query = query1()
-        cursor.execute(query)
-        if(self.comboBox_OpcionesBuscar.currentText() == '1. Total de ventas por semana'):
-                query = "SELECT track.name, artist.name FROM track JOIN album ON track.albumid = album.albumid JOIN artist ON album.artistid = artist.artistid WHERE artist.name ~* \'" + self.textEdit_UserBuscar.toPlainText() +"'"
-                cursor.execute(query)
-                record = cursor.fetchall()
-                print(record)
-                if(len(record)!= 0):
-                    self.tableWidget.setColumnCount(len(record[0]))
-                    for i in range(len(record)):
-                        self.tableWidget.insertRow(i)
-                        for j in range(len(record[0])):
-                            print(i,j)
-                            self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(record[i][j]))
+        try: 
+            self.tableWidget.setRowCount(0)
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            inicio = self.DATEINICIO
+            fin = self.DATEFIN
+            cursor.execute("SELECT * FROM ventas_por_semana('{finicio}', '{ffin}');".format(finicio = inicio, ffin=fin))
+            record = cursor.fetchall()
+            if(len(record)!= 0):
+                self.tableWidget.setColumnCount(len(record[0]))
+                for i in range(len(record)):
+                    self.tableWidget.insertRow(i)
+                    for j in range(len(record[0])):
+                        self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+                with open('OpcionFecha1.csv', 'w') as f:
+                    thewriter = csv.writer(f, delimiter=',')
+                    thewriter.writerow(['Total ventas semana'])
+                    for row in record:
+                        thewriter.writerow(row)
+        except(Exception) as error:
+            print(error)
+            self.openPopUpError('Error en el reporte')
+
 
     def populateTableReporteriaFechaOpcion2(self):
-        self.tableWidget.setRowCount(0)
-        conn = None
-        params =config()
-        conn = bd.connect(**params)
-        cursor = conn.cursor()
-        query = query2()
-        cursor.execute(query)
-        record = cursor.fetchall()
-        if(len(record)!= 0):
-            self.tableWidget.setColumnCount(len(record[0]))
-            for i in range(len(record)):
-                self.tableWidget.insertRow(i)
-                for j in range(len(record[0])):
-                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+        try:
+            self.tableWidget.setRowCount(0)
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            numero = self.textEdit_NoArtista.toPlainText()
+            inicio = self.DATEINICIO
+            fin = self.DATEFIN
+            cursor.execute("SELECT * FROM artistas_ventas_por_fechas('{finicio}', '{ffin}', {fnumero});".format(finicio = inicio, ffin=fin, fnumero=numero))
+            record = cursor.fetchall()
+            if(len(record)!= 0):
+                self.tableWidget.setColumnCount(len(record[0]))
+                for i in range(len(record)):
+                    self.tableWidget.insertRow(i)
+                    for j in range(len(record[0])):
+                        self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+                with open('OpcionFecha2.csv', 'w') as f:
+                    thewriter = csv.writer(f, delimiter=',')
+                    thewriter.writerow(['Artista', 'No. Ventas de ' + inicio + ' hasta ' + fin])
+                    for row in record:
+                        thewriter.writerow(row)
+        except(Exception) as error:
+            print(error)
+            self.openPopUpError('Error en el reporte')
 
     def populateTableReporteriaFechaOpcion3(self):
-        self.tableWidget.setRowCount(0)
-        conn = None
-        params =config()
-        conn = bd.connect(**params)
-        cursor = conn.cursor()
-        query = query3()
-        cursor.execute(query)
-        record = cursor.fetchall()
-        if(len(record)!= 0):
-            self.tableWidget.setColumnCount(len(record[0]))
-            for i in range(len(record)):
-                self.tableWidget.insertRow(i)
-                for j in range(len(record[0])):
-                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+        try:
+            self.tableWidget.setRowCount(0)
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            inicio = self.DATEINICIO
+            fin = self.DATEFIN
+            cursor.execute("SELECT * FROM ventas_por_genero('{finicio}', '{ffin}');".format(finicio = inicio, ffin = fin))
+            record = cursor.fetchall()
+            if(len(record)!= 0):
+                self.tableWidget.setColumnCount(len(record[0]))
+                for i in range(len(record)):
+                    self.tableWidget.insertRow(i)
+                    for j in range(len(record[0])):
+                        self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+                with open('OpcionFecha3.csv', 'w') as f:
+                    thewriter = csv.writer(f, delimiter=',')
+                    thewriter.writerow(['Genero', 'No. Ventas de ' + inicio + ' hasta ' + fin])
+                    for row in record:
+                        thewriter.writerow(row)
+        except(Exception) as error:
+            print(error)
+            self.openPopUpError('Error en el reporte')
 
     def populateTableReporteriaFechaOpcion4(self):
-        self.tableWidget.setRowCount(0)
-        conn = None
-        params =config()
-        conn = bd.connect(**params)
-        cursor = conn.cursor()
-        query = query4()
-        cursor.execute(query)
-        record = cursor.fetchall()
-        if(len(record)!= 0):
-            self.tableWidget.setColumnCount(len(record[0]))
-            for i in range(len(record)):
-                self.tableWidget.insertRow(i)
-                for j in range(len(record[0])):
-                    self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+        try:
+            self.tableWidget.setRowCount(0)
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            artista = self.textEdit_NombreArtista.toPlainText()
+            cursor.execute("SELECT * FROM canciones_mas_reproducidas_artista('{fartista}');".format(fartista = artista))
+            record = cursor.fetchall()
+            if(len(record)!= 0):
+                self.tableWidget.setColumnCount(len(record[0]))
+                for i in range(len(record)):
+                    self.tableWidget.insertRow(i)
+                    for j in range(len(record[0])):
+                        self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+                with open('OpcionFecha4.csv', 'w') as f:
+                    thewriter = csv.writer(f, delimiter=',')
+                    thewriter.writerow(['Veces reproducidas', 'Cancion', 'Artista'])
+                    for row in record:
+                        thewriter.writerow(row)
+        except(Exception) as error:
+            print(error)
+            self.openPopUpError('Error en el reporte')
+
+
+    def populateTableReporteriaFechaOpcion5(self):
+        try:
+            self.tableWidget.setRowCount(0)
+            conn = None
+            params =config()
+            conn = bd.connect(**params)
+            cursor = conn.cursor()
+            artista = self.textEdit_NombreArtista.toPlainText()
+            inicio = self.DATEINICIO
+            fin = self.DATEFIN
+            cursor.execute("SELECT * FROM canciones_mas_reproducidas_artista_por_fecha('{finicio}', '{ffin}', '{fartista}');".format(finicio = inicio, ffin=fin, fartista=artista))
+            record = cursor.fetchall()
+            if(len(record)!= 0):
+                self.tableWidget.setColumnCount(len(record[0]))
+                for i in range(len(record)):
+                    self.tableWidget.insertRow(i)
+                    for j in range(len(record[0])):
+                        self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
+                with open('OpcionFecha5.csv', 'w') as f:
+                    thewriter = csv.writer(f, delimiter=',')
+                    thewriter.writerow(['Veces reproducidas de ' + inicio + ' hasta ' + fin, 'Cancion', 'Artista'])
+                    for row in record:
+                        thewriter.writerow(row)
+        except(Exception) as error:
+            print(error)
+            self.openPopUpError('Error en el reporte')
 
     def populateTableReporteriaOpcion1(self):
         self.tableWidget.setRowCount(0)
@@ -422,6 +477,7 @@ class Ui_HomeAdminReporteria(object):
 
     def populateTableReporteriaOpcion5(self):
         self.tableWidget.setRowCount(0)
+        print('Hola')
         conn = None
         params =config()
         conn = bd.connect(**params)
@@ -525,6 +581,21 @@ class Ui_HomeAdminReporteria(object):
         elif(self.comboBox_OpcionesBuscar.currentText()=="8. Los 5 artistas con más diversidad de géneros"):
             self.populateTableReporteriaOpcion8()
 
+    def reportReporteriaFecha(self):
+        if(self.comboBox_OpcionesBuscarFecha.currentText()=="Reportería por fecha"):
+            print("Eliga una opcion")
+        elif(self.comboBox_OpcionesBuscarFecha.currentText()=="1. Total de ventas por semana"):
+            self.populateTableReporteriaFechaOpcion1()
+        elif(self.comboBox_OpcionesBuscarFecha.currentText()=="2. Los N artistas con las mayores ventas por fechas"):
+            self.populateTableReporteriaFechaOpcion2()
+        elif(self.comboBox_OpcionesBuscarFecha.currentText()=="3. Total de ventas por género"):
+            self.populateTableReporteriaFechaOpcion3()
+        elif(self.comboBox_OpcionesBuscarFecha.currentText()=="4. Las N canciones con más reproducciones para un artista"):
+            self.populateTableReporteriaFechaOpcion4()
+        elif(self.comboBox_OpcionesBuscarFecha.currentText()=="5. Las canciones con más reproducciones para un artista por fechas"):
+            self.populateTableReporteriaFechaOpcion5()
+
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
@@ -533,14 +604,3 @@ if __name__ == "__main__":
     ui.setupUi(HomeAdminReporteria)
     HomeAdminReporteria.show()
     sys.exit(app.exec_())
-
-# Query 1 Reporteria Fecha
-# select count(invoiceid) as ventas_por_semana, invoicedate 
-# from invoice
-# where invoicedate > '2009-01-01 00:00:00' and invoicedate < '2009-02-28 00:00:00' 
-# group by date_trunc('month', invoicedate), invoicedate 
-# ORDER BY date_trunc('month', invoicedate) asc
-
-
-
-

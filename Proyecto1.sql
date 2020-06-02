@@ -196,7 +196,7 @@ CREATE TABLE reproducciones
 (
     clientid INT,
     trackName VARCHAR (200),
-    fecha DATE DEFAULT CURRENT_DATE,
+    fecha timestamp with time zone default current_timestamp,
     FOREIGN KEY (clientid) REFERENCES  user_client (clientid) ON DELETE CASCADE
 );
 
@@ -15923,6 +15923,13 @@ INSERT INTO PlaylistTrack (PlaylistId, TrackId) VALUES (17, 3290);
 INSERT INTO PlaylistTrack (PlaylistId, TrackId) VALUES (18, 597);
 
 
+insert into reproducciones (clientid, trackname, fecha) values (61, 'For Those About To Rock (We Salute You)', '2020-06-01 23:29:12');
+insert into reproducciones (clientid, trackname, fecha) values (61, 'Somebody To Love', '2020-06-01 23:29:28');
+insert into reproducciones (clientid, trackname, fecha) values (61, 'Let''s Get It Up', '2020-06-01 23:29:37');
+insert into reproducciones (clientid, trackname, fecha) values (61, 'Radio GA GA', '2020-06-01 23:29:42');
+insert into reproducciones (clientid, trackname, fecha) values (61, 'We Are The Champions', '2020-06-01 23:29:47');
+insert into reproducciones (clientid, trackname, fecha) values (61, 'Radio GA GA', '2020-06-01 23:30:06');
+
 
 
 /*******************************************************************************
@@ -15936,7 +15943,7 @@ CREATE TABLE logbook(
 	itemModified INT,
 	newData text,
 	dateModified DATE DEFAULT CURRENT_DATE
-)
+);
 
 INSERT INTO logbook (username, typeOfModification, tableModified, itemModified, dateModified)
 VALUES 
@@ -16027,3 +16034,126 @@ AFTER INSERT OR DELETE OR UPDATE
 ON playlist
 FOR EACH ROW
 EXECUTE PROCEDURE save_modification();
+
+/*******************************************************************************
+   Reporteria por fechas
+********************************************************************************/
+drop function if exists ventas_por_semana;
+create or replace function ventas_por_semana(inicio timestamp without time zone, fin timestamp without time zone)
+returns table (
+	total_por_semana0 bigint 
+) as $$
+begin 
+	return QUERY 
+	(
+		SELECT count(invoiceid) AS ventas_por_semana
+		FROM invoice 
+		WHERE invoicedate > inicio AND invoicedate < fin 
+		GROUP BY date_trunc('week', invoicedate) 
+		ORDER BY date_trunc('week', invoicedate) ASC
+	);
+end;
+$$
+language 'plpgsql';
+--select * from ventas_semana('2009-01-01', '2009-02-28')
+
+
+
+drop function if exists artistas_ventas_por_fechas;
+create or replace function artistas_ventas_por_fechas(inicio timestamp without time zone, fin timestamp without time zone, numero integer)
+returns table(
+	nombre character varying(120),
+	total_ventas bigint
+) as $$
+begin
+	return QUERY
+	(
+		SELECT artist.name, count(invoice.invoiceid) AS ventas_por_fechas 
+		FROM invoice 
+			JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid 
+			JOIN track ON invoiceline.trackid = track.trackid 
+			JOIN album ON track.albumid = album.albumid 
+			JOIN artist ON album.artistid = artist.artistid 
+		WHERE invoicedate > inicio AND invoicedate < fin 
+		GROUP BY artist.name 
+		ORDER BY count(invoice.invoiceid) DESC LIMIT numero
+	);
+end;
+$$
+language 'plpgsql';
+--select * from artistas_ventas_por_fechas('2009-01-01', '2009-02-28', 3)
+
+
+
+drop function if exists ventas_por_genero; 
+create or replace function ventas_por_genero(inicio timestamp without time zone, fin timestamp without time zone)
+returns table(
+	nombre character varying(120),
+	total_ventas bigint
+) as $$
+begin
+	return QUERY
+	(
+		SELECT genre.name, count(invoice.invoiceid) AS ventas_por_genero
+		FROM invoice
+			JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
+			JOIN track ON invoiceline.trackid = track.trackid
+			JOIN genre ON track.genreid = genre.genreid 
+		WHERE invoicedate > inicio AND invoicedate < fin
+		GROUP BY genre.name
+		ORDER BY count(invoice.invoiceid) DESC
+	);
+end;
+$$
+language 'plpgsql';
+--select * from ventas_por_genero('2009-01-01', '2009-02-28')
+
+
+drop function if exists canciones_mas_reproducidas_artista;
+create or replace function canciones_mas_reproducidas_artista(artista character varying)
+returns table(
+	total_reproducciones bigint,
+	nombre_cancion character varying(120),
+	nombre_artista character varying(120)
+) as $$
+begin
+	return QUERY
+	(
+		SELECT count(reproducciones.clientid) AS no_reproducciones, track.name, artist.name
+		FROM reproducciones
+			JOIN track ON reproducciones.trackname = track.name
+			JOIN album ON track.albumid = album.albumid 
+			JOIN artist ON album.artistid = artist.artistid
+		WHERE artist.name = artista
+		GROUP BY artist.name, track.name
+		ORDER BY count(reproducciones.clientid) DESC
+	);
+end;
+$$
+language 'plpgsql';
+--select * from canciones_mas_reproducidas_artista('Queen')
+
+
+drop function if exists canciones_mas_reproducidas_artista_por_fecha; 
+create or replace function canciones_mas_reproducidas_artista_por_fecha(inicio timestamp without time zone, fin timestamp without time zone, artista character varying)
+returns table(
+	total_reproducciones_por_fecha bigint,
+	nombre_cancion character varying(120),
+	nombre_artista character varying(120)
+) as $$
+begin
+	return QUERY
+	(
+		select count(reproducciones.clientid) as no_reproducciones, track.name, artist.name
+		from reproducciones
+			join track on reproducciones.trackname = track.name
+			join album on track.albumid = album.albumid 
+			join artist on album.artistid = artist.artistid 
+		WHERE reproducciones.fecha > inicio AND reproducciones.fecha < fin and artist.name = artista
+		group by artist.name, track.name
+		order by count(reproducciones.clientid) desc
+	);
+end;
+$$
+language 'plpgsql';
+select * from canciones_mas_reproducidas_artista_por_fecha('2020-06-01', '2020-07-31','Queen')
