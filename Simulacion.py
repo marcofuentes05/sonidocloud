@@ -58,14 +58,14 @@ class Ui_Simulacion(object):
         self.label_2.setScaledContents(True)
         self.label_2.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.label_2.setObjectName("label_2")
-        self.tableWidget = QtWidgets.QTableWidget(self.frame)
-        self.tableWidget.setGeometry(QtCore.QRect(30, 310, 841, 211))
-        self.tableWidget.setStyleSheet("font: 13pt \"Times\";\n"
-"color: rgb(64, 55, 110);\n"
-"background-color: rgb(212, 228, 188);")
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(0)
-        self.tableWidget.setRowCount(0)
+#         self.tableWidget = QtWidgets.QTableWidget(self.frame)
+#         self.tableWidget.setGeometry(QtCore.QRect(30, 310, 841, 211))
+#         self.tableWidget.setStyleSheet("font: 13pt \"Times\";\n"
+# "color: rgb(64, 55, 110);\n"
+# "background-color: rgb(212, 228, 188);")
+#         self.tableWidget.setObjectName("tableWidget")
+#         self.tableWidget.setColumnCount(0)
+#         self.tableWidget.setRowCount(0)
         self.pushButton_Buscar = QtWidgets.QPushButton(self.frame)
         self.pushButton_Buscar.setGeometry(QtCore.QRect(180, 220, 75, 31))
         self.pushButton_Buscar.setMinimumSize(QtCore.QSize(75, 31))
@@ -83,7 +83,7 @@ class Ui_Simulacion(object):
 "")
         self.label_8.setObjectName("label_8")
         self.calendarWidget = QtWidgets.QCalendarWidget(self.frame)
-        self.calendarWidget.setGeometry(QtCore.QRect(559, 110, 312, 173))
+        self.calendarWidget.setGeometry(QtCore.QRect(559, 120, 312, 173))
         self.calendarWidget.setObjectName("calendarWidget")
         self.calendarWidget.clicked[QtCore.QDate].connect(lambda arg : self.set_date(arg.toString('yyyy-MM-dd')))
         self.label_7 = QtWidgets.QLabel(self.frame)

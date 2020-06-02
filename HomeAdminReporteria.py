@@ -275,7 +275,7 @@ class Ui_HomeAdminReporteria(object):
                     self.tableWidget.insertRow(i)
                     for j in range(len(record[0])):
                         self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-                with open('OpcionFecha1.csv', 'w') as f:
+                with open('ReportePorFechaOpcion1.csv', 'w') as f:
                     thewriter = csv.writer(f, delimiter=',')
                     thewriter.writerow(['Total ventas semana'])
                     for row in record:
@@ -303,7 +303,7 @@ class Ui_HomeAdminReporteria(object):
                     self.tableWidget.insertRow(i)
                     for j in range(len(record[0])):
                         self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-                with open('OpcionFecha2.csv', 'w') as f:
+                with open('ReportePorFechaOpcion2.csv', 'w') as f:
                     thewriter = csv.writer(f, delimiter=',')
                     thewriter.writerow(['Artista', 'No. Ventas de ' + inicio + ' hasta ' + fin])
                     for row in record:
@@ -329,7 +329,7 @@ class Ui_HomeAdminReporteria(object):
                     self.tableWidget.insertRow(i)
                     for j in range(len(record[0])):
                         self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-                with open('OpcionFecha3.csv', 'w') as f:
+                with open('ReportePorFechaOpcion3.csv', 'w') as f:
                     thewriter = csv.writer(f, delimiter=',')
                     thewriter.writerow(['Genero', 'No. Ventas de ' + inicio + ' hasta ' + fin])
                     for row in record:
@@ -354,7 +354,7 @@ class Ui_HomeAdminReporteria(object):
                     self.tableWidget.insertRow(i)
                     for j in range(len(record[0])):
                         self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-                with open('OpcionFecha4.csv', 'w') as f:
+                with open('ReportePorFechaOpcion4.csv', 'w') as f:
                     thewriter = csv.writer(f, delimiter=',')
                     thewriter.writerow(['Veces reproducidas', 'Cancion', 'Artista'])
                     for row in record:
@@ -382,7 +382,7 @@ class Ui_HomeAdminReporteria(object):
                     self.tableWidget.insertRow(i)
                     for j in range(len(record[0])):
                         self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-                with open('OpcionFecha5.csv', 'w') as f:
+                with open('ReportePorFechaOpcion5.csv', 'w') as f:
                     thewriter = csv.writer(f, delimiter=',')
                     thewriter.writerow(['Veces reproducidas de ' + inicio + ' hasta ' + fin, 'Cancion', 'Artista'])
                     for row in record:
@@ -406,7 +406,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion1.csv', 'w') as f:
+            with open('ReporteOpcion1.csv', 'w') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Artista', 'No. Albumés publicados'])
                 for row in record:
@@ -427,7 +427,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion2.csv', 'w', newline='') as f:
+            with open('ReporteOpcion2.csv', 'w', newline='') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Genero', 'No. Canciones'])
                 for row in record:
@@ -448,7 +448,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion3.csv', 'w', newline='') as f:
+            with open('ReporteOpcion3.csv', 'w', newline='') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Playlist', 'Duración (milisegundos)'])
                 for row in record:
@@ -469,7 +469,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion4.csv', 'w', newline='') as f:
+            with open('ReporteOpcion4.csv', 'w', newline='') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Canción','Artista', 'Duración (milisegundos)'])
                 for row in record:
@@ -491,7 +491,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion5.csv', 'w', newline='') as f:
+            with open('ReporteOpcion5.csv', 'w', newline='') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Nombre', 'No. Canciones Subidas'])
                 for row in record:
@@ -512,7 +512,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion6.csv', 'w', newline='') as f:
+            with open('ReporteOpcion6.csv', 'w', newline='') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Canción', 'Promedio de duración (milisegundos)'])
                 for row in record:
@@ -533,7 +533,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion7.csv', 'w', newline='') as f:
+            with open('ReporteOpcion7.csv', 'w', newline='') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Playlist', 'No. Artistas diferentes'])
                 for row in record:
@@ -554,7 +554,7 @@ class Ui_HomeAdminReporteria(object):
                 self.tableWidget.insertRow(i)
                 for j in range(len(record[0])):
                     self.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(record[i][j])))
-            with open('Opcion8.csv', 'w') as f:
+            with open('ReporteOpcion8.csv', 'w') as f:
                 thewriter = csv.writer(f, delimiter=',')
                 thewriter.writerow(['Artista', 'No. Generos'])
                 for row in record:
