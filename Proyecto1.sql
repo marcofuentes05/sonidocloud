@@ -196,6 +196,7 @@ CREATE TABLE reproducciones
 (
     clientid INT,
     trackName VARCHAR (200),
+    fecha DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (clientid) REFERENCES  user_client (clientid) ON DELETE CASCADE
 );
 

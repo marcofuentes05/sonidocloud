@@ -113,7 +113,7 @@ class Ui_MiMusica(object):
                             INNER JOIN user_client c on at.customerid = c.clientid
                             WHERE c.clientid =%(id2)s"""
         query_data = {
-            'id': userId
+            'id': userId,
             'id2':userId
         }
         cursor.execute(query, query_data)

@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Bitacora(object):
+    def __init__(self, id):
+        super(Ui_Bitacora, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
