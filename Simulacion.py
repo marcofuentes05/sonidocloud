@@ -159,9 +159,9 @@ class Ui_Simulacion(object):
             cursor = conn.cursor()
 
             cursor.execute("SELECT MAX(trackid) FROM track ")
-            maxCancionId = cursor.fetchall()[0][0]+1
+            maxCancionId = cursor.fetchall()[0][0]
             cursor.execute("SELECT MAX(clientid) FROM user_client")
-            maxUserId = cursor.fetchall()[0][0]+1
+            maxUserId = cursor.fetchall()[0][0]
 
             cursor.execute("SELECT MAX(invoiceid) from invoice")
             invoiceId = cursor.fetchall()[0][0]+1
@@ -184,15 +184,16 @@ class Ui_Simulacion(object):
                 }
                 cursor.execute(query,data)
                 record=cursor.fetchall()
-                for j in range(random.randint(1,cantidad+1)):
-                    cancionKey = random.randint(0,len(record)-1)
-                    cancion = record[cancionKey][1]
-                    print('rep',cancion,user)
-                    query2 = "INSERT INTO reproducciones(clientid, trackname) VALUES (%s,%s)"
-                    datos=(str(user),cancion)
-                    cursor.execute(query2,datos)
-                    conn.commit()
-                    totalRep+=1
+                if(len(record)>0):
+                    for j in range(random.randint(1,cantidad+1)):
+                        cancionKey = random.randint(0,len(record)-1)
+                        cancion = record[cancionKey][1]
+                        print('rep',cancion,user)
+                        query2 = "INSERT INTO reproducciones(clientid, trackname, fecha) VALUES (%s,%s,%s)"
+                        datos=(str(user),cancion,fecha)
+                        cursor.execute(query2,datos)
+                        conn.commit()
+                        totalRep+=1
 
             for i in range(cantidad):
                 user = random.randint(1,maxUserId)

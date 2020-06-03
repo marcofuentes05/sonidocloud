@@ -15935,6 +15935,9 @@ insert into reproducciones (clientid, trackname, fecha) values (61, 'Radio GA GA
 /*******************************************************************************
    Logbook related Stuff
 ********************************************************************************/
+DROP INDEX IF EXISTS IFK_Logbook;
+CREATE INDEX IFK_Logbook ON logbook (username);
+
 DROP TABLE IF EXISTS logbook;
 CREATE TABLE logbook(
 	username VARCHAR(40) REFERENCES user_client(username),

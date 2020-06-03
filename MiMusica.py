@@ -99,7 +99,7 @@ class Ui_MiMusica(object):
         params =config()
         conn = bd.connect(**params)
         cursor = conn.cursor()
-        query = """  SELECT t.name, t.composer
+        query = """  SELECT t.name
                             FROM invoice i 
                             INNER JOIN invoiceline il on il.invoiceid = i.invoiceid 
                             INNER JOIN user_client u on u.clientid = i.customerid
@@ -107,7 +107,7 @@ class Ui_MiMusica(object):
                             
                             UNION
 
-                            SELECT t.name, t.composer
+                            SELECT t.name
                             FROM track t 
                             INNER JOIN album a on a.albumid = t.trackid
                             INNER JOIN artist at on at.artistid = a.artistid
