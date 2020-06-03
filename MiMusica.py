@@ -61,6 +61,14 @@ class Ui_MiMusica(object):
         self.label_2.setScaledContents(True)
         self.label_2.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.label_2.setObjectName("label_2")
+        self.label_7 = QtWidgets.QLabel(self.frame)
+        self.label_7.setGeometry(QtCore.QRect(30, 160, 280, 25))
+        self.label_7.setMinimumSize(QtCore.QSize(280, 25))
+        self.label_7.setMaximumSize(QtCore.QSize(280, 25))
+        self.label_7.setStyleSheet("font: 14pt \"Times\";\n"
+"color: rgb(10, 54, 157);\n"
+"")
+        self.label_7.setObjectName("label_7")
         self.tableWidget = QtWidgets.QTableWidget(self.frame)
         self.tableWidget.setGeometry(QtCore.QRect(30, 190, 841, 321))
         self.tableWidget.setStyleSheet("font: 13pt \"Times\";\n"
@@ -70,7 +78,7 @@ class Ui_MiMusica(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.label_8 = QtWidgets.QLabel(self.frame)
-        self.label_8.setGeometry(QtCore.QRect(30, 120, 210, 50))
+        self.label_8.setGeometry(QtCore.QRect(30, 110, 210, 50))
         self.label_8.setMinimumSize(QtCore.QSize(210, 50))
         self.label_8.setMaximumSize(QtCore.QSize(210, 50))
         self.label_8.setStyleSheet("font: 22pt \"Times\";\n"
@@ -89,6 +97,7 @@ class Ui_MiMusica(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Sonido Cloud "))
         self.label_8.setText(_translate("MainWindow", "Mi Música"))
+        self.label_7.setText(_translate("MainWindow", "Para reproducir doble click en la canción"))
         self.populateTable()
 
     def populateTable(self):
