@@ -454,7 +454,7 @@ class Ui_HomeAdmin(object):
 
     def openHomeAdminGestionPermisos(self):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_HomeAdminGestionPermisos()
+        self.ui = Ui_HomeAdminGestionPermisos(self.id)
         self.ui.setupUi(self.window)
         self.window.show()
 

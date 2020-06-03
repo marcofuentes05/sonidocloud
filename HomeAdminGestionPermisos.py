@@ -14,6 +14,10 @@ import psycopg2 as bd
 from config import config
 
 class Ui_HomeAdminGestionPermisos(object):
+    def __init__(self, id):
+        super(Ui_HomeAdminGestionPermisos, self).__init__()
+        self.id = id
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 650)
@@ -241,14 +245,16 @@ class Ui_HomeAdminGestionPermisos(object):
                 if(permiso=="1"):
                     cursor.execute("SELECT artist.name FROM artist WHERE artist.name= \'"+usuario+"\'")
                     if(len(cursor.fetchall()) == 0):
+                        cursor.execute("select username from user_client where clientid=\'"+str(self.id)+"\'")
+                        username = cursor.fetchall()[0][0]
                         cursor.execute("SELECT artist.artistid FROM artist ORDER BY artist.artistid DESC LIMIT 1")
                         record = cursor.fetchall()
                         id=record[0][0] +1
                         cursor.execute("SELECT user_client.clientid FROM user_client WHERE user_client.username = \'"+usuario+"\'")
                         recordCustomerid = cursor.fetchall()
                         customerid = recordCustomerid[0][0]
-                        sql="INSERT INTO artist(artistid, name, customerid) VALUES (%s,%s,%s)"
-                        datos=(id,usuario,customerid)
+                        sql="INSERT INTO artist(artistid, name, customerid, last_modified_by) VALUES (%s,%s,%s,%s)"
+                        datos=(id,usuario,customerid,username)
                         cursor.execute(sql,datos)
                         conn.commit()
                     else:
