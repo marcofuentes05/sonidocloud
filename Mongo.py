@@ -110,7 +110,8 @@ FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
     # Los seriaizo a un diccionario
     lista = todosClientesSerializer(record)
     #Los agrego a mi coleccion
-    mydb.customers.insert_many(lista)
+    if (len(lista) !=0):
+        mydb.customers.insert_many(lista)
 
     queryLatestRelases = """SELECT datemodified as releasedate, track.name, album.title, artist.name, genre.name
     FROM logbook 
@@ -128,7 +129,8 @@ FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
     # Los seriaizo a un diccionario
     lista = latestReleasesSerializer(record)
     #Los agrego a mi coleccion
-    mydb.releases.insert_many(lista)
+    if (len(lista) != 0):
+        mydb.releases.insert_many(lista)
 
     # #El sistema funciona con puntos
 
