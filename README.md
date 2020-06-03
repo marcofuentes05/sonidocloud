@@ -22,7 +22,10 @@ $ pip install psycopg2-binary
 $ pip install fpdf
 ```
 
-Además, montar el archivo ```Proyecto1.sql```
+Luego, montar en la base de datos de POSTGRES, el archivo ```Proyecto1.sql```.
+
+Finalmente, para ejecutar la aplicación, correr el acrchivo ```Loginaccount.py```:
+
 
 ## Importante
 
