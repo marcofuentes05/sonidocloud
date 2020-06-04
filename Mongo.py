@@ -89,15 +89,15 @@ class Ui_Mongo(object):
 
     #MIGRACION DE DATOS A MONGO
 
-    queryTodosClientes = """SELECT DISTINCT userclient.clientid, invoice.invoicedate AS fecha ,
-	userclient.username AS nombre, billingcity AS ciudad, 
+    queryTodosClientes = """SELECT DISTINCT user_client.clientid, invoice.invoicedate AS fecha ,
+	user_client.username AS nombre, billingcity AS ciudad, 
 	billingstate AS estado, billingcountry AS pais, track.name AS cancion, genre.name AS genero , 
 	album.title AS album, artist.name AS artista
 FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
 	JOIN track ON track.trackid = invoiceline.trackid
 	JOIN album ON track.albumid = album.albumid
 	JOIN artist ON artist.artistid = album.artistid
-	JOIN userclient ON userclient.clientid = invoice.customerid
+	JOIN user_client ON user_client.clientid = invoice.customerid
 	JOIN genre ON track.genreid = genre.genreid
 --WHERE invoice.invoicedate= \'2009/1/1\'
 """
@@ -274,10 +274,10 @@ FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
         if (self.comboBox_OpcionesBuscar.currentText() == "Clientes por fecha"):
             self.mydb.invoice.delete_many({})
             print('ENTRAMOS AL CONDICIONAL')
-            queryPorFecha = """SELECT DISTINCT userclient.clientid, userclient.username as nombre,
+            queryPorFecha = """SELECT DISTINCT user_client.clientid, user_client.username as nombre,
                 invoice.billingcountry as pais, invoice.billingstate as estado, invoice.billingcity as ciudad, invoice.invoicedate
                 FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
-                JOIN userclient ON invoice.customerid = userclient.clientid
+                JOIN user_client ON invoice.customerid = user_client.clientid
                 WHERE invoice.invoicedate = \'{}\'
                 """.format(fecha)
             params = config()
