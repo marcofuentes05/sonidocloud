@@ -43,9 +43,7 @@ class Ui_Mongo(object):
                     'pais': i[2],
                     'estado': i[3],
                     'ciudad': i[4],
-                    'telefono': i[5],
-                    'direccion': i[6],
-                    'fecha' : self.convert(i[7])
+                    'fecha' : self.convert(i[5])
                 }
         )
         return lista
@@ -91,15 +89,15 @@ class Ui_Mongo(object):
 
     #MIGRACION DE DATOS A MONGO
 
-    queryTodosClientes = """SELECT DISTINCT customer.customerid, invoice.invoicedate AS fecha ,
-	CONCAT(customer.firstname,' ',customer.lastname) AS nombre, billingcity AS ciudad, 
+    queryTodosClientes = """SELECT DISTINCT userclient.clientid, invoice.invoicedate AS fecha ,
+	userclient.username AS nombre, billingcity AS ciudad, 
 	billingstate AS estado, billingcountry AS pais, track.name AS cancion, genre.name AS genero , 
 	album.title AS album, artist.name AS artista
 FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
 	JOIN track ON track.trackid = invoiceline.trackid
 	JOIN album ON track.albumid = album.albumid
 	JOIN artist ON artist.artistid = album.artistid
-	JOIN customer ON customer.customerid = invoice.customerid
+	JOIN userclient ON userclient.clientid = invoice.customerid
 	JOIN genre ON track.genreid = genre.genreid
 --WHERE invoice.invoicedate= \'2009/1/1\'
 """
@@ -276,10 +274,10 @@ FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
         if (self.comboBox_OpcionesBuscar.currentText() == "Clientes por fecha"):
             self.mydb.invoice.delete_many({})
             print('ENTRAMOS AL CONDICIONAL')
-            queryPorFecha = """SELECT DISTINCT customer.customerid,CONCAT(customer.firstname,' ', customer.lastname) as nombre,
-                invoice.billingcountry as pais, invoice.billingstate as estado, invoice.billingcity as ciudad, customer.phone, customer.address, invoice.invoicedate
+            queryPorFecha = """SELECT DISTINCT userclient.clientid, userclient.username as nombre,
+                invoice.billingcountry as pais, invoice.billingstate as estado, invoice.billingcity as ciudad, invoice.invoicedate
                 FROM invoice JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
-                JOIN customer ON invoice.customerid = customer.customerid
+                JOIN userclient ON invoice.customerid = userclient.clientid
                 WHERE invoice.invoicedate = \'{}\'
                 """.format(fecha)
             params = config()
